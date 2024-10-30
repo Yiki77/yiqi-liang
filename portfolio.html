@@ -377,6 +377,39 @@
     </div>
   </div>
 
+      <div class="portfolio-modal modal fade" id="medisum" tabindex="-1" role="dialog" aria-labelledby="medisumLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">
+            <i class="fas fa-times fa-xs"></i>
+          </span>
+        </button>
+        <div class="modal-body">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-lg-10">
+                <h1 class="portfolio-modal-title mb-4 text-center">Medisum</h1>
+              
+
+                <h6 class="large font-weight-bold"><highlight>Abstract: </highlight></h6>
+                <p class="mb-3">How do the perceptual abilities developed by embodied agents correlate to the active behaviours they execute in the 3D world? Parallels between computational actors, namely reinforcement learning (RL) agents, can be drawn with ecological agents through the principle of the action-perception-loop (APL), which describes the interlinked relationship between learning to <i>see</i> and learning to <i>act</i>.</p> 
+
+                <img class="img-fluid rounded mb-3" src="img/portfolio/worldloop_objectives.png" alt="">
+
+                <p>We investigate how the APL manifests in RL agents trained on a variety of embodied tasks with different perceptual requirements, including motor movements, visually-guided navigation, and localization. In the absence of a holistic perceptual evaluation method, we use depth estimation as a substitute task to evaluate the agent's learned visual encoder post-training. Our preliminary results find that agents with smoother policies encode significantly better depth perception abilities than a scratch encoder, but performance differences between task variations are difficult to quantify given inconsistencies in training agents to convergence. </p>
+
+                <img class="img-fluid rounded mb-3" src="img/portfolio/worldloop_results1.png" alt="">
+
+                <p>As a further step, we explore if APL can be applied to address technical challenges in RL, such as sample efficiency in training. We initialize agents with pretrained depth visual encoders and repeat their training to compare with the scratch agents. We find that some embodied tasks which require visual information saw benefits in the jumpstart reward performance, but definitive results are limited by agents overfitting to the training environments. We make a list of recommended changes to the technical setup of the experiments and suggest future directions.</p>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="portfolio-modal modal fade" id="limupytorch" tabindex="-1" role="dialog" aria-labelledby="limupytorchLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl" role="document">
@@ -440,8 +473,7 @@
     </div>
   </div>
 
- 
-  <div class="portfolio-modal modal fade" id="styledraw" tabindex="-1" role="dialog" aria-labelledby="styledrawLabel" aria-hidden="true">
+  <div class="portfolio-modal modal fade" id="ganportrait" tabindex="-1" role="dialog" aria-labelledby="ganportraitLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl" role="document">
       <div class="modal-content">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -453,14 +485,49 @@
           <div class="container">
             <div class="row justify-content-center">
               <div class="col-lg-10">
-                <h1 class="portfolio-modal-title mb-4 text-center">VectorStyleDraw</h1>
-                   <video width="100%" height="auto" controls muted style="max-width: 560px; display: block; margin: auto;">
+                  <h1 class="portfolio-modal-title mb-4 text-center">Image Generation and Manipulation by Using GAN</h1>
+                <div class="video-container mb-4">
+                   <iframe width="560" height="315" src="documents/GANposter.pdf" frameborder="0"></iframe>
+                </div>
+               
+                
+                <h6 class="large font-weight-bold"><highlight>Reference: </highlight></h6>
+                <p>
+                    Karras T, Laine S, Aila T. A style-based generator architecture for generative adversarial networks[C]//Proceedings of the IEEE/CVF conference on computer vision and pattern recognition. 2019: 4401-4410.
+                </p>    
+                <p>
+                    Xia W, Yang Y, Xue J H, et al. Tedigan: Text-guided diverse face image generation and manipulation[C]//Proceedings of the IEEE/CVF conference on computer vision and pattern recognition. 2021: 2256-2265.
+                </p>    
+   
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="portfolio-modal modal fade" id="styledraw" tabindex="-1" role="dialog" aria-labelledby="styledrawLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">
+            <i class="fas fa-times fa-xs"></i>
+          </span>
+        </button>
+        <div class="modal-body">
+          <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <h1 class="portfolio-modal-title mb-4 text-center">VectorStyleDraw</h1>
+                    <video width="100%" height="auto" controls muted style="max-width: 560px; display: block; margin: auto;">
                         <source src="img/portfolio/video/vectorstyledraw.mp4" type="video/mp4">
-                    </video> 
-                <h6 class="large font-weight-bold"><highlight>Motivation: </highlight></h6>
-                <p>This work presents VectorStyleDraw, an algorithm that synthesizes vecor style drawings based on initial input image and style input image. VectorStyleDraw, like CLIPDraw, does not require any training. It use a pre-trained CLIP language-image encoder to maximize similarity between the given initial image and a generated drawing. And it also use Earth Mover Distance (rEMD) as style loss. VectorStyleDraw preserves the characteristics of the initial image and the style of the style image well, presenting a unique and interesting image result.</p>
-                    
-</div>
+                    </video>
+                    <h6 class="large font-weight-bold"><highlight>Motivation: </highlight></h6>
+                    <p>This work presents VectorStyleDraw, an algorithm that synthesizes vecor style drawings based on initial input image and style input image. VectorStyleDraw, like CLIPDraw, does not require any training. It use a pre-trained CLIP language-image encoder to maximize similarity between the given initial image and a generated drawing. And it also use Earth Mover Distance (rEMD) as style loss. VectorStyleDraw preserves the characteristics of the initial image and the style of the style image well, presenting a unique and interesting image result.</p>
+
+                </div>
             </div>
           </div>
         </div>
@@ -485,9 +552,9 @@
             <div class="row justify-content-center">
                 <div class="col-lg-10">
                     <h1 class="portfolio-modal-title mb-4 text-center">MediSum</h1>
-                  <video width="100%" height="auto" controls muted style="max-width: 560px; display: block; margin: auto;">
-                     <source src="img/portfolio/video/medisum.mp4" type="video/mp4">
-                   </video>
+                    <video width="100%" height="auto" controls muted style="max-width: 560px; display: block; margin: auto;">
+                        <source src="img/portfolio/video/medisum.mp4" type="video/mp4">
+                    </video>
 
 
                     <h6 class="large font-weight-bold "><highlight>Motivation: </highlight></h6>
@@ -496,9 +563,10 @@
                         older adults’ lower vision, memory decline and etc., it will be more inconvenient for them to read and use instructions. Although there
                         has been a proposal to amend the instructions in Chinese society, the proposal is still being implemented. Previous work also tried to
                         help the older adults use manuals, but it was not convenient for users to use related tools. Based on the the real problems and challenges faced by older adults in reading Chinese medication instructions, we designed a Wechat Program, MediSum, by
-                        <b>1) digitalized the instructions, 2) organized the contents of the instructions, and 3) combined ChatGPT Interactively
-                    </b>
-                    help older adults read and understand the content of the instructions, and learn relevant knowledge beyond the instructions.
+                        <b>
+                            1) digitalized the instructions, 2) organized the contents of the instructions, and 3) combined ChatGPT Interactively
+                        </b>
+                        help older adults read and understand the content of the instructions, and learn relevant knowledge beyond the instructions.
                     </p>
 
                 </div>
@@ -522,16 +590,14 @@
             <div class="row justify-content-center">
               <div class="col-lg-10">
                 <h1 class="portfolio-modal-title mb-4 text-center">LayerTouch</h1>
-               
-                  <video width="100%" height="auto" controls muted style="max-width: 560px; display: block; margin: auto;">
-                     <source src="img/portfolio/video/layertouch.mp4" type="video/mp4">
-                   </video>
-                  
+                <video width="100%" height="auto" controls muted style="max-width: 560px; display: block; margin: auto;">
+                    <source src="img/portfolio/video/layertouch.mp4" type="video/mp4">
+                </video>
 
                 <h6 class="large font-weight-bold "><highlight>Motivation: </highlight></h6>
                 <p class="mb-3">
                     Blind and low vision (BLV) people often rely on alt text to understand what an image is showing. However, recent research has investigated how touch-based image exploration on touchscreens can supplement alt text. Touchscreen-based image exploration systems allow BLV people to deeply understand images while granting a strong sense of agency. However, despite these developments, how we effectively utilize image descriptions for image accessibility has remained stagnant. To better understand the content of image, we presented LayerTouch, a tool could enable BLV people to navigate image object under certain layer based on different depth of image.</p>
-                </div>
+</div>
             </div>
           </div>
         </div>
@@ -618,40 +684,6 @@
         </div>
       </div>
     </div>
-
-       <div class="portfolio-modal modal fade" id="ganportrait" tabindex="-1" role="dialog" aria-labelledby="ganportraitLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl" role="document">
-      <div class="modal-content">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">
-            <i class="fas fa-times fa-xs"></i>
-          </span>
-        </button>
-        <div class="modal-body">
-          <div class="container">
-            <div class="row justify-content-center">
-              <div class="col-lg-10">
-                  <h1 class="portfolio-modal-title mb-4 text-center">Image Generation and Manipulation by Using GAN</h1>
-                <div class="video-container mb-4">
-                   <iframe width="560" height="315" src="documents/GANposter.pdf" frameborder="0"></iframe>
-                </div>
-               
-                
-                <h6 class="large font-weight-bold"><highlight>Reference: </highlight></h6>
-                <p>
-                    Karras T, Laine S, Aila T. A style-based generator architecture for generative adversarial networks[C]//Proceedings of the IEEE/CVF conference on computer vision and pattern recognition. 2019: 4401-4410.
-                </p>    
-                <p>
-                    Xia W, Yang Y, Xue J H, et al. Tedigan: Text-guided diverse face image generation and manipulation[C]//Proceedings of the IEEE/CVF conference on computer vision and pattern recognition. 2021: 2256-2265.
-                </p>    
-   
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
   </div> 
 
 
