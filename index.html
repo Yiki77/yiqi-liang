@@ -30,9 +30,12 @@
 
 <body id="page-top">
 
+<!-- Decorative mouse brush-stroke trail; pointer-events are disabled in CSS -->
+<canvas id="cursorStrokeCanvas" aria-hidden="true"></canvas>
+
+
 
 <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
-  <div class="nav-mosaic-grid" aria-hidden="true"></div>
   <div class="container">
     <a class="navbar-brand" href="#about">Yiqi LIANG</a>
 
@@ -700,50 +703,52 @@
 </section>
 
 
-
 <section id="interest" class="single-page-section">
   <div class="container section-shell">
-
-    <div class="section-heading-row compact-heading-row">
+    <div class="section-heading-row">
       <h2 class="single-page-heading">Interest</h2>
       <span class="section-index">04 / 04</span>
     </div>
 
-    <div class="interest-grid interest-grid-compact">
+    <p class="interest-intro">
+      A small personal corner for things I enjoy outside research.
+    </p>
 
+    <div class="interest-grid">
       <div class="interest-card">
         <span class="interest-symbol">♡</span>
         <h3>TV Shows</h3>
-        <p>
-          Friends · Breaking Bad · Criminal Minds · Wednesday · The Knockout
-        </p>
+        <ul>
+          <li>Friends</li>
+          <li>Breaking Bad</li>
+          <li>Criminal Minds</li>
+          <li>Wednesday</li>
+          <li>The Knockout</li>
+        </ul>
       </div>
 
-      <div class="interest-card interest-movies">
+      <div class="interest-card">
         <span class="interest-symbol">○</span>
         <h3>Movies</h3>
-        <p class="interest-movie-lines">
-          <b>Love:</b> About Time, The Notebook, Flipped, Love Letter<br>
-          <b>Animation:</b> Coco, Soul, Robot Dreams, Big Hero 6, The Incredibles,
-          Finding Nemo, Sing, Yao-Chinese Folktales, and more<br>
-          <b>Mystery:</b> Knives Out, Karma, The Invisible Guest<br>
-          <b>Drama:</b> Fight Club, The Shawshank Redemption, Shutter Island,
-          The Pianist, A Beautiful Mind, The Silence of the Lambs
-        </p>
+        <ul>
+          <li><b>Love most:</b> About Time, The Notebook, Flipped, Love Letter</li>
+          <li><b>Animation:</b> Coco, I Am What I Am, Spies in Disguise, Sing, Rise of the Guardians, Monsters University, Finding Nemo, Ron's Gone Wrong, Soul, Robot Dreams, Alita: Battle Angel, Big Hero 6, The Incredibles, Yao-Chinese Folktales</li>
+          <li><b>Mystery:</b> Knives Out, Karma, The Invisible Guest</li>
+          <li><b>Drama:</b> Fight Club, The Shawshank Redemption, Shutter Island, The Pianist, A Beautiful Mind, The Silence of the Lambs</li>
+        </ul>
       </div>
 
       <div class="interest-card">
         <span class="interest-symbol">✦</span>
         <h3>Handcrafts</h3>
-        <p>Pipe cleaners 🧶 · Puzzles 🧩</p>
+        <p>Pipe cleaners 🧶, Puzzles 🧩</p>
       </div>
 
       <div class="interest-card">
         <span class="interest-symbol">↗</span>
         <h3>Recently Trying</h3>
-        <p>Tennis 🎾 · Fitness 🏋️</p>
+        <p>Tennis 🎾, Fitness 🏋️</p>
       </div>
-
     </div>
   </div>
 </section>
