@@ -1,72 +1,125 @@
-
 /* ================================================================
-   Yiqi Liang — Single-page academic homepage
+   Yiqi Liang — Black & White Sketchbook Academic Homepage
    Load AFTER css/freelancer.css
    ================================================================ */
 
 :root {
-  --yiqi-green: #48735a;
-  --yiqi-card-hover: rgba(73, 190, 126, 0.80);
-  --yiqi-green-dark: #294837;
-  --yiqi-green-soft: #e8f0e8;
-  --yiqi-green-pale: #f4f8f2;
-  --yiqi-ink: #222b25;
-  --yiqi-muted: #667169;
-  --yiqi-line: #dce3dc;
-  --yiqi-bg: #fbfcf8;
-  --yiqi-white: #ffffff;
-  --yiqi-nav-height: 76px;
+  --sketch-black: #111111;
+  --sketch-ink: #242424;
+  --sketch-gray: #6f6f6f;
+  --sketch-light: #bdbdbd;
+  --sketch-line: #d7d7d7;
+  --sketch-paper: #ffffff;
+  --sketch-paper-2: #fafafa;
+  --sketch-wash: rgba(17, 17, 17, 0.08);
+  --sketch-hover: rgba(18, 18, 18, 0.84);
+  --nav-height: 76px;
 }
 
 html {
   scroll-behavior: smooth;
+  background: var(--sketch-paper);
 }
 
 body {
-  color: var(--yiqi-ink);
-  background: var(--yiqi-bg);
+  position: relative;
+  color: var(--sketch-ink);
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.012) 1px, transparent 1px),
+    #ffffff;
+  background-size: 28px 28px, 28px 28px, auto;
   font-family: "Lato", sans-serif;
   line-height: 1.72;
-  padding-top: var(--yiqi-nav-height);
+  padding-top: var(--nav-height);
+}
+
+/* A very light "paper grain" without using any image asset */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.13;
+  background:
+    repeating-linear-gradient(
+      7deg,
+      transparent 0,
+      transparent 13px,
+      rgba(0, 0, 0, 0.025) 14px,
+      transparent 15px
+    );
 }
 
 a {
-  color: var(--yiqi-green-dark);
+  color: var(--sketch-black);
 }
 
 a:hover {
-  color: var(--yiqi-green);
+  color: #000000;
   text-decoration: none;
 }
 
 ::selection {
-  color: var(--yiqi-green-dark);
-  background: #d9eadb;
+  color: #ffffff;
+  background: #111111;
 }
 
-/* ----------------------------------------------------------------
-   Fixed navigation + active section
-   ---------------------------------------------------------------- */
+
+/* ================================================================
+   NAVIGATION — like a hand-drawn header line
+   ================================================================ */
 
 #mainNav {
-  min-height: var(--yiqi-nav-height);
+  min-height: var(--nav-height);
   padding: 0;
-  background: rgba(251, 252, 248, 0.96) !important;
-  border-bottom: 1px solid var(--yiqi-line);
+  background: rgba(255, 255, 255, 0.94) !important;
+  border-bottom: 1px solid #111111;
   box-shadow: none !important;
-  backdrop-filter: blur(14px);
+  backdrop-filter: blur(12px);
+}
+
+#mainNav::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -4px;
+  height: 1px;
+  background: rgba(17, 17, 17, 0.28);
+  transform: rotate(-0.08deg);
+  pointer-events: none;
 }
 
 #mainNav .container {
-  min-height: var(--yiqi-nav-height);
+  min-height: var(--nav-height);
 }
 
 #mainNav .navbar-brand {
-  color: var(--yiqi-green-dark) !important;
-  font-family: "Montserrat", sans-serif;
-  font-size: 1.1rem;
+  position: relative;
+  color: #111111 !important;
+  font-family: "Dosis", sans-serif;
+  font-size: 1.32rem;
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.045em;
+}
+
+#mainNav .navbar-brand::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 15px;
+  width: 0;
+  height: 6px;
+  border-bottom: 2px solid #111;
+  border-radius: 50%;
+  transform: rotate(-2deg);
+  transition: width 0.25s ease;
+}
+
+#mainNav .navbar-brand:hover::after {
+  width: 100%;
 }
 
 #mainNav .navbar-nav {
@@ -75,55 +128,81 @@ a:hover {
 
 #mainNav .nav-link {
   position: relative;
-  margin-left: 0.8rem;
-  padding: 1.75rem 0.35rem 1.55rem !important;
-  color: #667168 !important;
+  margin-left: 1rem;
+  padding: 1.75rem 0.18rem 1.55rem !important;
+  color: #555555 !important;
   border-radius: 0 !important;
   font-family: "Montserrat", sans-serif;
-  font-size: 0.78rem !important;
+  font-size: 0.77rem !important;
   font-weight: 600;
   letter-spacing: 0.035em;
   text-transform: none !important;
   transition: color 0.2s ease;
 }
 
+#mainNav .nav-link:hover,
+#mainNav .nav-link.active {
+  color: #111111 !important;
+}
+
+/* main pencil underline */
 #mainNav .nav-link::after {
   content: "";
   position: absolute;
-  left: 0.35rem;
-  right: 0.35rem;
-  bottom: 1.15rem;
-  height: 2px;
-  background: var(--yiqi-green);
-  transform: scaleX(0);
-  transform-origin: center;
+  left: 0.08rem;
+  right: 0.08rem;
+  bottom: 1.13rem;
+  height: 7px;
+  border-bottom: 2px solid #111111;
+  border-radius: 48% 52% 42% 58%;
+  transform: scaleX(0) rotate(-1.5deg);
+  transform-origin: left center;
   transition: transform 0.22s ease;
 }
 
-#mainNav .nav-link:hover,
-#mainNav .nav-link.active {
-  color: var(--yiqi-green-dark) !important;
+/* second imperfect stroke */
+#mainNav .nav-link::before {
+  content: "";
+  position: absolute;
+  left: 0.25rem;
+  right: 0;
+  bottom: 1.04rem;
+  height: 4px;
+  border-bottom: 1px solid rgba(17, 17, 17, 0.48);
+  border-radius: 50%;
+  transform: scaleX(0) rotate(1deg);
+  transform-origin: right center;
+  transition: transform 0.27s ease 0.03s;
 }
 
-#mainNav .nav-link.active::after {
-  transform: scaleX(1);
+#mainNav .nav-link.active::after,
+#mainNav .nav-link:hover::after,
+#mainNav .nav-link.active::before,
+#mainNav .nav-link:hover::before {
+  transform: scaleX(1) rotate(-1.5deg);
+}
+
+#mainNav .nav-link.active::before,
+#mainNav .nav-link:hover::before {
+  transform: scaleX(1) rotate(1deg);
 }
 
 #mainNav .navbar-toggler {
-  color: var(--yiqi-green-dark) !important;
-  background: transparent !important;
-  border: 1px solid var(--yiqi-line) !important;
+  color: #111111 !important;
+  background: #ffffff !important;
+  border: 1.5px solid #111111 !important;
+  border-radius: 48% 52% 46% 54% / 53% 47% 55% 45% !important;
   font-size: 0.72rem;
 }
 
-/* Anchor offset for the fixed nav */
 .single-page-section {
-  scroll-margin-top: calc(var(--yiqi-nav-height) + 18px);
+  scroll-margin-top: calc(var(--nav-height) + 18px);
 }
 
-/* ----------------------------------------------------------------
-   Shared typography
-   ---------------------------------------------------------------- */
+
+/* ================================================================
+   SHARED TYPOGRAPHY
+   ================================================================ */
 
 .section-shell {
   max-width: 1080px;
@@ -131,59 +210,110 @@ a:hover {
 }
 
 .section-heading-row {
+  position: relative;
   display: flex;
   align-items: baseline;
   justify-content: space-between;
   gap: 1.5rem;
-  margin-bottom: 2.8rem;
-  padding-bottom: 0.95rem;
-  border-bottom: 1px solid var(--yiqi-line);
+  margin-bottom: 3rem;
+  padding-bottom: 1rem;
+  border-bottom: 0;
+}
+
+/* deliberately imperfect hand-drawn divider */
+.section-heading-row::after {
+  content: "";
+  position: absolute;
+  left: -4px;
+  right: 7px;
+  bottom: 0;
+  height: 7px;
+  border-bottom: 1.6px solid #111111;
+  border-radius: 45% 55% 42% 58%;
+  transform: rotate(-0.17deg);
+}
+
+.section-heading-row::before {
+  content: "";
+  position: absolute;
+  left: 20%;
+  right: 2px;
+  bottom: -3px;
+  height: 5px;
+  border-bottom: 1px solid rgba(17, 17, 17, 0.22);
+  transform: rotate(0.12deg);
 }
 
 .single-page-heading {
   margin: 0;
-  color: var(--yiqi-green-dark);
-  font-family: "Montserrat", sans-serif;
-  font-size: clamp(2rem, 4vw, 3.15rem);
+  color: #111111;
+  font-family: "Dosis", sans-serif;
+  font-size: clamp(2.2rem, 4vw, 3.35rem);
   font-weight: 700;
-  letter-spacing: -0.025em;
+  letter-spacing: 0.005em;
   text-transform: none !important;
 }
 
 .section-index {
   flex: 0 0 auto;
-  color: #97a39a;
+  color: #8a8a8a;
   font-family: "Montserrat", sans-serif;
-  font-size: 0.72rem;
+  font-size: 0.69rem;
   font-weight: 600;
   letter-spacing: 0.08em;
 }
 
 .font-underline {
+  color: #111111 !important;
   text-decoration: underline;
-  text-decoration-color: #a8bca9;
+  text-decoration-color: #555555;
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
+  text-decoration-style: wavy;
 }
 
+/* gray pencil-marker highlight instead of green */
 highlight {
+  display: inline;
   padding: 0 0.08em;
-  color: inherit;
-  background: linear-gradient(transparent 62%, #dcebdd 62%);
+  color: #111111;
+  background:
+    linear-gradient(
+      176deg,
+      transparent 60%,
+      rgba(25, 25, 25, 0.12) 60%,
+      rgba(25, 25, 25, 0.12) 88%,
+      transparent 88%
+    );
 }
 
-/* ----------------------------------------------------------------
+
+/* ================================================================
    ABOUT
-   ---------------------------------------------------------------- */
+   ================================================================ */
 
 #about {
   position: relative;
-  min-height: calc(100vh - var(--yiqi-nav-height));
-  padding: 4.8rem 0 5rem;
+  min-height: calc(100vh - var(--nav-height));
+  padding: 4.9rem 0 5.2rem;
   overflow: hidden;
-  background:
-    radial-gradient(circle at 88% 9%, rgba(99, 139, 106, 0.10), transparent 24rem),
-    var(--yiqi-bg);
+  background: transparent;
+}
+
+/* a few large pencil gestures in the whitespace */
+#about::after {
+  content: "";
+  position: absolute;
+  right: -80px;
+  top: 55px;
+  width: 340px;
+  height: 180px;
+  border: 1.5px solid rgba(17, 17, 17, 0.08);
+  border-left-color: transparent;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  transform: rotate(14deg);
+  pointer-events: none;
 }
 
 .about-layout {
@@ -195,26 +325,33 @@ highlight {
 
 .about-profile {
   position: sticky;
-  top: calc(var(--yiqi-nav-height) + 30px);
+  top: calc(var(--nav-height) + 30px);
   text-align: center;
 }
 
+/* portrait becomes a clipped "paper photo" instead of a perfect UI circle */
 .masthead-avatar {
   width: 220px;
   height: 220px;
   object-fit: cover;
   margin-bottom: 0.9rem !important;
-  border: 1px solid #d7ded7;
-  border-radius: 50% !important;
-  box-shadow: 0 10px 30px rgba(43, 69, 53, 0.07);
+  padding: 5px;
+  background: #ffffff;
+  border: 1.6px solid #111111;
+  border-radius: 49% 51% 48% 52% / 51% 47% 53% 49% !important;
+  box-shadow:
+    4px 5px 0 rgba(17, 17, 17, 0.06),
+    -2px 1px 0 rgba(17, 17, 17, 0.03);
+  transform: rotate(-0.7deg);
+  filter: grayscale(100%);
 }
 
 .social-row {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 0.42rem;
-  margin: 0.7rem 0 0.75rem;
+  gap: 0.46rem;
+  margin: 0.75rem 0 0.75rem;
 }
 
 .social-row .btn-social {
@@ -224,18 +361,27 @@ highlight {
   align-items: center;
   justify-content: center;
   padding: 0;
-  color: var(--yiqi-green-dark) !important;
-  background: var(--yiqi-white) !important;
-  border: 1px solid #becbbf !important;
-  border-radius: 50% !important;
-  transition: all 0.2s ease;
+  color: #111111 !important;
+  background: #ffffff !important;
+  border: 1.25px solid #111111 !important;
+  border-radius: 46% 54% 49% 51% / 52% 48% 56% 44% !important;
+  box-shadow: none !important;
+  transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease;
+}
+
+.social-row .btn-social:nth-child(2n) {
+  transform: rotate(1.4deg);
+}
+
+.social-row .btn-social:nth-child(2n + 1) {
+  transform: rotate(-1deg);
 }
 
 .social-row .btn-social:hover {
-  color: white !important;
-  background: var(--yiqi-green) !important;
-  border-color: var(--yiqi-green) !important;
-  transform: translateY(-2px);
+  color: #ffffff !important;
+  background: #111111 !important;
+  border-color: #111111 !important;
+  transform: translateY(-2px) rotate(0deg);
 }
 
 .cv-row {
@@ -250,95 +396,135 @@ highlight {
 }
 
 .about-kicker {
-  margin: 0 0 0.7rem;
-  color: #879389;
+  margin: 0 0 0.75rem;
+  color: #777777;
   font-family: "Montserrat", sans-serif;
-  font-size: 0.72rem;
+  font-size: 0.69rem;
   font-weight: 600;
-  letter-spacing: 0.09em;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
 }
 
 .about-content .masthead-heading {
-  margin: 0 0 1.7rem !important;
-  color: var(--yiqi-green-dark);
+  position: relative;
+  display: inline-block;
+  margin: 0 0 1.8rem !important;
+  color: #111111;
   font-family: "Dosis", sans-serif;
-  font-size: clamp(2.8rem, 5vw, 4.6rem) !important;
+  font-size: clamp(3rem, 5vw, 4.8rem) !important;
   font-weight: 700;
   line-height: 1;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.01em;
   text-transform: none !important;
+}
+
+/* a loose underline below "Hello, I'm Yiqi" */
+.about-content .masthead-heading::after {
+  content: "";
+  position: absolute;
+  left: 3%;
+  right: -7%;
+  bottom: -9px;
+  height: 10px;
+  border-bottom: 2px solid #111111;
+  border-radius: 50%;
+  transform: rotate(-1.2deg);
 }
 
 .about-content p {
   margin-bottom: 1.15rem;
-  color: #3f4942;
+  color: #2f2f2f;
   font-size: 0.98rem;
 }
 
 .research-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.45rem;
-  margin: 1.55rem 0 2.7rem;
+  gap: 0.52rem;
+  margin: 1.6rem 0 2.8rem;
 }
 
 .research-tags span {
-  padding: 0.38rem 0.68rem;
-  color: var(--yiqi-green-dark);
-  background: var(--yiqi-green-pale);
-  border: 1px solid #dce7db;
-  border-radius: 999px;
+  padding: 0.34rem 0.7rem 0.37rem;
+  color: #111111;
+  background: #ffffff;
+  border: 1.15px solid #444444;
+  border-radius: 47% 53% 50% 50% / 54% 46% 53% 47%;
   font-family: "Montserrat", sans-serif;
-  font-size: 0.69rem;
+  font-size: 0.68rem;
   font-weight: 600;
 }
 
-/* Updates stay inside About */
+.research-tags span:nth-child(3n + 1) { transform: rotate(-0.8deg); }
+.research-tags span:nth-child(3n + 2) { transform: rotate(0.7deg); }
+.research-tags span:nth-child(3n)     { transform: rotate(-0.25deg); }
+
+
+/* ================================================================
+   UPDATES
+   ================================================================ */
+
 .updates-block {
-  margin-top: 2.5rem;
+  margin-top: 2.7rem;
 }
 
 .updates-title {
-  margin: 0 0 1rem;
-  color: var(--yiqi-green-dark);
-  font-family: "Montserrat", sans-serif;
-  font-size: 1.25rem;
+  position: relative;
+  display: inline-block;
+  margin: 0 0 1.05rem;
+  color: #111111;
+  font-family: "Dosis", sans-serif;
+  font-size: 1.5rem;
   font-weight: 700;
+}
+
+.updates-title::after {
+  content: "";
+  position: absolute;
+  left: -3px;
+  right: -14px;
+  bottom: -2px;
+  border-bottom: 1.5px solid #111111;
+  transform: rotate(-1.2deg);
 }
 
 .update-list {
   margin: 0;
   padding: 0;
   list-style: none;
-  border-top: 1px solid var(--yiqi-line);
+  border-top: 1.25px solid #111111;
 }
 
 .update-list li {
   display: grid;
   grid-template-columns: 88px 1fr;
   gap: 1rem;
-  padding: 0.68rem 0;
-  border-bottom: 1px solid var(--yiqi-line);
-  color: #4a554d;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid #cfcfcf;
+  color: #343434;
   font-size: 0.88rem;
 }
 
+.update-list li:nth-child(even) {
+  border-bottom-color: #b9b9b9;
+}
+
 .update-date {
-  color: #7f8c82;
+  color: #707070;
   font-family: "Montserrat", sans-serif;
-  font-size: 0.73rem;
+  font-size: 0.72rem;
   font-weight: 600;
 }
 
-/* ----------------------------------------------------------------
+
+/* ================================================================
    PUBLICATIONS / PROJECTS
-   ---------------------------------------------------------------- */
+   ================================================================ */
 
 #publications,
 #projects,
 #interest {
-  padding: 5.2rem 0 5.6rem;
+  padding: 5.3rem 0 5.8rem;
 }
 
 #publications {
@@ -346,9 +532,9 @@ highlight {
 }
 
 #projects {
-  background: var(--yiqi-bg);
-  border-top: 1px solid var(--yiqi-line);
-  border-bottom: 1px solid var(--yiqi-line);
+  background: #fafafa;
+  border-top: 1px solid #111111;
+  border-bottom: 1px solid #111111;
 }
 
 #interest {
@@ -356,13 +542,34 @@ highlight {
 }
 
 .portfolio-category-title {
-  margin: 3.6rem 0 2rem !important;
-  padding-bottom: 0.65rem !important;
-  color: var(--yiqi-green-dark);
-  border-bottom: 1px solid #aebbb0 !important;
-  font-family: "Montserrat", sans-serif !important;
-  font-size: 1.25rem !important;
+  position: relative;
+  margin: 3.7rem 0 2.2rem !important;
+  padding-bottom: 0.7rem !important;
+  color: #111111;
+  border-bottom: 0 !important;
+  font-family: "Dosis", sans-serif !important;
+  font-size: 1.55rem !important;
   font-weight: 700 !important;
+}
+
+.portfolio-category-title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-bottom: 1.4px solid #111111;
+  transform: rotate(-0.12deg);
+}
+
+.portfolio-category-title::before {
+  content: "";
+  position: absolute;
+  left: 8%;
+  right: 4%;
+  bottom: -3px;
+  border-bottom: 1px solid rgba(17, 17, 17, 0.22);
+  transform: rotate(0.16deg);
 }
 
 #publications .portfolio-category-title:first-of-type {
@@ -377,68 +584,142 @@ highlight {
   height: 100%;
   display: flex;
   flex-direction: column;
-  padding-bottom: 1rem;
+  padding: 7px 8px 1.25rem;
+  background: #ffffff;
+  border: 1.2px solid #252525;
+  border-radius: 3% 2% 3.5% 2% / 2.5% 3.5% 2% 3%;
+  box-shadow: 3px 4px 0 rgba(17, 17, 17, 0.045);
+  transform: rotate(-0.18deg);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.portfolio-card .portfolio-item {
-  position: relative;
-  width: 100%;
+.portfolio-grid > div:nth-child(3n + 2) .portfolio-card {
+  transform: rotate(0.22deg);
+}
+
+.portfolio-grid > div:nth-child(3n) .portfolio-card {
+  transform: rotate(-0.06deg);
+}
+
+.portfolio-card:hover {
+  transform: translateY(-3px) rotate(0deg);
+  box-shadow: 5px 6px 0 rgba(17, 17, 17, 0.07);
+}
+
+#publications .portfolio-item,
+#projects .portfolio-item {
+  position: relative !important;
+  display: block !important;
+  width: 100% !important;
+  max-width: none !important;
   margin-bottom: 1rem !important;
-  overflow: hidden;
-  border-radius: 5px !important;
-  background: #ffffff;
+  overflow: hidden !important;
+  border: 1px solid #bdbdbd !important;
+  border-radius: 1% 1.5% 1% 2% !important;
+  background: #ffffff !important;
   cursor: pointer;
 }
 
-.portfolio-card .portfolio-item img {
+#publications .portfolio-item img,
+#projects .portfolio-item img {
+  position: relative !important;
+  z-index: 1 !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
   width: 100% !important;
+  max-width: 100% !important;
   height: 188px !important;
   object-fit: cover !important;
+  object-position: center !important;
   background: #ffffff !important;
-  border-radius: 5px !important;
-  transition: transform 0.35s ease, filter 0.35s ease;
+  border-radius: 0 !important;
+  filter: grayscale(100%);
+  transition: transform 0.3s ease, filter 0.3s ease;
 }
 
-.portfolio-card:hover .portfolio-item img {
-  transform: scale(1.02);
+/* keep a little source color when hovering so project images remain legible */
+#publications .portfolio-item:hover img,
+#projects .portfolio-item:hover img {
+  transform: scale(1.018);
+  filter: grayscale(70%);
 }
 
-.portfolio-item-caption {
-  z-index: 2;
-  color: white;
-  background: var(--yiqi-card-hover) !important;
-  opacity: 0;
-  transition: opacity 0.25s ease !important;
+/* monochrome ink-wash overlay */
+#publications .portfolio-item-caption,
+#projects .portfolio-item-caption {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 2 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  height: 100% !important;
+  color: #ffffff !important;
+  background: var(--sketch-hover) !important;
+  opacity: 0 !important;
+  visibility: visible !important;
+  transition: opacity 0.23s ease !important;
 }
 
-.portfolio-item:hover .portfolio-item-caption {
-  opacity: 1;
+#publications .portfolio-item:hover .portfolio-item-caption,
+#projects .portfolio-item:hover .portfolio-item-caption {
+  opacity: 1 !important;
 }
 
-.portfolio-item-caption p {
-  max-width: 90%;
+#publications .portfolio-item-caption *,
+#projects .portfolio-item-caption *,
+#publications .portfolio-item-caption p,
+#projects .portfolio-item-caption p {
+  color: #ffffff !important;
+  text-shadow: none !important;
+}
+
+#publications .portfolio-item-caption-content,
+#projects .portfolio-item-caption-content {
+  width: 100%;
+  padding: 1rem;
+}
+
+#publications .portfolio-item-caption p,
+#projects .portfolio-item-caption p {
+  position: relative;
+  max-width: 88%;
   margin: 0 auto;
   padding: 1.1rem;
-  font-size: 0.82rem;
-  line-height: 1.45;
+  font-size: 0.81rem;
+  line-height: 1.5;
+}
+
+/* tiny white hand-drawn underline in the overlay */
+#publications .portfolio-item-caption p::after,
+#projects .portfolio-item-caption p::after {
+  content: "";
+  position: absolute;
+  left: 22%;
+  right: 18%;
+  bottom: 5px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.75);
+  transform: rotate(-1.5deg);
 }
 
 .portfolio-card .portfolio-label {
   min-height: 0 !important;
-  margin: 0.1rem 0 0.55rem !important;
-  color: var(--yiqi-green-dark);
+  margin: 0.2rem 0 0.55rem !important;
+  color: #111111;
   font-family: "Montserrat", sans-serif !important;
-  font-size: 0.98rem !important;
+  font-size: 0.96rem !important;
   font-weight: 700 !important;
-  line-height: 1.42 !important;
+  line-height: 1.43 !important;
   text-align: left !important;
 }
 
 .portfolio-card .portfolio-skill,
 .publication-info {
-  color: #667169;
-  font-size: 0.78rem !important;
-  line-height: 1.55 !important;
+  color: #616161;
+  font-size: 0.77rem !important;
+  line-height: 1.56 !important;
   text-align: left !important;
 }
 
@@ -451,73 +732,89 @@ highlight {
 }
 
 .publication-info highlight {
-  color: var(--yiqi-green-dark);
+  color: #111111;
   background: none;
   font-weight: 700;
 }
 
 .publication-info a {
-  color: var(--yiqi-green-dark) !important;
-  font-size: 0.75rem;
+  color: #111111 !important;
+  font-size: 0.74rem;
+  text-decoration: underline;
+  text-decoration-style: wavy;
+  text-underline-offset: 3px;
 }
 
 .section-spacing {
-  margin-top: 5.4rem !important;
+  margin-top: 5.5rem !important;
 }
 
-/* Existing "Computational & Learning" H1 becomes a subsection heading */
+/* Existing "Computational & Learning" H1 becomes a sketch subsection */
 #projects h1.page-section-heading.section-spacing {
-  margin: 5.4rem 0 2.4rem !important;
+  position: relative;
+  margin: 5.5rem 0 2.5rem !important;
   padding-bottom: 0.7rem;
-  color: var(--yiqi-green-dark);
-  border-bottom: 1px solid #aebbb0;
-  font-family: "Montserrat", sans-serif;
-  font-size: 1.25rem !important;
+  color: #111111;
+  border-bottom: 0;
+  font-family: "Dosis", sans-serif;
+  font-size: 1.55rem !important;
   font-weight: 700 !important;
   line-height: 1.4;
   text-align: left !important;
   text-transform: none !important;
 }
 
-/* ----------------------------------------------------------------
+#projects h1.page-section-heading.section-spacing::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-bottom: 1.4px solid #111111;
+  transform: rotate(-0.15deg);
+}
+
+
+/* ================================================================
    INTEREST
-   ---------------------------------------------------------------- */
+   ================================================================ */
 
 .interest-intro {
   max-width: 660px;
-  margin: -1rem 0 2.8rem;
-  color: var(--yiqi-muted);
+  margin: -1rem 0 2.9rem;
+  color: #666666;
   font-size: 0.92rem;
 }
 
 .interest-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  border-top: 1px solid var(--yiqi-line);
+  border-top: 1.4px solid #111111;
 }
 
 .interest-card {
+  position: relative;
   min-height: 220px;
-  padding: 1.7rem 2rem 1.9rem 0;
-  border-bottom: 1px solid var(--yiqi-line);
+  padding: 1.75rem 2rem 2rem 0;
+  border-bottom: 1px solid #bdbdbd;
 }
 
 .interest-card:nth-child(odd) {
   margin-right: 2rem;
-  border-right: 1px solid var(--yiqi-line);
+  border-right: 1px solid #bdbdbd;
 }
 
 .interest-card h3 {
   margin: 0 0 0.9rem;
-  color: var(--yiqi-green-dark);
-  font-family: "Montserrat", sans-serif;
-  font-size: 1.05rem;
+  color: #111111;
+  font-family: "Dosis", sans-serif;
+  font-size: 1.34rem;
   font-weight: 700;
 }
 
 .interest-card p,
 .interest-card li {
-  color: #5a665d;
+  color: #555555;
   font-size: 0.86rem;
   line-height: 1.65;
 }
@@ -528,42 +825,60 @@ highlight {
 }
 
 .interest-symbol {
-  display: block;
+  display: inline-block;
   margin-bottom: 1.5rem;
-  color: #86a088;
-  font-size: 1rem;
+  color: #111111;
+  font-family: "Dosis", sans-serif;
+  font-size: 1.25rem;
+  transform: rotate(-7deg);
 }
 
-/* ----------------------------------------------------------------
-   Modal cleanup
-   ---------------------------------------------------------------- */
+
+/* ================================================================
+   MODALS
+   ================================================================ */
 
 .portfolio-modal .modal-content {
-  color: var(--yiqi-ink);
-  background: var(--yiqi-bg);
+  color: #222222;
+  background: #ffffff;
+  border: 1.5px solid #111111;
+  border-radius: 1% 1.8% 1.2% 2%;
+  box-shadow: 8px 9px 0 rgba(17, 17, 17, 0.08);
 }
 
 .portfolio-modal .close {
-  color: var(--yiqi-green-dark) !important;
+  color: #111111 !important;
 }
 
 .portfolio-modal-title {
-  color: var(--yiqi-green-dark);
-  font-family: "Montserrat", sans-serif;
+  color: #111111;
+  font-family: "Dosis", sans-serif;
   font-weight: 700;
   text-transform: none !important;
 }
 
-/* ----------------------------------------------------------------
-   Footer
-   ---------------------------------------------------------------- */
+
+/* ================================================================
+   FOOTER
+   ================================================================ */
 
 .site-footer {
-  padding: 2.2rem 0;
-  color: #68756b;
-  background: var(--yiqi-green-pale);
-  border-top: 1px solid var(--yiqi-line);
+  position: relative;
+  padding: 2.4rem 0;
+  color: #666666;
+  background: #ffffff;
+  border-top: 1.5px solid #111111;
   font-size: 0.76rem;
+}
+
+.site-footer::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -5px;
+  border-top: 1px solid rgba(17, 17, 17, 0.24);
+  transform: rotate(0.05deg);
 }
 
 .footer-row {
@@ -573,13 +888,24 @@ highlight {
 }
 
 .footer-row strong {
-  color: var(--yiqi-green-dark);
-  font-family: "Montserrat", sans-serif;
+  color: #111111;
+  font-family: "Dosis", sans-serif;
+  font-size: 1rem;
 }
 
-/* ----------------------------------------------------------------
-   Responsive
-   ---------------------------------------------------------------- */
+
+/* ================================================================
+   REMOVE OLD CURSOR TRAIL
+   ================================================================ */
+
+#cursorStrokeCanvas {
+  display: none !important;
+}
+
+
+/* ================================================================
+   RESPONSIVE
+   ================================================================ */
 
 @media (max-width: 991px) {
   #mainNav .navbar-collapse {
@@ -594,8 +920,12 @@ highlight {
   #mainNav .nav-link::after {
     left: 0;
     right: auto;
-    bottom: 0.35rem;
-    width: 34px;
+    bottom: 0.32rem;
+    width: 38px;
+  }
+
+  #mainNav .nav-link::before {
+    display: none;
   }
 
   .about-layout {
@@ -608,22 +938,23 @@ highlight {
     height: 185px;
   }
 
-  .portfolio-card .portfolio-item img {
+  #publications .portfolio-item img,
+  #projects .portfolio-item img {
     height: 205px !important;
   }
 }
 
 @media (max-width: 767px) {
   :root {
-    --yiqi-nav-height: 68px;
+    --nav-height: 68px;
   }
 
   #mainNav .navbar-brand {
-    font-size: 1rem;
+    font-size: 1.15rem;
   }
 
   #about {
-    padding-top: 2.8rem;
+    padding-top: 2.9rem;
   }
 
   .about-layout {
@@ -641,7 +972,7 @@ highlight {
   }
 
   .about-content .masthead-heading {
-    font-size: 3rem !important;
+    font-size: 3.2rem !important;
   }
 
   .section-heading-row {
@@ -649,7 +980,7 @@ highlight {
   }
 
   .single-page-heading {
-    font-size: 2rem;
+    font-size: 2.2rem;
   }
 
   .update-list li {
@@ -660,12 +991,17 @@ highlight {
   #publications,
   #projects,
   #interest {
-    padding: 4rem 0 4.3rem;
+    padding: 4rem 0 4.4rem;
   }
 
-  .portfolio-card .portfolio-item img {
+  #publications .portfolio-item img,
+  #projects .portfolio-item img {
     height: auto !important;
     aspect-ratio: 16 / 10;
+  }
+
+  .portfolio-card {
+    transform: none !important;
   }
 
   .interest-grid {
@@ -697,68 +1033,5 @@ highlight {
 
   * {
     transition-duration: 0.001ms !important;
-  }
-}
-
-/* ================================================================
-   Portfolio image surface + hover readability
-   ================================================================ */
-
-/* Transparent PNGs should visually sit on white, never pale green. */
-#publications .portfolio-item,
-#projects .portfolio-item,
-#publications .portfolio-item img,
-#projects .portfolio-item img {
-  background-color: #ffffff !important;
-}
-
-/* Use exactly the same green as the navigation accent. */
-#publications .portfolio-item-caption,
-#projects .portfolio-item-caption {
-  background: var(--yiqi-card-hover) !important;
-  color: #ffffff !important;
-}
-
-/* Old theme rules can color nested text dark; override them explicitly. */
-#publications .portfolio-item-caption *,
-#projects .portfolio-item-caption *,
-#publications .portfolio-item-caption p,
-#projects .portfolio-item-caption p {
-  color: #f8fff9 !important;
-  text-shadow: 0 1px 1px rgba(31, 70, 48, 0.10) !important;
-}
-
-/* ================================================================
-   Mouse brush-stroke trail
-   ================================================================ */
-
-#cursorStrokeCanvas {
-  position: fixed;
-  inset: 0;
-  z-index: 9998;
-  width: 100vw;
-  height: 100vh;
-  pointer-events: none;
-  background: transparent;
-}
-
-/* Keep Bootstrap modals above the decorative trail. */
-.modal {
-  z-index: 10500;
-}
-
-.modal-backdrop {
-  z-index: 10490;
-}
-
-@media (hover: none), (pointer: coarse) {
-  #cursorStrokeCanvas {
-    display: none;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  #cursorStrokeCanvas {
-    display: none;
   }
 }
