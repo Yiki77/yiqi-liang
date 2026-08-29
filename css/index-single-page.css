@@ -1,0 +1,699 @@
+
+/* ================================================================
+   Yiqi Liang — Single-page academic homepage
+   Load AFTER css/freelancer.css
+   ================================================================ */
+
+:root {
+  --yiqi-green: #48735a;
+  --yiqi-green-dark: #294837;
+  --yiqi-green-soft: #e8f0e8;
+  --yiqi-green-pale: #f4f8f2;
+  --yiqi-ink: #222b25;
+  --yiqi-muted: #667169;
+  --yiqi-line: #dce3dc;
+  --yiqi-bg: #fbfcf8;
+  --yiqi-white: #ffffff;
+  --yiqi-nav-height: 76px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--yiqi-ink);
+  background: var(--yiqi-bg);
+  font-family: "Lato", sans-serif;
+  line-height: 1.72;
+  padding-top: var(--yiqi-nav-height);
+}
+
+a {
+  color: var(--yiqi-green-dark);
+}
+
+a:hover {
+  color: var(--yiqi-green);
+  text-decoration: none;
+}
+
+::selection {
+  color: var(--yiqi-green-dark);
+  background: #d9eadb;
+}
+
+/* ----------------------------------------------------------------
+   Fixed navigation + active section
+   ---------------------------------------------------------------- */
+
+#mainNav {
+  min-height: var(--yiqi-nav-height);
+  padding: 0;
+  background: rgba(251, 252, 248, 0.96) !important;
+  border-bottom: 1px solid var(--yiqi-line);
+  box-shadow: none !important;
+  backdrop-filter: blur(14px);
+}
+
+#mainNav .container {
+  min-height: var(--yiqi-nav-height);
+}
+
+#mainNav .navbar-brand {
+  color: var(--yiqi-green-dark) !important;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+#mainNav .navbar-nav {
+  align-items: center;
+}
+
+#mainNav .nav-link {
+  position: relative;
+  margin-left: 0.8rem;
+  padding: 1.75rem 0.35rem 1.55rem !important;
+  color: #667168 !important;
+  border-radius: 0 !important;
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.78rem !important;
+  font-weight: 600;
+  letter-spacing: 0.035em;
+  text-transform: none !important;
+  transition: color 0.2s ease;
+}
+
+#mainNav .nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0.35rem;
+  right: 0.35rem;
+  bottom: 1.15rem;
+  height: 2px;
+  background: var(--yiqi-green);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.22s ease;
+}
+
+#mainNav .nav-link:hover,
+#mainNav .nav-link.active {
+  color: var(--yiqi-green-dark) !important;
+}
+
+#mainNav .nav-link.active::after {
+  transform: scaleX(1);
+}
+
+#mainNav .navbar-toggler {
+  color: var(--yiqi-green-dark) !important;
+  background: transparent !important;
+  border: 1px solid var(--yiqi-line) !important;
+  font-size: 0.72rem;
+}
+
+/* Anchor offset for the fixed nav */
+.single-page-section {
+  scroll-margin-top: calc(var(--yiqi-nav-height) + 18px);
+}
+
+/* ----------------------------------------------------------------
+   Shared typography
+   ---------------------------------------------------------------- */
+
+.section-shell {
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.section-heading-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 2.8rem;
+  padding-bottom: 0.95rem;
+  border-bottom: 1px solid var(--yiqi-line);
+}
+
+.single-page-heading {
+  margin: 0;
+  color: var(--yiqi-green-dark);
+  font-family: "Montserrat", sans-serif;
+  font-size: clamp(2rem, 4vw, 3.15rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  text-transform: none !important;
+}
+
+.section-index {
+  flex: 0 0 auto;
+  color: #97a39a;
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.font-underline {
+  text-decoration: underline;
+  text-decoration-color: #a8bca9;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+highlight {
+  padding: 0 0.08em;
+  color: inherit;
+  background: linear-gradient(transparent 62%, #dcebdd 62%);
+}
+
+/* ----------------------------------------------------------------
+   ABOUT
+   ---------------------------------------------------------------- */
+
+#about {
+  position: relative;
+  min-height: calc(100vh - var(--yiqi-nav-height));
+  padding: 4.8rem 0 5rem;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 88% 9%, rgba(99, 139, 106, 0.10), transparent 24rem),
+    var(--yiqi-bg);
+}
+
+.about-layout {
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr);
+  gap: 4.3rem;
+  align-items: start;
+}
+
+.about-profile {
+  position: sticky;
+  top: calc(var(--yiqi-nav-height) + 30px);
+  text-align: center;
+}
+
+.masthead-avatar {
+  width: 220px;
+  height: 220px;
+  object-fit: cover;
+  margin-bottom: 0.9rem !important;
+  border: 1px solid #d7ded7;
+  border-radius: 50% !important;
+  box-shadow: 0 10px 30px rgba(43, 69, 53, 0.07);
+}
+
+.social-row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.42rem;
+  margin: 0.7rem 0 0.75rem;
+}
+
+.social-row .btn-social {
+  width: 38px;
+  height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  color: var(--yiqi-green-dark) !important;
+  background: var(--yiqi-white) !important;
+  border: 1px solid #becbbf !important;
+  border-radius: 50% !important;
+  transition: all 0.2s ease;
+}
+
+.social-row .btn-social:hover {
+  color: white !important;
+  background: var(--yiqi-green) !important;
+  border-color: var(--yiqi-green) !important;
+  transform: translateY(-2px);
+}
+
+.cv-row {
+  margin-top: 0.45rem;
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.about-content {
+  max-width: 730px;
+}
+
+.about-kicker {
+  margin: 0 0 0.7rem;
+  color: #879389;
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.about-content .masthead-heading {
+  margin: 0 0 1.7rem !important;
+  color: var(--yiqi-green-dark);
+  font-family: "Dosis", sans-serif;
+  font-size: clamp(2.8rem, 5vw, 4.6rem) !important;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.025em;
+  text-transform: none !important;
+}
+
+.about-content p {
+  margin-bottom: 1.15rem;
+  color: #3f4942;
+  font-size: 0.98rem;
+}
+
+.research-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 1.55rem 0 2.7rem;
+}
+
+.research-tags span {
+  padding: 0.38rem 0.68rem;
+  color: var(--yiqi-green-dark);
+  background: var(--yiqi-green-pale);
+  border: 1px solid #dce7db;
+  border-radius: 999px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.69rem;
+  font-weight: 600;
+}
+
+/* Updates stay inside About */
+.updates-block {
+  margin-top: 2.5rem;
+}
+
+.updates-title {
+  margin: 0 0 1rem;
+  color: var(--yiqi-green-dark);
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.update-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--yiqi-line);
+}
+
+.update-list li {
+  display: grid;
+  grid-template-columns: 88px 1fr;
+  gap: 1rem;
+  padding: 0.68rem 0;
+  border-bottom: 1px solid var(--yiqi-line);
+  color: #4a554d;
+  font-size: 0.88rem;
+}
+
+.update-date {
+  color: #7f8c82;
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.73rem;
+  font-weight: 600;
+}
+
+/* ----------------------------------------------------------------
+   PUBLICATIONS / PROJECTS
+   ---------------------------------------------------------------- */
+
+#publications,
+#projects,
+#interest {
+  padding: 5.2rem 0 5.6rem;
+}
+
+#publications {
+  background: #ffffff;
+}
+
+#projects {
+  background: var(--yiqi-bg);
+  border-top: 1px solid var(--yiqi-line);
+  border-bottom: 1px solid var(--yiqi-line);
+}
+
+#interest {
+  background: #ffffff;
+}
+
+.portfolio-category-title {
+  margin: 3.6rem 0 2rem !important;
+  padding-bottom: 0.65rem !important;
+  color: var(--yiqi-green-dark);
+  border-bottom: 1px solid #aebbb0 !important;
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 1.25rem !important;
+  font-weight: 700 !important;
+}
+
+#publications .portfolio-category-title:first-of-type {
+  margin-top: 0 !important;
+}
+
+.portfolio-grid {
+  align-items: stretch;
+}
+
+.portfolio-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 1rem;
+}
+
+.portfolio-card .portfolio-item {
+  position: relative;
+  width: 100%;
+  margin-bottom: 1rem !important;
+  overflow: hidden;
+  border-radius: 5px !important;
+  background: #eef2ed;
+  cursor: pointer;
+}
+
+.portfolio-card .portfolio-item img {
+  width: 100% !important;
+  height: 188px !important;
+  object-fit: cover !important;
+  border-radius: 5px !important;
+  transition: transform 0.35s ease, filter 0.35s ease;
+}
+
+.portfolio-card:hover .portfolio-item img {
+  transform: scale(1.02);
+}
+
+.portfolio-item-caption {
+  z-index: 2;
+  color: white;
+  background: rgba(41, 72, 55, 0.88) !important;
+  opacity: 0;
+  transition: opacity 0.25s ease !important;
+}
+
+.portfolio-item:hover .portfolio-item-caption {
+  opacity: 1;
+}
+
+.portfolio-item-caption p {
+  max-width: 90%;
+  margin: 0 auto;
+  padding: 1.1rem;
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+.portfolio-card .portfolio-label {
+  min-height: 0 !important;
+  margin: 0.1rem 0 0.55rem !important;
+  color: var(--yiqi-green-dark);
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 0.98rem !important;
+  font-weight: 700 !important;
+  line-height: 1.42 !important;
+  text-align: left !important;
+}
+
+.portfolio-card .portfolio-skill,
+.publication-info {
+  color: #667169;
+  font-size: 0.78rem !important;
+  line-height: 1.55 !important;
+  text-align: left !important;
+}
+
+.portfolio-card .portfolio-skill {
+  margin-bottom: 0.45rem !important;
+}
+
+.publication-info {
+  margin-top: auto !important;
+}
+
+.publication-info highlight {
+  color: var(--yiqi-green-dark);
+  background: none;
+  font-weight: 700;
+}
+
+.publication-info a {
+  color: var(--yiqi-green-dark) !important;
+  font-size: 0.75rem;
+}
+
+.section-spacing {
+  margin-top: 5.4rem !important;
+}
+
+/* Existing "Computational & Learning" H1 becomes a subsection heading */
+#projects h1.page-section-heading.section-spacing {
+  margin: 5.4rem 0 2.4rem !important;
+  padding-bottom: 0.7rem;
+  color: var(--yiqi-green-dark);
+  border-bottom: 1px solid #aebbb0;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.25rem !important;
+  font-weight: 700 !important;
+  line-height: 1.4;
+  text-align: left !important;
+  text-transform: none !important;
+}
+
+/* ----------------------------------------------------------------
+   INTEREST
+   ---------------------------------------------------------------- */
+
+.interest-intro {
+  max-width: 660px;
+  margin: -1rem 0 2.8rem;
+  color: var(--yiqi-muted);
+  font-size: 0.92rem;
+}
+
+.interest-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1px solid var(--yiqi-line);
+}
+
+.interest-card {
+  min-height: 220px;
+  padding: 1.7rem 2rem 1.9rem 0;
+  border-bottom: 1px solid var(--yiqi-line);
+}
+
+.interest-card:nth-child(odd) {
+  margin-right: 2rem;
+  border-right: 1px solid var(--yiqi-line);
+}
+
+.interest-card h3 {
+  margin: 0 0 0.9rem;
+  color: var(--yiqi-green-dark);
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.interest-card p,
+.interest-card li {
+  color: #5a665d;
+  font-size: 0.86rem;
+  line-height: 1.65;
+}
+
+.interest-card ul {
+  margin: 0;
+  padding-left: 1.15rem;
+}
+
+.interest-symbol {
+  display: block;
+  margin-bottom: 1.5rem;
+  color: #86a088;
+  font-size: 1rem;
+}
+
+/* ----------------------------------------------------------------
+   Modal cleanup
+   ---------------------------------------------------------------- */
+
+.portfolio-modal .modal-content {
+  color: var(--yiqi-ink);
+  background: var(--yiqi-bg);
+}
+
+.portfolio-modal .close {
+  color: var(--yiqi-green-dark) !important;
+}
+
+.portfolio-modal-title {
+  color: var(--yiqi-green-dark);
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  text-transform: none !important;
+}
+
+/* ----------------------------------------------------------------
+   Footer
+   ---------------------------------------------------------------- */
+
+.site-footer {
+  padding: 2.2rem 0;
+  color: #68756b;
+  background: var(--yiqi-green-pale);
+  border-top: 1px solid var(--yiqi-line);
+  font-size: 0.76rem;
+}
+
+.footer-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.footer-row strong {
+  color: var(--yiqi-green-dark);
+  font-family: "Montserrat", sans-serif;
+}
+
+/* ----------------------------------------------------------------
+   Responsive
+   ---------------------------------------------------------------- */
+
+@media (max-width: 991px) {
+  #mainNav .navbar-collapse {
+    padding: 0.3rem 0 0.8rem;
+  }
+
+  #mainNav .nav-link {
+    margin-left: 0;
+    padding: 0.65rem 0 !important;
+  }
+
+  #mainNav .nav-link::after {
+    left: 0;
+    right: auto;
+    bottom: 0.35rem;
+    width: 34px;
+  }
+
+  .about-layout {
+    grid-template-columns: 200px minmax(0, 1fr);
+    gap: 2.5rem;
+  }
+
+  .masthead-avatar {
+    width: 185px;
+    height: 185px;
+  }
+
+  .portfolio-card .portfolio-item img {
+    height: 205px !important;
+  }
+}
+
+@media (max-width: 767px) {
+  :root {
+    --yiqi-nav-height: 68px;
+  }
+
+  #mainNav .navbar-brand {
+    font-size: 1rem;
+  }
+
+  #about {
+    padding-top: 2.8rem;
+  }
+
+  .about-layout {
+    display: block;
+  }
+
+  .about-profile {
+    position: static;
+    margin-bottom: 2.8rem;
+  }
+
+  .masthead-avatar {
+    width: 190px;
+    height: 190px;
+  }
+
+  .about-content .masthead-heading {
+    font-size: 3rem !important;
+  }
+
+  .section-heading-row {
+    margin-bottom: 2rem;
+  }
+
+  .single-page-heading {
+    font-size: 2rem;
+  }
+
+  .update-list li {
+    grid-template-columns: 74px 1fr;
+    gap: 0.65rem;
+  }
+
+  #publications,
+  #projects,
+  #interest {
+    padding: 4rem 0 4.3rem;
+  }
+
+  .portfolio-card .portfolio-item img {
+    height: auto !important;
+    aspect-ratio: 16 / 10;
+  }
+
+  .interest-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .interest-card,
+  .interest-card:nth-child(odd) {
+    min-height: 0;
+    margin-right: 0;
+    padding-right: 0;
+    border-right: 0;
+  }
+
+  .footer-row {
+    display: block;
+  }
+
+  .footer-row span {
+    display: block;
+    margin-top: 0.35rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  * {
+    transition-duration: 0.001ms !important;
+  }
+}
