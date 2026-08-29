@@ -385,7 +385,7 @@ highlight {
   margin-bottom: 1rem !important;
   overflow: hidden;
   border-radius: 5px !important;
-  background: #eef2ed;
+  background: #ffffff;
   cursor: pointer;
 }
 
@@ -393,6 +393,7 @@ highlight {
   width: 100% !important;
   height: 188px !important;
   object-fit: cover !important;
+  background: #ffffff !important;
   border-radius: 5px !important;
   transition: transform 0.35s ease, filter 0.35s ease;
 }
@@ -404,7 +405,7 @@ highlight {
 .portfolio-item-caption {
   z-index: 2;
   color: white;
-  background: rgba(41, 72, 55, 0.88) !important;
+  background: var(--yiqi-green) !important;
   opacity: 0;
   transition: opacity 0.25s ease !important;
 }
@@ -695,5 +696,68 @@ highlight {
 
   * {
     transition-duration: 0.001ms !important;
+  }
+}
+
+/* ================================================================
+   Portfolio image surface + hover readability
+   ================================================================ */
+
+/* Transparent PNGs should visually sit on white, never pale green. */
+#publications .portfolio-item,
+#projects .portfolio-item,
+#publications .portfolio-item img,
+#projects .portfolio-item img {
+  background-color: #ffffff !important;
+}
+
+/* Use exactly the same green as the navigation accent. */
+#publications .portfolio-item-caption,
+#projects .portfolio-item-caption {
+  background: var(--yiqi-green) !important;
+  color: #ffffff !important;
+}
+
+/* Old theme rules can color nested text dark; override them explicitly. */
+#publications .portfolio-item-caption *,
+#projects .portfolio-item-caption *,
+#publications .portfolio-item-caption p,
+#projects .portfolio-item-caption p {
+  color: #ffffff !important;
+  text-shadow: none !important;
+}
+
+/* ================================================================
+   Mouse brush-stroke trail
+   ================================================================ */
+
+#cursorStrokeCanvas {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  background: transparent;
+}
+
+/* Keep Bootstrap modals above the decorative trail. */
+.modal {
+  z-index: 10500;
+}
+
+.modal-backdrop {
+  z-index: 10490;
+}
+
+@media (hover: none), (pointer: coarse) {
+  #cursorStrokeCanvas {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #cursorStrokeCanvas {
+    display: none;
   }
 }
