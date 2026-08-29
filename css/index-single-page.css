@@ -5,15 +5,15 @@
    ================================================================ */
 
 :root {
-  --yiqi-green: #48735a;
-  --yiqi-card-hover: rgba(73, 190, 126, 0.80);
-  --yiqi-green-dark: #294837;
-  --yiqi-green-soft: #e8f0e8;
-  --yiqi-green-pale: #f4f8f2;
-  --yiqi-ink: #222b25;
-  --yiqi-muted: #667169;
-  --yiqi-line: #dce3dc;
-  --yiqi-bg: #fbfcf8;
+  --yiqi-green: #d6a93d;
+  --yiqi-card-hover: rgba(231, 184, 72, 0.82);
+  --yiqi-green-dark: #76551f;
+  --yiqi-green-soft: #f5e8bd;
+  --yiqi-green-pale: #fbf6e8;
+  --yiqi-ink: #332b20;
+  --yiqi-muted: #786d5c;
+  --yiqi-line: #e7dcc4;
+  --yiqi-bg: #fdfbf5;
   --yiqi-white: #ffffff;
   --yiqi-nav-height: 76px;
 }
