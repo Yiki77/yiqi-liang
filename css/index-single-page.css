@@ -6,6 +6,7 @@
 
 :root {
   --yiqi-green: #48735a;
+  --yiqi-card-hover: rgba(73, 190, 126, 0.80);
   --yiqi-green-dark: #294837;
   --yiqi-green-soft: #e8f0e8;
   --yiqi-green-pale: #f4f8f2;
@@ -405,7 +406,7 @@ highlight {
 .portfolio-item-caption {
   z-index: 2;
   color: white;
-  background: var(--yiqi-green) !important;
+  background: var(--yiqi-card-hover) !important;
   opacity: 0;
   transition: opacity 0.25s ease !important;
 }
@@ -714,7 +715,7 @@ highlight {
 /* Use exactly the same green as the navigation accent. */
 #publications .portfolio-item-caption,
 #projects .portfolio-item-caption {
-  background: var(--yiqi-green) !important;
+  background: var(--yiqi-card-hover) !important;
   color: #ffffff !important;
 }
 
@@ -723,8 +724,8 @@ highlight {
 #projects .portfolio-item-caption *,
 #publications .portfolio-item-caption p,
 #projects .portfolio-item-caption p {
-  color: #ffffff !important;
-  text-shadow: none !important;
+  color: #f8fff9 !important;
+  text-shadow: 0 1px 1px rgba(31, 70, 48, 0.10) !important;
 }
 
 /* ================================================================
