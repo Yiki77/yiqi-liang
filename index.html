@@ -4532,6 +4532,100 @@
     }
   </style>
 
+
+
+  <style id="v14-pen-cursor-and-news-refine">
+    /* ================================================================
+       V14 — only three targeted refinements on top of V13.
+       1) Lighter + thicker alpha outline for portrait
+       2) News viewport height = 180px
+       3) img/pen.png custom cursor; interactive targets rotate -30deg
+       ================================================================ */
+
+    /* 1) Follow the PNG alpha contour with a softer, thicker green line. */
+    #about .masthead-avatar {
+      filter:
+        drop-shadow( 3px    0      0 rgba(151, 195, 158, .72))
+        drop-shadow(-3px    0      0 rgba(151, 195, 158, .72))
+        drop-shadow( 0      3px    0 rgba(151, 195, 158, .72))
+        drop-shadow( 0     -3px    0 rgba(151, 195, 158, .72))
+        drop-shadow( 2.2px  2.2px  0 rgba(170, 207, 175, .66))
+        drop-shadow(-2.2px  2.2px  0 rgba(170, 207, 175, .66))
+        drop-shadow( 2.2px -2.2px  0 rgba(170, 207, 175, .66))
+        drop-shadow(-2.2px -2.2px  0 rgba(170, 207, 175, .66)) !important;
+      -webkit-filter:
+        drop-shadow( 3px    0      0 rgba(151, 195, 158, .72))
+        drop-shadow(-3px    0      0 rgba(151, 195, 158, .72))
+        drop-shadow( 0      3px    0 rgba(151, 195, 158, .72))
+        drop-shadow( 0     -3px    0 rgba(151, 195, 158, .72))
+        drop-shadow( 2.2px  2.2px  0 rgba(170, 207, 175, .66))
+        drop-shadow(-2.2px  2.2px  0 rgba(170, 207, 175, .66))
+        drop-shadow( 2.2px -2.2px  0 rgba(170, 207, 175, .66))
+        drop-shadow(-2.2px -2.2px  0 rgba(170, 207, 175, .66)) !important;
+    }
+
+    /* 2) Fixed visible News viewport height. */
+    #about .news-scroll-shell {
+      height: 180px !important;
+      max-height: 180px !important;
+    }
+
+    /* 3) Desktop custom pen cursor. The native cursor is hidden only after
+       img/pen.png has loaded successfully. */
+    #pen-cursor {
+      display: none;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      html.pen-cursor-ready,
+      html.pen-cursor-ready body,
+      html.pen-cursor-ready body * {
+        cursor: none !important;
+      }
+
+      #pen-cursor {
+        display: block;
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 44px;
+        height: 44px;
+        z-index: 2147483647;
+        pointer-events: none;
+        opacity: 0;
+        transform: translate3d(-120px, -120px, 0);
+        will-change: transform;
+      }
+
+      #pen-cursor.is-visible {
+        opacity: 1;
+      }
+
+      #pen-cursor img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        transform: rotate(0deg);
+        transform-origin: 22% 82%;
+        transition: transform 120ms ease;
+        user-select: none;
+        -webkit-user-drag: none;
+      }
+
+      #pen-cursor.is-selectable img {
+        transform: rotate(-30deg);
+      }
+    }
+
+    @media (max-width: 767px) {
+      #about .news-scroll-shell {
+        height: 180px !important;
+        max-height: 180px !important;
+      }
+    }
+  </style>
+
 </head>
 <body id="page-top">
 
@@ -4919,6 +5013,70 @@
       <p class="mb-3">VectorDraw is an algorithm that synthesizes vector drawings from different input images. We present five types of input images and their corresponding vector drawing results. VectorDraw supports different abstraction levels by varying the number of strokes. A lower number of strokes produces a more abstract drawing and reveals more of the object's fundamental visual structure.</p>
     </div></div></div></div></div></div>
 </div>
+
+
+<div id="pen-cursor" aria-hidden="true">
+  <img src="img/pen.png" alt="">
+</div>
+
+
+<script id="v14-pen-cursor-script">
+(function () {
+  const finePointer = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  if (!finePointer) return;
+
+  const cursor = document.getElementById('pen-cursor');
+  if (!cursor) return;
+  const pen = cursor.querySelector('img');
+  if (!pen) return;
+
+  const selectableSelector = [
+    'a',
+    'button',
+    '[role="button"]',
+    'input',
+    'select',
+    'textarea',
+    '.publication-filter',
+    '.project-media-button',
+    '.row-title-button',
+    '[data-toggle="modal"]',
+    '.carousel-control-prev',
+    '.carousel-control-next'
+  ].join(',');
+
+  function enableCursor() {
+    document.documentElement.classList.add('pen-cursor-ready');
+  }
+
+  if (pen.complete && pen.naturalWidth > 0) {
+    enableCursor();
+  } else {
+    pen.addEventListener('load', enableCursor, { once: true });
+  }
+
+  document.addEventListener('mousemove', function (event) {
+    /* Offset positions the visual pen tip close to the actual pointer point. */
+    cursor.style.transform = 'translate3d(' + (event.clientX - 8) + 'px,' + (event.clientY - 34) + 'px,0)';
+    cursor.classList.add('is-visible');
+  }, { passive: true });
+
+  document.addEventListener('mouseover', function (event) {
+    const target = event.target && event.target.closest ? event.target.closest(selectableSelector) : null;
+    cursor.classList.toggle('is-selectable', !!target);
+  }, { passive: true });
+
+  document.addEventListener('mouseout', function (event) {
+    if (!event.relatedTarget) {
+      cursor.classList.remove('is-visible', 'is-selectable');
+    }
+  }, { passive: true });
+
+  window.addEventListener('blur', function () {
+    cursor.classList.remove('is-visible', 'is-selectable');
+  });
+})();
+</script>
 
 </body>
 </html>
