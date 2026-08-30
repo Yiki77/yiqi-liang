@@ -915,8 +915,8 @@
     }
     .footer-row {
       display: flex;
-      justify-content: space-between;
-      gap: 1rem;
+      justify-content: flex-start;
+      gap: .6rem;
       flex-wrap: wrap;
     }
     .footer-row strong { color: var(--yiqi-green-dark); font-family: "Montserrat", sans-serif; }
@@ -3946,8 +3946,8 @@
     }
 
     .project-card-stage .yellow-left-card {
-      left: 3.5rem !important;
-      right: auto !important;
+      left: auto !important;
+      right: 3.5rem !important;
       transform: rotate(-2.1deg) !important;
     }
 
@@ -4128,7 +4128,8 @@
       }
 
       .project-card-stage .yellow-left-card {
-        left: 1.2rem !important;
+        left: auto !important;
+        right: 1.2rem !important;
       }
 
       #news .news-list::after,
@@ -4710,9 +4711,9 @@
 
     .education-item {
       display: grid;
-      grid-template-columns: 180px minmax(0, 1fr);
-      gap: 1.35rem;
-      align-items: start;
+      grid-template-columns: minmax(0, 1fr) 205px;
+      gap: 1.5rem;
+      align-items: center;
       padding: 1.08rem 1.2rem;
       border: 1px solid rgba(79,123,87,.18);
       border-radius: 10px;
@@ -4727,8 +4728,14 @@
       box-shadow: 0 8px 20px rgba(63,105,73,.08);
     }
 
+    .education-meta {
+      min-width: 0;
+      text-align: right;
+      align-self: center;
+    }
+
     .education-period {
-      padding-top: .16rem;
+      padding-top: 0;
       color: var(--yiqi-green-dark);
       font-family: "Montserrat", sans-serif;
       font-size: .82rem;
@@ -4755,11 +4762,21 @@
     }
 
     .education-place {
+      display: block;
+      margin-top: .34rem;
       color: var(--yiqi-green);
       font-family: "Montserrat", sans-serif;
       font-size: .74rem;
       font-weight: 700;
       letter-spacing: .025em;
+      white-space: nowrap;
+    }
+
+    .education-school-unit {
+      margin: .28rem 0 0;
+      color: #59645c;
+      font-size: .86rem;
+      line-height: 1.55;
     }
 
     .education-program {
@@ -4813,10 +4830,16 @@
 
       .education-item {
         grid-template-columns: 1fr;
-        gap: .4rem;
+        gap: .65rem;
       }
 
-      .education-period {
+      .education-meta {
+        text-align: left;
+        padding-left: 60px;
+      }
+
+      .education-period,
+      .education-place {
         white-space: normal;
       }
 
@@ -5053,34 +5076,39 @@
           </div>
           <div class="education-list">
             <article class="education-item">
-              <div class="education-period">2018.09 — 2022.06</div>
-              <div class="education-main">
-                <div class="education-school-with-logo">
-                  <img class="education-logo" src="img/NUS.png" alt="Northeastern University logo">
-                  <div class="education-school-copy">
-                    <div class="education-school-row">
-                      <h3>Northeastern University</h3>
-                      <span class="education-place">Qinhuangdao, Hebei</span>
-                    </div>
-                    <p class="education-program">Computer Science and Technology</p>
-                  </div>
-                </div>
-              </div>
-            </article>
-
-            <article class="education-item">
-              <div class="education-period">2023.09 — 2025.09</div>
               <div class="education-main">
                 <div class="education-school-with-logo">
                   <img class="education-logo" src="img/HKUSTGZ.png" alt="HKUST(GZ) logo">
                   <div class="education-school-copy">
                     <div class="education-school-row">
                       <h3>The Hong Kong University of Science and Technology (Guangzhou)</h3>
-                      <span class="education-place">Guangzhou, Guangdong</span>
                     </div>
                     <p class="education-program">Information Hub · Computational Media and Arts</p>
                   </div>
                 </div>
+              </div>
+              <div class="education-meta">
+                <div class="education-period">2023.09 — 2025.09</div>
+                <span class="education-place">Guangzhou, Guangdong</span>
+              </div>
+            </article>
+
+            <article class="education-item">
+              <div class="education-main">
+                <div class="education-school-with-logo">
+                  <img class="education-logo" src="img/NUS.png" alt="Northeastern University logo">
+                  <div class="education-school-copy">
+                    <div class="education-school-row">
+                      <h3>Northeastern University</h3>
+                    </div>
+                    <p class="education-school-unit"><em>School of Computer and Communication Engineering</em></p>
+                    <p class="education-program">Computer Science and Technology</p>
+                  </div>
+                </div>
+              </div>
+              <div class="education-meta">
+                <div class="education-period">2018.09 — 2022.06</div>
+                <span class="education-place">Qinhuangdao, Hebei</span>
               </div>
             </article>
           </div>
