@@ -1,8 +1,11 @@
 /* ================================================================
-   Single-page navigation + publication filters
+   Single-page navigation:
    1. Click nav item -> smooth-scroll to its section
    2. Manual scrolling -> active nav item follows the current section
-   3. Publication pills filter the publication list
+
+   This version is safe for the new two-column layout, where
+   News / Publications / Projects / Interest are nested in the
+   right-hand content column.
    ================================================================ */
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -18,6 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
     return nav ? nav.getBoundingClientRect().height : 0;
   }
 
+  /* Important for nested sections: always calculate document Y. */
   function documentTop(element) {
     return element.getBoundingClientRect().top + window.pageYOffset;
   }
@@ -39,6 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  /* Click -> smooth scroll */
   navLinks.forEach(link => {
     link.addEventListener("click", function (event) {
       const target = document.querySelector(this.getAttribute("href"));
@@ -52,12 +57,14 @@ document.addEventListener("DOMContentLoaded", function () {
         history.replaceState(null, "", "#" + target.id);
       }
 
+      /* Close Bootstrap mobile menu after clicking */
       if (window.jQuery && jQuery("#navbarResponsive").hasClass("show")) {
         jQuery("#navbarResponsive").collapse("hide");
       }
     });
   });
 
+  /* Brand goes to About */
   const brand = document.querySelector("#mainNav .navbar-brand");
   if (brand) {
     brand.addEventListener("click", function (event) {
@@ -74,6 +81,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  /* ScrollSpy */
   let ticking = false;
 
   function updateFromScroll() {
@@ -90,10 +98,8 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
 
-    if (
-      window.innerHeight + window.scrollY >=
-      document.documentElement.scrollHeight - 4
-    ) {
+    /* Near the bottom, make sure the last section can become active. */
+    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) {
       current = sections[sections.length - 1] || current;
     }
 
@@ -115,45 +121,14 @@ document.addEventListener("DOMContentLoaded", function () {
   window.addEventListener("resize", updateFromScroll);
   updateFromScroll();
 
+  /* Align #news / #publications / #projects etc. under fixed nav. */
   if (window.location.hash) {
     const target = document.querySelector(window.location.hash);
-    if (target) {
+    if (target && sections.includes(target)) {
       setTimeout(() => {
         scrollToSection(target, "auto");
-        if (sections.includes(target)) {
-          setActive(target.id);
-        }
+        setActive(target.id);
       }, 0);
     }
   }
-
-  /* Publication filters */
-  const filterButtons = Array.from(
-    document.querySelectorAll(".publication-filter")
-  );
-  const publicationRows = Array.from(
-    document.querySelectorAll(".publication-row")
-  );
-
-  function applyPublicationFilter(filter) {
-    publicationRows.forEach(row => {
-      const category = row.getAttribute("data-category");
-      const visible = filter === "all" || category === filter;
-      row.classList.toggle("is-hidden", !visible);
-    });
-
-    filterButtons.forEach(button => {
-      const isActive = button.getAttribute("data-filter") === filter;
-      button.classList.toggle("active", isActive);
-      button.setAttribute("aria-pressed", isActive ? "true" : "false");
-    });
-  }
-
-  filterButtons.forEach(button => {
-    button.addEventListener("click", function () {
-      applyPublicationFilter(this.getAttribute("data-filter"));
-    });
-  });
-
-  applyPublicationFilter("all");
 });
