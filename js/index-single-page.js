@@ -1,78 +1,97 @@
 /* ================================================================
-   Single-page navigation:
-   1. Click nav item -> smooth-scroll to its section
-   2. Manual scrolling -> active nav item follows the current section
+   Single-page navigation for the two-column academic layout
 
-   This version is safe for the new two-column layout, where
-   News / Publications / Projects / Interest are nested in the
-   right-hand content column.
+   Important layout detail:
+   - About is the left column.
+   - News begins at the top of the right column.
+   - Because About and News share almost the same document Y position,
+     News is intentionally NOT a navbar ScrollSpy target.
+   - Navbar targets remain: About / Publications / Projects / Interest.
    ================================================================ */
 
 document.addEventListener("DOMContentLoaded", function () {
   const nav = document.getElementById("mainNav");
-  const navLinks = Array.from(document.querySelectorAll("#mainNav .section-nav"));
+  const navLinks = Array.from(
+    document.querySelectorAll("#mainNav .section-nav")
+  );
+
   const sections = navLinks
     .map(link => document.querySelector(link.getAttribute("href")))
     .filter(Boolean);
 
-  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const reducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
 
   function navHeight() {
     return nav ? nav.getBoundingClientRect().height : 0;
   }
 
-  /* Important for nested sections: always calculate document Y. */
   function documentTop(element) {
-    return element.getBoundingClientRect().top + window.pageYOffset;
+    return element.getBoundingClientRect().top + window.scrollY;
   }
 
   function setActive(sectionId) {
     navLinks.forEach(link => {
-      link.classList.toggle(
-        "active",
-        link.getAttribute("href") === "#" + sectionId
-      );
+      const active = link.getAttribute("href") === "#" + sectionId;
+      link.classList.toggle("active", active);
+
+      if (active) {
+        link.setAttribute("aria-current", "page");
+      } else {
+        link.removeAttribute("aria-current");
+      }
     });
   }
 
-  function scrollToSection(target, behavior) {
-    const top = documentTop(target) - navHeight() + 1;
+  function scrollToElement(target, behavior) {
+    if (!target) return;
+
+    const top = Math.max(0, documentTop(target) - navHeight() - 8);
+
     window.scrollTo({
       top,
       behavior: behavior || (reducedMotion ? "auto" : "smooth")
     });
   }
 
-  /* Click -> smooth scroll */
+  /* --------------------------------------------------------------
+     Navbar click -> smooth scroll
+     -------------------------------------------------------------- */
   navLinks.forEach(link => {
     link.addEventListener("click", function (event) {
-      const target = document.querySelector(this.getAttribute("href"));
+      const selector = this.getAttribute("href");
+      const target = selector ? document.querySelector(selector) : null;
       if (!target) return;
 
       event.preventDefault();
-      scrollToSection(target);
+      scrollToElement(target);
       setActive(target.id);
 
       if (history.replaceState) {
         history.replaceState(null, "", "#" + target.id);
       }
 
-      /* Close Bootstrap mobile menu after clicking */
-      if (window.jQuery && jQuery("#navbarResponsive").hasClass("show")) {
+      /* Close Bootstrap mobile menu after clicking. */
+      if (
+        window.jQuery &&
+        jQuery("#navbarResponsive").hasClass("show")
+      ) {
         jQuery("#navbarResponsive").collapse("hide");
       }
     });
   });
 
-  /* Brand goes to About */
+  /* Brand -> About */
   const brand = document.querySelector("#mainNav .navbar-brand");
+
   if (brand) {
     brand.addEventListener("click", function (event) {
       const about = document.getElementById("about");
       if (!about) return;
 
       event.preventDefault();
-      scrollToSection(about);
+      scrollToElement(about);
       setActive("about");
 
       if (history.replaceState) {
@@ -81,54 +100,87 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  /* ScrollSpy */
+  /* --------------------------------------------------------------
+     ScrollSpy
+
+     Before Publications reaches the reading marker, About remains
+     active. This is the key fix for the two-column About + News top.
+     -------------------------------------------------------------- */
   let ticking = false;
 
   function updateFromScroll() {
+    if (!sections.length) {
+      ticking = false;
+      return;
+    }
+
     const marker =
       window.scrollY +
       navHeight() +
-      Math.min(180, window.innerHeight * 0.26);
+      Math.min(150, window.innerHeight * 0.22);
 
-    let current = sections[0];
+    let current = sections[0]; // About by default.
 
-    sections.forEach(section => {
-      if (documentTop(section) <= marker) {
-        current = section;
+    for (let i = 1; i < sections.length; i += 1) {
+      if (documentTop(sections[i]) <= marker) {
+        current = sections[i];
+      } else {
+        break;
       }
-    });
+    }
 
-    /* Near the bottom, make sure the last section can become active. */
-    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) {
+    /* Ensure the final section can become active near page bottom. */
+    const atBottom =
+      window.innerHeight + window.scrollY >=
+      document.documentElement.scrollHeight - 6;
+
+    if (atBottom) {
       current = sections[sections.length - 1] || current;
     }
 
-    if (current) setActive(current.id);
+    if (current) {
+      setActive(current.id);
+    }
+
     ticking = false;
   }
 
-  window.addEventListener(
-    "scroll",
-    function () {
-      if (!ticking) {
-        window.requestAnimationFrame(updateFromScroll);
-        ticking = true;
-      }
-    },
-    { passive: true }
-  );
+  function requestScrollSpyUpdate() {
+    if (ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(updateFromScroll);
+  }
 
-  window.addEventListener("resize", updateFromScroll);
-  updateFromScroll();
+  window.addEventListener("scroll", requestScrollSpyUpdate, {
+    passive: true
+  });
 
-  /* Align #news / #publications / #projects etc. under fixed nav. */
+  window.addEventListener("resize", requestScrollSpyUpdate);
+
+  /* --------------------------------------------------------------
+     Initial hash alignment
+     Supports #news as a direct URL even though News is not in navbar.
+     -------------------------------------------------------------- */
   if (window.location.hash) {
     const target = document.querySelector(window.location.hash);
-    if (target && sections.includes(target)) {
+
+    if (target) {
       setTimeout(() => {
-        scrollToSection(target, "auto");
-        setActive(target.id);
+        scrollToElement(target, "auto");
+
+        if (sections.includes(target)) {
+          setActive(target.id);
+        } else {
+          /* #news belongs to the top About/News row. */
+          setActive("about");
+        }
+
+        requestScrollSpyUpdate();
       }, 0);
+    } else {
+      updateFromScroll();
     }
+  } else {
+    updateFromScroll();
   }
 });
