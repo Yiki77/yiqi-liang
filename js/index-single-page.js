@@ -1,67 +1,45 @@
 /* ================================================================
-   Single-page navigation for the two-column academic layout
-
-   Important layout detail:
-   - About is the left column.
-   - News begins at the top of the right column.
-   - Because About and News share almost the same document Y position,
-     News is intentionally NOT a navbar ScrollSpy target.
-   - Navbar targets remain: About / Publications / Projects / Interest.
+   Yiqi Liang — single-page navigation + publication filters
+   1. Click nav item -> smooth-scroll to its section
+   2. Manual scrolling -> active nav item follows the current section
+   3. Publications -> filter by Point Cloud / Sketching / HCI
    ================================================================ */
 
 document.addEventListener("DOMContentLoaded", function () {
   const nav = document.getElementById("mainNav");
-  const navLinks = Array.from(
-    document.querySelectorAll("#mainNav .section-nav")
-  );
-
+  const navLinks = Array.from(document.querySelectorAll("#mainNav .section-nav"));
   const sections = navLinks
     .map(link => document.querySelector(link.getAttribute("href")))
     .filter(Boolean);
 
-  const reducedMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  ).matches;
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   function navHeight() {
     return nav ? nav.getBoundingClientRect().height : 0;
   }
 
   function documentTop(element) {
-    return element.getBoundingClientRect().top + window.scrollY;
+    return element.getBoundingClientRect().top + window.pageYOffset;
   }
 
   function setActive(sectionId) {
     navLinks.forEach(link => {
-      const active = link.getAttribute("href") === "#" + sectionId;
-      link.classList.toggle("active", active);
-
-      if (active) {
-        link.setAttribute("aria-current", "page");
-      } else {
-        link.removeAttribute("aria-current");
-      }
+      link.classList.toggle(
+        "active",
+        link.getAttribute("href") === "#" + sectionId
+      );
     });
   }
 
   function scrollToElement(target, behavior) {
-    if (!target) return;
-
-    const top = Math.max(0, documentTop(target) - navHeight() - 8);
-
-    window.scrollTo({
-      top,
-      behavior: behavior || (reducedMotion ? "auto" : "smooth")
-    });
+    const top = documentTop(target) - navHeight() + 1;
+    window.scrollTo({ top, behavior: behavior || (reducedMotion ? "auto" : "smooth") });
   }
 
-  /* --------------------------------------------------------------
-     Navbar click -> smooth scroll
-     -------------------------------------------------------------- */
+  /* Click -> smooth scroll */
   navLinks.forEach(link => {
     link.addEventListener("click", function (event) {
-      const selector = this.getAttribute("href");
-      const target = selector ? document.querySelector(selector) : null;
+      const target = document.querySelector(this.getAttribute("href"));
       if (!target) return;
 
       event.preventDefault();
@@ -72,11 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
         history.replaceState(null, "", "#" + target.id);
       }
 
-      /* Close Bootstrap mobile menu after clicking. */
-      if (
-        window.jQuery &&
-        jQuery("#navbarResponsive").hasClass("show")
-      ) {
+      if (window.jQuery && jQuery("#navbarResponsive").hasClass("show")) {
         jQuery("#navbarResponsive").collapse("hide");
       }
     });
@@ -84,103 +58,77 @@ document.addEventListener("DOMContentLoaded", function () {
 
   /* Brand -> About */
   const brand = document.querySelector("#mainNav .navbar-brand");
-
   if (brand) {
     brand.addEventListener("click", function (event) {
       const about = document.getElementById("about");
       if (!about) return;
-
       event.preventDefault();
       scrollToElement(about);
       setActive("about");
-
-      if (history.replaceState) {
-        history.replaceState(null, "", "#about");
-      }
+      if (history.replaceState) history.replaceState(null, "", "#about");
     });
   }
 
-  /* --------------------------------------------------------------
-     ScrollSpy
-
-     Before Publications reaches the reading marker, About remains
-     active. This is the key fix for the two-column About + News top.
-     -------------------------------------------------------------- */
+  /* ScrollSpy */
   let ticking = false;
 
   function updateFromScroll() {
-    if (!sections.length) {
-      ticking = false;
-      return;
-    }
+    const marker = window.scrollY + navHeight() + Math.min(180, window.innerHeight * 0.26);
+    let current = sections[0] || null;
 
-    const marker =
-      window.scrollY +
-      navHeight() +
-      Math.min(150, window.innerHeight * 0.22);
+    sections.forEach(section => {
+      if (documentTop(section) <= marker) current = section;
+    });
 
-    let current = sections[0]; // About by default.
-
-    for (let i = 1; i < sections.length; i += 1) {
-      if (documentTop(sections[i]) <= marker) {
-        current = sections[i];
-      } else {
-        break;
-      }
-    }
-
-    /* Ensure the final section can become active near page bottom. */
-    const atBottom =
-      window.innerHeight + window.scrollY >=
-      document.documentElement.scrollHeight - 6;
-
-    if (atBottom) {
-      current = sections[sections.length - 1] || current;
-    }
-
-    if (current) {
-      setActive(current.id);
-    }
-
+    if (current) setActive(current.id);
     ticking = false;
   }
 
-  function requestScrollSpyUpdate() {
-    if (ticking) return;
-    ticking = true;
-    window.requestAnimationFrame(updateFromScroll);
-  }
+  window.addEventListener("scroll", function () {
+    if (!ticking) {
+      window.requestAnimationFrame(updateFromScroll);
+      ticking = true;
+    }
+  }, { passive: true });
 
-  window.addEventListener("scroll", requestScrollSpyUpdate, {
-    passive: true
-  });
+  window.addEventListener("resize", updateFromScroll);
+  updateFromScroll();
 
-  window.addEventListener("resize", requestScrollSpyUpdate);
-
-  /* --------------------------------------------------------------
-     Initial hash alignment
-     Supports #news as a direct URL even though News is not in navbar.
-     -------------------------------------------------------------- */
+  /* Align hash target under the fixed nav on first load. News remains
+     directly linkable even though it is not a navbar item. */
   if (window.location.hash) {
     const target = document.querySelector(window.location.hash);
-
     if (target) {
       setTimeout(() => {
         scrollToElement(target, "auto");
-
-        if (sections.includes(target)) {
-          setActive(target.id);
-        } else {
-          /* #news belongs to the top About/News row. */
-          setActive("about");
-        }
-
-        requestScrollSpyUpdate();
+        if (sections.includes(target)) setActive(target.id);
       }, 0);
-    } else {
-      updateFromScroll();
     }
-  } else {
-    updateFromScroll();
   }
+
+  /* Publication category filters */
+  const filterButtons = Array.from(document.querySelectorAll(".publication-filter"));
+  const publicationRows = Array.from(document.querySelectorAll(".publication-row[data-category]"));
+
+  function applyPublicationFilter(filter) {
+    publicationRows.forEach(row => {
+      const visible = filter === "all" || row.dataset.category === filter;
+      row.classList.toggle("is-filtered-out", !visible);
+      row.setAttribute("aria-hidden", visible ? "false" : "true");
+    });
+
+    filterButtons.forEach(button => {
+      const active = button.dataset.filter === filter;
+      button.classList.toggle("active", active);
+      button.setAttribute("aria-pressed", active ? "true" : "false");
+    });
+  }
+
+  filterButtons.forEach(button => {
+    button.addEventListener("click", function () {
+      applyPublicationFilter(this.dataset.filter || "all");
+    });
+  });
+
+  applyPublicationFilter("all");
 });
