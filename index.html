@@ -4707,6 +4707,25 @@
     .education-list {
       display: grid;
       gap: .9rem;
+      position: relative;
+      padding-left: 34px;
+    }
+
+    /* Education timeline connecting the two degree entries */
+    .education-list::before {
+      content: '';
+      position: absolute;
+      left: 10px;
+      top: 1.5rem;
+      bottom: 1.5rem;
+      width: 2px;
+      background: linear-gradient(
+        to bottom,
+        rgba(79,123,87,.20),
+        rgba(79,123,87,.62),
+        rgba(79,123,87,.20)
+      );
+      border-radius: 999px;
     }
 
     .education-item {
@@ -4719,6 +4738,22 @@
       border-radius: 10px;
       background: rgba(255,255,255,.72);
       transition: background .18s ease, border-color .18s ease, transform .18s ease, box-shadow .18s ease;
+      position: relative;
+    }
+
+    .education-item::before {
+      content: '';
+      position: absolute;
+      left: -30px;
+      top: 50%;
+      width: 13px;
+      height: 13px;
+      transform: translateY(-50%);
+      border-radius: 50%;
+      background: #ffffff;
+      border: 3px solid var(--yiqi-green);
+      box-shadow: 0 0 0 4px rgba(79,123,87,.09);
+      z-index: 2;
     }
 
     .education-item:hover {
@@ -4826,6 +4861,20 @@
         height: 52px !important;
         top: .55rem !important;
         left: 1.2rem !important;
+      }
+
+      .education-list {
+        padding-left: 28px;
+      }
+
+      .education-list::before {
+        left: 8px;
+      }
+
+      .education-item::before {
+        left: -25px;
+        width: 12px;
+        height: 12px;
       }
 
       .education-item {
@@ -5101,8 +5150,7 @@
                     <div class="education-school-row">
                       <h3>Northeastern University</h3>
                     </div>
-                    <p class="education-school-unit"><em>School of Computer and Communication Engineering</em></p>
-                    <p class="education-program">Computer Science and Technology</p>
+                    <p class="education-program"><em>School of Computer and Communication Engineering</em> · Computer Science and Technology</p>
                   </div>
                 </div>
               </div>
