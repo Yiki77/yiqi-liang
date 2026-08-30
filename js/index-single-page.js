@@ -1,8 +1,11 @@
-
 /* ================================================================
    Single-page navigation:
    1. Click nav item -> smooth-scroll to its section
    2. Manual scrolling -> active nav item follows the current section
+
+   This version is safe for the new two-column layout, where
+   News / Publications / Projects / Interest are nested in the
+   right-hand content column.
    ================================================================ */
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -12,8 +15,15 @@ document.addEventListener("DOMContentLoaded", function () {
     .map(link => document.querySelector(link.getAttribute("href")))
     .filter(Boolean);
 
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
   function navHeight() {
     return nav ? nav.getBoundingClientRect().height : 0;
+  }
+
+  /* Important for nested sections: always calculate document Y. */
+  function documentTop(element) {
+    return element.getBoundingClientRect().top + window.pageYOffset;
   }
 
   function setActive(sectionId) {
@@ -25,6 +35,14 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  function scrollToSection(target, behavior) {
+    const top = documentTop(target) - navHeight() + 1;
+    window.scrollTo({
+      top,
+      behavior: behavior || (reducedMotion ? "auto" : "smooth")
+    });
+  }
+
   /* Click -> smooth scroll */
   navLinks.forEach(link => {
     link.addEventListener("click", function (event) {
@@ -32,20 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (!target) return;
 
       event.preventDefault();
-
-      const top =
-        target.getBoundingClientRect().top +
-        window.pageYOffset -
-        navHeight() +
-        1;
-
-      window.scrollTo({
-        top: top,
-        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
-          ? "auto"
-          : "smooth"
-      });
-
+      scrollToSection(target);
       setActive(target.id);
 
       if (history.replaceState) {
@@ -65,32 +70,38 @@ document.addEventListener("DOMContentLoaded", function () {
     brand.addEventListener("click", function (event) {
       const about = document.getElementById("about");
       if (!about) return;
+
       event.preventDefault();
-      const top =
-        about.getBoundingClientRect().top +
-        window.pageYOffset -
-        navHeight() +
-        1;
-      window.scrollTo({ top, behavior: "smooth" });
+      scrollToSection(about);
       setActive("about");
-      if (history.replaceState) history.replaceState(null, "", "#about");
+
+      if (history.replaceState) {
+        history.replaceState(null, "", "#about");
+      }
     });
   }
 
-  /*
-   * ScrollSpy.
-   * We intentionally use a midpoint slightly below the navigation bar,
-   * so the active item changes naturally as a new section enters view.
-   */
+  /* ScrollSpy */
   let ticking = false;
 
   function updateFromScroll() {
-    const marker = window.scrollY + navHeight() + Math.min(180, window.innerHeight * 0.26);
+    const marker =
+      window.scrollY +
+      navHeight() +
+      Math.min(180, window.innerHeight * 0.26);
+
     let current = sections[0];
 
     sections.forEach(section => {
-      if (section.offsetTop <= marker) current = section;
+      if (documentTop(section) <= marker) {
+        current = section;
+      }
     });
+
+    /* Near the bottom, make sure the last section can become active. */
+    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) {
+      current = sections[sections.length - 1] || current;
+    }
 
     if (current) setActive(current.id);
     ticking = false;
@@ -110,17 +121,13 @@ document.addEventListener("DOMContentLoaded", function () {
   window.addEventListener("resize", updateFromScroll);
   updateFromScroll();
 
-  /* If page was opened with #publications etc., align it under fixed nav. */
+  /* Align #news / #publications / #projects etc. under fixed nav. */
   if (window.location.hash) {
     const target = document.querySelector(window.location.hash);
     if (target && sections.includes(target)) {
       setTimeout(() => {
-        const top =
-          target.getBoundingClientRect().top +
-          window.pageYOffset -
-          navHeight() +
-          1;
-        window.scrollTo({ top, behavior: "auto" });
+        scrollToSection(target, "auto");
+        setActive(target.id);
       }, 0);
     }
   }
