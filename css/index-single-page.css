@@ -2418,3 +2418,333 @@ highlight {
     height: min(225px, 67vw);
   }
 }
+
+/* =================================================================
+   v12 — Extend the draft-paper language through the page
+   ================================================================= */
+
+/* -----------------------------------------------------------------
+   ABOUT: fuller typography + a subtle hand-drawn portrait frame
+   ----------------------------------------------------------------- */
+.about-single-section {
+  padding-bottom: 0.12rem !important;
+}
+
+.about-single-section .profile-copy p {
+  margin-bottom: 0.88rem;
+  color: #4d5c52;
+  font-size: 1.12rem;
+  line-height: 1.76;
+  letter-spacing: 0.002em;
+}
+
+.about-single-section .profile-copy p:last-of-type {
+  margin-top: 0.12rem;
+  margin-bottom: 0 !important;
+}
+
+.about-hero-copy {
+  justify-content: center;
+  padding-top: 0.2rem;
+  padding-bottom: 0;
+}
+
+.about-hero-visual .masthead-avatar {
+  border: 1.5px solid rgba(72, 115, 90, 0.26) !important;
+  border-radius: 50% 49% 51% 48% / 49% 51% 48% 52% !important;
+  box-shadow:
+    3px 2px 0 rgba(72, 115, 90, 0.07),
+    -2px -1px 0 rgba(244, 201, 93, 0.08),
+    0 12px 30px rgba(43, 69, 53, 0.07) !important;
+}
+
+.about-hero-meta .profile-tags span {
+  background-color: rgba(251, 251, 246, 0.82) !important;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(72, 115, 90, 0.025) 0 1px, transparent 1px 12px),
+    repeating-linear-gradient(90deg, rgba(72, 115, 90, 0.022) 0 1px, transparent 1px 12px);
+  border-color: rgba(72, 115, 90, 0.18) !important;
+  border-radius: 10px 12px 9px 11px / 10px 9px 12px 10px !important;
+}
+
+/* News should follow the hero almost immediately. */
+.news-section {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* -----------------------------------------------------------------
+   SECTION HEADERS: small pieces of graph paper with hand-drawn edges
+   ----------------------------------------------------------------- */
+.content-section .list-heading-row {
+  position: relative;
+  isolation: isolate;
+  overflow: visible;
+  margin-bottom: 1.15rem !important;
+  padding: 0.72rem 0.95rem 0.74rem !important;
+  border: 1px solid rgba(72, 115, 90, 0.17) !important;
+  border-radius: 7px 10px 8px 11px / 9px 7px 11px 8px;
+  background-color: rgba(251, 250, 244, 0.78);
+  background-image:
+    repeating-linear-gradient(0deg, rgba(72, 115, 90, 0.038) 0 1px, transparent 1px 18px),
+    repeating-linear-gradient(90deg, rgba(72, 115, 90, 0.034) 0 1px, transparent 1px 18px);
+  box-shadow:
+    2px 2px 0 rgba(72, 115, 90, 0.045),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.52);
+}
+
+.content-section .list-heading-row::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 7px;
+  right: 5px;
+  top: 5px;
+  bottom: -4px;
+  border-bottom: 1px solid rgba(72, 115, 90, 0.14);
+  border-right: 1px solid rgba(72, 115, 90, 0.08);
+  border-radius: inherit;
+  transform: rotate(-0.18deg);
+  pointer-events: none;
+}
+
+.content-section .list-heading-row::after {
+  content: "+";
+  position: absolute;
+  right: 0.72rem;
+  top: -0.54rem;
+  color: rgba(72, 115, 90, 0.34);
+  font-family: "Dosis", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1;
+  transform: rotate(8deg);
+}
+
+.content-section .list-heading-row .single-page-heading {
+  position: relative;
+  display: inline-block;
+}
+
+.content-section .list-heading-row .single-page-heading::after {
+  content: "";
+  position: absolute;
+  left: 0.04em;
+  right: -0.10em;
+  bottom: -0.20rem;
+  height: 4px;
+  background:
+    linear-gradient(177deg,
+      transparent 0 22%,
+      rgba(72, 115, 90, 0.28) 24% 44%,
+      transparent 46% 56%,
+      rgba(244, 201, 93, 0.42) 58% 76%,
+      transparent 78% 100%);
+  border-radius: 50%;
+  transform: rotate(-0.35deg);
+  pointer-events: none;
+}
+
+/* -----------------------------------------------------------------
+   NEWS: notebook timeline rather than plain ruled rows
+   ----------------------------------------------------------------- */
+.news-list {
+  position: relative;
+  border-top: 0 !important;
+  padding-left: 1.05rem !important;
+}
+
+.news-list::before {
+  content: "";
+  position: absolute;
+  left: 0.31rem;
+  top: 0.35rem;
+  bottom: 0.42rem;
+  border-left: 1px dashed rgba(72, 115, 90, 0.22);
+}
+
+.news-list li {
+  position: relative;
+  border-bottom: 1px dashed rgba(72, 115, 90, 0.14) !important;
+}
+
+.news-list li::before {
+  content: "";
+  position: absolute;
+  left: -0.96rem;
+  top: 1.18rem;
+  width: 7px;
+  height: 7px;
+  background: var(--yiqi-bg);
+  border: 1.5px solid rgba(72, 115, 90, 0.58);
+  border-radius: 50% 45% 52% 47%;
+  transform: rotate(12deg);
+}
+
+.news-date {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  padding: 0.13rem 0.36rem;
+  background: rgba(244, 201, 93, 0.10);
+  border: 1px solid rgba(178, 142, 56, 0.16);
+  border-radius: 5px 7px 5px 6px;
+}
+
+/* -----------------------------------------------------------------
+   PUBLICATION FILTERS: paper labels, still compact and clickable
+   ----------------------------------------------------------------- */
+.publication-filters {
+  padding: 0.16rem 0.1rem 0.5rem;
+}
+
+.publication-filter {
+  position: relative;
+  background-color: rgba(251, 250, 244, 0.88) !important;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(72, 115, 90, 0.028) 0 1px, transparent 1px 14px),
+    repeating-linear-gradient(90deg, rgba(72, 115, 90, 0.024) 0 1px, transparent 1px 14px) !important;
+  border-color: rgba(72, 115, 90, 0.19) !important;
+  border-radius: 12px 15px 11px 14px / 13px 11px 15px 12px !important;
+  color: var(--yiqi-green-dark) !important;
+  box-shadow: 2px 2px 0 rgba(72, 115, 90, 0.045);
+}
+
+.publication-filter:nth-child(even) {
+  transform: rotate(0.2deg);
+}
+
+.publication-filter:nth-child(odd) {
+  transform: rotate(-0.18deg);
+}
+
+.publication-filter:hover {
+  transform: translateY(-1px) rotate(0deg) !important;
+}
+
+.publication-filter.active {
+  color: #ffffff !important;
+  background: rgba(72, 115, 90, 0.94) !important;
+  border-color: rgba(41, 72, 55, 0.36) !important;
+  box-shadow:
+    2px 2px 0 rgba(41, 72, 55, 0.10),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.10) !important;
+}
+
+.publication-filter .filter-count {
+  border: 1px solid rgba(178, 142, 56, 0.15);
+}
+
+/* -----------------------------------------------------------------
+   PUBLICATION / PROJECT ROWS: loose sketch frames around media
+   ----------------------------------------------------------------- */
+.academic-row {
+  position: relative;
+  border-bottom: 1px dashed rgba(72, 115, 90, 0.16) !important;
+}
+
+.academic-row:first-of-type {
+  border-top: 1px dashed rgba(72, 115, 90, 0.16) !important;
+}
+
+.academic-row-media {
+  position: relative;
+  overflow: visible !important;
+  border: 1.4px solid rgba(72, 115, 90, 0.20) !important;
+  border-radius: 7px 10px 8px 11px / 9px 7px 11px 8px !important;
+  box-shadow:
+    3px 3px 0 rgba(72, 115, 90, 0.045),
+    -1px -1px 0 rgba(244, 201, 93, 0.07) !important;
+}
+
+.academic-row:nth-of-type(odd) .academic-row-media {
+  transform: rotate(-0.24deg);
+}
+
+.academic-row:nth-of-type(even) .academic-row-media {
+  transform: rotate(0.20deg);
+}
+
+.academic-row-media img {
+  border-radius: 6px 8px 7px 9px !important;
+}
+
+.publication-type-label {
+  border-style: dashed !important;
+  background: rgba(232, 240, 232, 0.44) !important;
+  border-radius: 6px 8px 6px 7px !important;
+}
+
+.academic-row-links a {
+  border-style: dashed !important;
+  border-radius: 5px 7px 5px 6px !important;
+  background: rgba(251, 250, 244, 0.78) !important;
+}
+
+.academic-row-links a:hover {
+  border-style: solid !important;
+  background: var(--yiqi-green) !important;
+}
+
+/* -----------------------------------------------------------------
+   INTEREST: four small note cards on faint graph paper
+   ----------------------------------------------------------------- */
+.academic-interest-grid {
+  gap: 1rem 1.2rem !important;
+  border-top: 0 !important;
+}
+
+.academic-interest-grid .interest-card,
+.academic-interest-grid .interest-card:nth-child(odd) {
+  position: relative;
+  padding: 1.05rem 1.10rem 0.95rem !important;
+  border: 1px solid rgba(72, 115, 90, 0.16) !important;
+  border-radius: 8px 11px 7px 10px / 10px 8px 11px 7px !important;
+  background-color: rgba(251, 250, 244, 0.72);
+  background-image:
+    repeating-linear-gradient(0deg, rgba(72, 115, 90, 0.030) 0 1px, transparent 1px 17px),
+    repeating-linear-gradient(90deg, rgba(72, 115, 90, 0.026) 0 1px, transparent 1px 17px);
+  box-shadow: 2px 2px 0 rgba(72, 115, 90, 0.04);
+}
+
+.academic-interest-grid .interest-card:nth-child(1),
+.academic-interest-grid .interest-card:nth-child(4) {
+  transform: rotate(-0.16deg);
+}
+
+.academic-interest-grid .interest-card:nth-child(2),
+.academic-interest-grid .interest-card:nth-child(3) {
+  transform: rotate(0.14deg);
+}
+
+.academic-interest-grid .interest-symbol {
+  margin-bottom: 0.38rem !important;
+  color: rgba(72, 115, 90, 0.62) !important;
+}
+
+/* -----------------------------------------------------------------
+   Responsive tuning
+   ----------------------------------------------------------------- */
+@media (max-width: 991px) {
+  .about-single-section .profile-copy p {
+    font-size: 1.03rem;
+    line-height: 1.72;
+  }
+}
+
+@media (max-width: 767px) {
+  .about-single-section .profile-copy p {
+    font-size: 1rem;
+    line-height: 1.70;
+  }
+
+  .content-section .list-heading-row {
+    padding: 0.62rem 0.78rem !important;
+  }
+
+  .academic-row:nth-of-type(odd) .academic-row-media,
+  .academic-row:nth-of-type(even) .academic-row-media,
+  .academic-interest-grid .interest-card {
+    transform: none !important;
+  }
+}
