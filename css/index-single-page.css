@@ -5,39 +5,16 @@
    ================================================================ */
 
 :root {
-  /* ================================================================
-     Yellow Lop Rabbit palette
-     Main accent: warm honey yellow
-     Secondary accent: muted sage green
-     ================================================================ */
-
-  /* Honey yellow — interaction / hover / active */
-  --yiqi-yellow: #d8b44a;
-  --yiqi-yellow-dark: #78591f;
-  --yiqi-yellow-soft: #f2e4af;
-  --yiqi-yellow-pale: #fbf5df;
-  --yiqi-card-hover: rgba(216, 180, 74, 0.84);
-
-  /* Sage green — headings / tags / decorative accents */
-  --yiqi-sage: #789178;
-  --yiqi-sage-dark: #4f6851;
-  --yiqi-sage-soft: #dfe9dc;
-  --yiqi-sage-pale: #f1f5ee;
-
-  /* Warm neutrals */
-  --yiqi-ink: #332f26;
-  --yiqi-body: #4d493e;
-  --yiqi-muted: #787468;
-  --yiqi-line: #e4ddc8;
-  --yiqi-bg: #fdfbf4;
+  --yiqi-green: #48735a;
+  --yiqi-card-hover: rgba(73, 190, 126, 0.80);
+  --yiqi-green-dark: #294837;
+  --yiqi-green-soft: #e8f0e8;
+  --yiqi-green-pale: #f4f8f2;
+  --yiqi-ink: #222b25;
+  --yiqi-muted: #667169;
+  --yiqi-line: #dce3dc;
+  --yiqi-bg: #fbfcf8;
   --yiqi-white: #ffffff;
-
-  /* Backward-compatible aliases for existing selectors */
-  --yiqi-green: var(--yiqi-yellow);
-  --yiqi-green-dark: var(--yiqi-yellow-dark);
-  --yiqi-green-soft: var(--yiqi-yellow-soft);
-  --yiqi-green-pale: var(--yiqi-yellow-pale);
-
   --yiqi-nav-height: 76px;
 }
 
@@ -64,7 +41,7 @@ a:hover {
 
 ::selection {
   color: var(--yiqi-green-dark);
-  background: var(--yiqi-yellow-soft);
+  background: #d9eadb;
 }
 
 /* ----------------------------------------------------------------
@@ -74,7 +51,7 @@ a:hover {
 #mainNav {
   min-height: var(--yiqi-nav-height);
   padding: 0;
-  background: rgba(253, 251, 244, 0.96) !important;
+  background: rgba(251, 252, 248, 0.96) !important;
   border-bottom: 1px solid var(--yiqi-line);
   box-shadow: none !important;
   backdrop-filter: blur(14px);
@@ -85,7 +62,7 @@ a:hover {
 }
 
 #mainNav .navbar-brand {
-  color: var(--yiqi-sage-dark) !important;
+  color: var(--yiqi-green-dark) !important;
   font-family: "Montserrat", sans-serif;
   font-size: 1.1rem;
   font-weight: 700;
@@ -100,7 +77,7 @@ a:hover {
   position: relative;
   margin-left: 0.8rem;
   padding: 1.75rem 0.35rem 1.55rem !important;
-  color: var(--yiqi-muted) !important;
+  color: #667168 !important;
   border-radius: 0 !important;
   font-family: "Montserrat", sans-serif;
   font-size: 0.78rem !important;
@@ -165,7 +142,7 @@ a:hover {
 
 .single-page-heading {
   margin: 0;
-  color: var(--yiqi-sage-dark);
+  color: var(--yiqi-green-dark);
   font-family: "Montserrat", sans-serif;
   font-size: clamp(2rem, 4vw, 3.15rem);
   font-weight: 700;
@@ -175,7 +152,7 @@ a:hover {
 
 .section-index {
   flex: 0 0 auto;
-  color: var(--yiqi-sage);
+  color: #97a39a;
   font-family: "Montserrat", sans-serif;
   font-size: 0.72rem;
   font-weight: 600;
@@ -184,7 +161,7 @@ a:hover {
 
 .font-underline {
   text-decoration: underline;
-  text-decoration-color: var(--yiqi-sage);
+  text-decoration-color: #a8bca9;
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
 }
@@ -192,7 +169,7 @@ a:hover {
 highlight {
   padding: 0 0.08em;
   color: inherit;
-  background: linear-gradient(transparent 62%, var(--yiqi-yellow-soft) 62%);
+  background: linear-gradient(transparent 62%, #dcebdd 62%);
 }
 
 /* ----------------------------------------------------------------
@@ -205,8 +182,7 @@ highlight {
   padding: 4.8rem 0 5rem;
   overflow: hidden;
   background:
-    radial-gradient(circle at 88% 9%, rgba(216, 180, 74, 0.13), transparent 24rem),
-    radial-gradient(circle at 8% 78%, rgba(120, 145, 120, 0.08), transparent 20rem),
+    radial-gradient(circle at 88% 9%, rgba(99, 139, 106, 0.10), transparent 24rem),
     var(--yiqi-bg);
 }
 
@@ -228,9 +204,9 @@ highlight {
   height: 220px;
   object-fit: cover;
   margin-bottom: 0.9rem !important;
-  border: 1px solid var(--yiqi-line);
+  border: 1px solid #d7ded7;
   border-radius: 50% !important;
-  box-shadow: 0 10px 30px rgba(83, 68, 36, 0.08);
+  box-shadow: 0 10px 30px rgba(43, 69, 53, 0.07);
 }
 
 .social-row {
@@ -248,17 +224,17 @@ highlight {
   align-items: center;
   justify-content: center;
   padding: 0;
-  color: var(--yiqi-sage-dark) !important;
+  color: var(--yiqi-green-dark) !important;
   background: var(--yiqi-white) !important;
-  border: 1px solid var(--yiqi-sage-soft) !important;
+  border: 1px solid #becbbf !important;
   border-radius: 50% !important;
   transition: all 0.2s ease;
 }
 
 .social-row .btn-social:hover {
-  color: var(--yiqi-ink) !important;
-  background: var(--yiqi-yellow) !important;
-  border-color: var(--yiqi-yellow) !important;
+  color: white !important;
+  background: var(--yiqi-green) !important;
+  border-color: var(--yiqi-green) !important;
   transform: translateY(-2px);
 }
 
@@ -275,7 +251,7 @@ highlight {
 
 .about-kicker {
   margin: 0 0 0.7rem;
-  color: var(--yiqi-muted);
+  color: #879389;
   font-family: "Montserrat", sans-serif;
   font-size: 0.72rem;
   font-weight: 600;
@@ -285,7 +261,7 @@ highlight {
 
 .about-content .masthead-heading {
   margin: 0 0 1.7rem !important;
-  color: var(--yiqi-ink);
+  color: var(--yiqi-green-dark);
   font-family: "Dosis", sans-serif;
   font-size: clamp(2.8rem, 5vw, 4.6rem) !important;
   font-weight: 700;
@@ -296,7 +272,7 @@ highlight {
 
 .about-content p {
   margin-bottom: 1.15rem;
-  color: var(--yiqi-body);
+  color: #3f4942;
   font-size: 0.98rem;
 }
 
@@ -309,9 +285,9 @@ highlight {
 
 .research-tags span {
   padding: 0.38rem 0.68rem;
-  color: var(--yiqi-sage-dark);
-  background: var(--yiqi-sage-pale);
-  border: 1px solid var(--yiqi-sage-soft);
+  color: var(--yiqi-green-dark);
+  background: var(--yiqi-green-pale);
+  border: 1px solid #dce7db;
   border-radius: 999px;
   font-family: "Montserrat", sans-serif;
   font-size: 0.69rem;
@@ -325,7 +301,7 @@ highlight {
 
 .updates-title {
   margin: 0 0 1rem;
-  color: var(--yiqi-sage-dark);
+  color: var(--yiqi-green-dark);
   font-family: "Montserrat", sans-serif;
   font-size: 1.25rem;
   font-weight: 700;
@@ -344,12 +320,12 @@ highlight {
   gap: 1rem;
   padding: 0.68rem 0;
   border-bottom: 1px solid var(--yiqi-line);
-  color: var(--yiqi-body);
+  color: #4a554d;
   font-size: 0.88rem;
 }
 
 .update-date {
-  color: var(--yiqi-muted);
+  color: #7f8c82;
   font-family: "Montserrat", sans-serif;
   font-size: 0.73rem;
   font-weight: 600;
@@ -382,8 +358,8 @@ highlight {
 .portfolio-category-title {
   margin: 3.6rem 0 2rem !important;
   padding-bottom: 0.65rem !important;
-  color: var(--yiqi-sage-dark);
-  border-bottom: 1px solid var(--yiqi-sage-soft) !important;
+  color: var(--yiqi-green-dark);
+  border-bottom: 1px solid #aebbb0 !important;
   font-family: "Montserrat", sans-serif !important;
   font-size: 1.25rem !important;
   font-weight: 700 !important;
@@ -450,7 +426,7 @@ highlight {
 .portfolio-card .portfolio-label {
   min-height: 0 !important;
   margin: 0.1rem 0 0.55rem !important;
-  color: var(--yiqi-sage-dark);
+  color: var(--yiqi-green-dark);
   font-family: "Montserrat", sans-serif !important;
   font-size: 0.98rem !important;
   font-weight: 700 !important;
@@ -460,7 +436,7 @@ highlight {
 
 .portfolio-card .portfolio-skill,
 .publication-info {
-  color: var(--yiqi-muted);
+  color: #667169;
   font-size: 0.78rem !important;
   line-height: 1.55 !important;
   text-align: left !important;
@@ -493,8 +469,8 @@ highlight {
 #projects h1.page-section-heading.section-spacing {
   margin: 5.4rem 0 2.4rem !important;
   padding-bottom: 0.7rem;
-  color: var(--yiqi-sage-dark);
-  border-bottom: 1px solid var(--yiqi-sage-soft);
+  color: var(--yiqi-green-dark);
+  border-bottom: 1px solid #aebbb0;
   font-family: "Montserrat", sans-serif;
   font-size: 1.25rem !important;
   font-weight: 700 !important;
@@ -533,7 +509,7 @@ highlight {
 
 .interest-card h3 {
   margin: 0 0 0.9rem;
-  color: var(--yiqi-sage-dark);
+  color: var(--yiqi-green-dark);
   font-family: "Montserrat", sans-serif;
   font-size: 1.05rem;
   font-weight: 700;
@@ -541,7 +517,7 @@ highlight {
 
 .interest-card p,
 .interest-card li {
-  color: var(--yiqi-body);
+  color: #5a665d;
   font-size: 0.86rem;
   line-height: 1.65;
 }
@@ -554,7 +530,7 @@ highlight {
 .interest-symbol {
   display: block;
   margin-bottom: 1.5rem;
-  color: var(--yiqi-yellow-dark);
+  color: #86a088;
   font-size: 1rem;
 }
 
@@ -572,7 +548,7 @@ highlight {
 }
 
 .portfolio-modal-title {
-  color: var(--yiqi-sage-dark);
+  color: var(--yiqi-green-dark);
   font-family: "Montserrat", sans-serif;
   font-weight: 700;
   text-transform: none !important;
@@ -584,8 +560,8 @@ highlight {
 
 .site-footer {
   padding: 2.2rem 0;
-  color: var(--yiqi-muted);
-  background: var(--yiqi-sage-pale);
+  color: #68756b;
+  background: var(--yiqi-green-pale);
   border-top: 1px solid var(--yiqi-line);
   font-size: 0.76rem;
 }
@@ -597,7 +573,7 @@ highlight {
 }
 
 .footer-row strong {
-  color: var(--yiqi-sage-dark);
+  color: var(--yiqi-green-dark);
   font-family: "Montserrat", sans-serif;
 }
 
@@ -748,8 +724,8 @@ highlight {
 #projects .portfolio-item-caption *,
 #publications .portfolio-item-caption p,
 #projects .portfolio-item-caption p {
-  color: #fffdf7 !important;
-  text-shadow: 0 1px 1px rgba(92, 69, 20, 0.14) !important;
+  color: #f8fff9 !important;
+  text-shadow: 0 1px 1px rgba(31, 70, 48, 0.10) !important;
 }
 
 /* ================================================================
@@ -784,5 +760,706 @@ highlight {
 @media (prefers-reduced-motion: reduce) {
   #cursorStrokeCanvas {
     display: none;
+  }
+}
+
+
+/* =================================================================
+   v4 — Transparent mosaic-glass navigation + compact Interest
+   ================================================================= */
+
+/* -----------------------------------------------------------------
+   NAVBAR: no solid white bar; use a tiled transparent glass layer.
+   ----------------------------------------------------------------- */
+
+#mainNav {
+  position: fixed;
+  isolation: isolate;
+
+  background: transparent !important;
+  border-bottom: 0 !important;
+  box-shadow: none !important;
+
+  /*
+    Important:
+    blur is moved from the full navbar to each mosaic cell,
+    so the content behind it feels pixelated rather than uniformly blurred.
+  */
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+
+  overflow: hidden;
+}
+
+#mainNav .container {
+  position: relative;
+  z-index: 3;
+}
+
+
+/* Mosaic glass surface generated by JS */
+.nav-mosaic-grid {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+
+  display: grid;
+  grid-template-columns: repeat(var(--mosaic-cols, 32), 1fr);
+  grid-template-rows: repeat(var(--mosaic-rows, 2), 1fr);
+
+  gap: 1px;
+  padding: 1px;
+
+  pointer-events: none;
+
+  /*
+    The barely-visible base means the navbar still reads as transparent.
+    Most of the visual treatment comes from the individual cells.
+  */
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.nav-mosaic-cell {
+  min-width: 0;
+  min-height: 0;
+
+  border: 1px solid rgba(72, 115, 90, 0.055);
+
+  /*
+    Each cell receives its own --mosaic-blur / --mosaic-alpha from JS.
+    This is what makes scrolling content underneath look pixelated.
+  */
+  background: rgba(250, 252, 248, var(--mosaic-alpha, 0.22));
+
+  backdrop-filter:
+    blur(var(--mosaic-blur, 8px))
+    saturate(var(--mosaic-saturation, 0.90));
+
+  -webkit-backdrop-filter:
+    blur(var(--mosaic-blur, 8px))
+    saturate(var(--mosaic-saturation, 0.90));
+}
+
+/* A few cells stay clearer, enhancing the mosaic differentiation. */
+.nav-mosaic-cell.mosaic-clear {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.nav-mosaic-cell.mosaic-soft {
+  border-color: rgba(72, 115, 90, 0.08);
+}
+
+
+/* -----------------------------------------------------------------
+   Active navigation: rounded-square / squircle green block
+   ----------------------------------------------------------------- */
+
+#mainNav .nav-link {
+  z-index: 4;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 36px;
+
+  margin-left: 0.58rem;
+  padding: 0.48rem 0.80rem !important;
+
+  color: #526158 !important;
+
+  border: 1px solid transparent !important;
+  border-radius: 11px 11px 12px 10px / 11px 12px 10px 12px !important;
+
+  background: rgba(255, 255, 255, 0.10);
+
+  transition:
+    color 0.20s ease,
+    background 0.20s ease,
+    border-color 0.20s ease,
+    transform 0.20s ease,
+    box-shadow 0.20s ease;
+}
+
+/* Disable the old underline indicator */
+#mainNav .nav-link::after {
+  display: none !important;
+}
+
+/* hover is only a light glass tile */
+#mainNav .nav-link:hover {
+  color: var(--yiqi-green-dark) !important;
+
+  background: rgba(232, 240, 232, 0.66) !important;
+  border-color: rgba(72, 115, 90, 0.20) !important;
+
+  transform: translateY(-1px);
+}
+
+/* active item becomes the green rounded square/rectangle */
+#mainNav .nav-link.active {
+  color: #ffffff !important;
+
+  background: rgba(72, 115, 90, 0.92) !important;
+  border-color: rgba(41, 72, 55, 0.34) !important;
+
+  border-radius: 12px 12px 13px 11px / 12px 13px 11px 13px !important;
+
+  box-shadow:
+    0 5px 13px rgba(41, 72, 55, 0.14),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.10);
+
+  transform: translateY(0);
+}
+
+/* Brand is also on top of the glass grid */
+#mainNav .navbar-brand,
+#mainNav .navbar-toggler {
+  position: relative;
+  z-index: 4;
+}
+
+
+/* -----------------------------------------------------------------
+   Compact Interest
+   ----------------------------------------------------------------- */
+
+#interest {
+  padding-top: 2.9rem !important;
+  padding-bottom: 3.0rem !important;
+}
+
+#interest .compact-heading-row {
+  margin-bottom: 1.45rem !important;
+}
+
+#interest .single-page-heading {
+  font-size: clamp(1.8rem, 3.4vw, 2.65rem);
+}
+
+.interest-grid-compact {
+  display: grid !important;
+
+  /*
+    Movies gets more room because it contains more text.
+    The other three are intentionally narrow, notebook-like notes.
+  */
+  grid-template-columns:
+    minmax(150px, 0.9fr)
+    minmax(330px, 2.25fr)
+    minmax(145px, 0.85fr)
+    minmax(145px, 0.85fr);
+
+  gap: 1.2rem;
+
+  border-top: 0 !important;
+}
+
+.interest-grid-compact .interest-card,
+.interest-grid-compact .interest-card:nth-child(odd) {
+  min-height: 0 !important;
+
+  margin: 0 !important;
+  padding: 0.92rem 1rem 0.8rem 0 !important;
+
+  border-right: 0 !important;
+  border-bottom: 0 !important;
+  border-top: 1px solid var(--yiqi-line) !important;
+}
+
+.interest-grid-compact .interest-symbol {
+  display: inline-block;
+
+  margin-bottom: 0.55rem !important;
+
+  color: var(--yiqi-green);
+  font-size: 0.88rem;
+}
+
+.interest-grid-compact .interest-card h3 {
+  margin: 0 0 0.42rem !important;
+
+  color: var(--yiqi-green-dark);
+
+  font-size: 0.90rem !important;
+  line-height: 1.35;
+}
+
+.interest-grid-compact .interest-card p {
+  margin: 0 !important;
+
+  color: #667169;
+
+  font-size: 0.75rem !important;
+  line-height: 1.48 !important;
+}
+
+.interest-grid-compact .interest-movie-lines b {
+  color: #49574e;
+  font-weight: 700;
+}
+
+
+/* -----------------------------------------------------------------
+   Responsive
+   ----------------------------------------------------------------- */
+
+@media (max-width: 991px) {
+
+  #mainNav {
+    overflow: visible;
+  }
+
+  #mainNav .navbar-collapse {
+    position: relative;
+    z-index: 5;
+
+    margin-top: 2px;
+    padding: 0.45rem 0.55rem 0.65rem !important;
+
+    background: rgba(250, 252, 248, 0.86);
+    border: 1px solid rgba(72, 115, 90, 0.12);
+    border-radius: 0 0 14px 14px;
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+
+  #mainNav .nav-link {
+    width: fit-content;
+
+    margin: 0.20rem 0 !important;
+    padding: 0.44rem 0.72rem !important;
+  }
+
+  .interest-grid-compact {
+    grid-template-columns: 1fr 1.7fr;
+  }
+}
+
+@media (max-width: 620px) {
+  #interest {
+    padding-top: 2.3rem !important;
+    padding-bottom: 2.4rem !important;
+  }
+
+  .interest-grid-compact {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem 1rem;
+  }
+
+  .interest-grid-compact .interest-movies {
+    grid-column: 1 / -1;
+    order: 4;
+  }
+}
+
+
+/* -----------------------------------------------------------------
+   Fallback:
+   browsers without backdrop-filter still get a transparent grid.
+   ----------------------------------------------------------------- */
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .nav-mosaic-cell {
+    background: rgba(245, 248, 243, 0.76);
+  }
+}
+
+
+/* =================================================================
+   v5 — Academic two-column layout
+   Left: profile / About
+   Right: News / Publications / Projects / Interest
+   ================================================================= */
+
+.academic-home {
+  padding: 4.2rem 0 1.5rem;
+  background:
+    radial-gradient(circle at 92% 4%, rgba(244, 201, 93, 0.11), transparent 24rem),
+    radial-gradient(circle at 5% 16%, rgba(72, 115, 90, 0.08), transparent 22rem),
+    var(--yiqi-bg);
+}
+
+.academic-layout {
+  max-width: 1180px !important;
+  display: grid;
+  grid-template-columns: minmax(260px, 300px) minmax(0, 1fr);
+  gap: clamp(3rem, 6vw, 5.2rem);
+  align-items: start;
+}
+
+/* Left column ----------------------------------------------------- */
+#about.academic-profile {
+  min-height: 0 !important;
+  padding: 0 !important;
+  overflow: visible !important;
+  background: transparent !important;
+  scroll-margin-top: calc(var(--yiqi-nav-height) + 28px);
+}
+
+.profile-inner {
+  position: static;
+}
+
+.academic-profile .masthead-avatar {
+  width: 210px;
+  height: 210px;
+  display: block;
+  margin: 0 auto 1rem !important;
+}
+
+.academic-profile .cv-row {
+  margin-bottom: 2rem;
+}
+
+.profile-copy {
+  padding-top: 1.35rem;
+  border-top: 1px solid var(--yiqi-line);
+}
+
+.profile-copy .about-kicker {
+  margin-bottom: 0.55rem;
+  color: var(--yiqi-green);
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.055em;
+  text-transform: uppercase;
+}
+
+.profile-copy .masthead-heading {
+  margin: 0 0 1.15rem !important;
+  color: var(--yiqi-green-dark) !important;
+  font-family: "Montserrat", sans-serif;
+  font-size: clamp(2.05rem, 3vw, 2.7rem) !important;
+  font-weight: 700 !important;
+  line-height: 1.08 !important;
+  letter-spacing: -0.035em;
+  text-transform: none !important;
+}
+
+.profile-copy p {
+  margin-bottom: 1rem;
+  color: #4f5c53;
+  font-size: 0.88rem;
+  line-height: 1.7;
+}
+
+.profile-tags {
+  gap: 0.4rem !important;
+  margin-top: 1.35rem !important;
+}
+
+.profile-tags span {
+  padding: 0.32rem 0.58rem !important;
+  font-size: 0.68rem !important;
+}
+
+/* Right column ---------------------------------------------------- */
+.academic-content {
+  min-width: 0;
+}
+
+.content-section,
+#publications.content-section,
+#projects.content-section,
+#interest.content-section {
+  position: relative;
+  padding: 0 0 4.6rem !important;
+  background: transparent !important;
+  scroll-margin-top: calc(var(--yiqi-nav-height) + 24px);
+}
+
+.content-section + .content-section {
+  padding-top: 0.2rem !important;
+}
+
+.list-heading-row {
+  margin-bottom: 1.35rem !important;
+  padding-bottom: 0.72rem !important;
+}
+
+.list-heading-row .single-page-heading {
+  font-size: clamp(1.75rem, 3vw, 2.35rem) !important;
+  letter-spacing: -0.025em;
+}
+
+.list-category-title {
+  margin: 1.25rem 0 0.25rem;
+  color: #718077;
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.075em;
+  text-transform: uppercase;
+}
+
+.category-spaced {
+  margin-top: 2.2rem;
+}
+
+/* News ------------------------------------------------------------ */
+.news-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--yiqi-line);
+}
+
+.news-list li {
+  display: grid;
+  grid-template-columns: 82px minmax(0, 1fr);
+  gap: 1rem;
+  padding: 0.78rem 0;
+  border-bottom: 1px solid rgba(220, 227, 220, 0.82);
+  color: #4f5c53;
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+.news-date {
+  color: var(--yiqi-green);
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+/* Publication + project rows ------------------------------------- */
+.academic-row {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
+  gap: 1.35rem;
+  align-items: center;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--yiqi-line);
+}
+
+.academic-row:first-of-type {
+  border-top: 1px solid var(--yiqi-line);
+}
+
+.academic-row-media {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid #e1e7e1;
+  border-radius: 10px;
+  box-shadow: 0 5px 16px rgba(43, 69, 53, 0.045);
+}
+
+.academic-row-media img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  display: block;
+  object-fit: cover;
+  background: #ffffff;
+  transition: transform 0.22s ease;
+}
+
+.project-media-button {
+  appearance: none;
+  cursor: pointer;
+}
+
+.project-media-button:hover img {
+  transform: scale(1.025);
+}
+
+.academic-row-body {
+  min-width: 0;
+}
+
+.academic-row-body h3 {
+  margin: 0 0 0.46rem;
+  color: var(--yiqi-ink);
+  font-family: "Montserrat", sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.45;
+  letter-spacing: -0.012em;
+}
+
+.academic-row-authors,
+.academic-row-description,
+.academic-row-venue {
+  margin: 0.22rem 0;
+  color: #667169;
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.academic-row-venue strong {
+  color: var(--yiqi-green-dark);
+  font-weight: 700;
+}
+
+.academic-row-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.62rem;
+}
+
+.academic-row-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 27px;
+  padding: 0.22rem 0.58rem;
+  color: var(--yiqi-green-dark);
+  background: rgba(232, 240, 232, 0.72);
+  border: 1px solid rgba(72, 115, 90, 0.16);
+  border-radius: 7px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+  transition: all 0.18s ease;
+}
+
+.academic-row-links a:hover {
+  color: #ffffff;
+  background: var(--yiqi-green);
+  border-color: var(--yiqi-green);
+}
+
+.row-title-button {
+  appearance: none;
+  display: inline;
+  margin: 0;
+  padding: 0;
+  color: inherit;
+  background: none;
+  border: 0;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.row-title-button:hover {
+  color: var(--yiqi-green);
+}
+
+/* Interest stays in the same right-hand information flow ---------- */
+#interest.interest-list-section {
+  padding-bottom: 2.5rem !important;
+}
+
+.academic-interest-grid {
+  display: grid !important;
+  grid-template-columns: 1fr 1.45fr;
+  gap: 1.2rem 1.6rem;
+  border-top: 1px solid var(--yiqi-line);
+}
+
+.academic-interest-grid .interest-card,
+.academic-interest-grid .interest-card:nth-child(odd) {
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 1rem 0 0.4rem !important;
+  border: 0 !important;
+}
+
+.academic-interest-grid .interest-card h3 {
+  font-size: 0.92rem !important;
+}
+
+.academic-interest-grid .interest-card p,
+.academic-interest-grid .interest-card li {
+  font-size: 0.76rem !important;
+  line-height: 1.55 !important;
+}
+
+/* Responsive ------------------------------------------------------ */
+@media (max-width: 991px) {
+  .academic-home {
+    padding-top: 3rem;
+  }
+
+  .academic-layout {
+    grid-template-columns: 235px minmax(0, 1fr);
+    gap: 2.7rem;
+  }
+
+  .profile-inner {
+    position: static;
+  }
+
+  .academic-profile .masthead-avatar {
+    width: 185px;
+    height: 185px;
+  }
+
+  .academic-row {
+    grid-template-columns: 155px minmax(0, 1fr);
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .academic-home {
+    padding: 2.3rem 0 0.8rem;
+  }
+
+  .academic-layout {
+    display: block;
+  }
+
+  #about.academic-profile {
+    margin-bottom: 4rem;
+  }
+
+  .profile-inner {
+    max-width: 620px;
+    margin: 0 auto;
+  }
+
+  .profile-copy .masthead-heading {
+    font-size: 2.45rem !important;
+  }
+
+  .content-section,
+  #publications.content-section,
+  #projects.content-section,
+  #interest.content-section {
+    padding-bottom: 3.8rem !important;
+  }
+
+  .academic-row {
+    grid-template-columns: 138px minmax(0, 1fr);
+  }
+
+  .academic-row-body h3 {
+    font-size: 0.92rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .news-list li {
+    grid-template-columns: 68px minmax(0, 1fr);
+    gap: 0.65rem;
+    font-size: 0.82rem;
+  }
+
+  .academic-row {
+    grid-template-columns: 1fr;
+    gap: 0.82rem;
+  }
+
+  .academic-row-media {
+    max-width: 100%;
+  }
+
+  .academic-row-media img {
+    aspect-ratio: 16 / 8.8;
+  }
+
+  .academic-interest-grid {
+    grid-template-columns: 1fr;
   }
 }
