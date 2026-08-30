@@ -63,11 +63,9 @@ document.addEventListener("DOMContentLoaded", function () {
     brand.addEventListener("click", function (event) {
       const about = document.getElementById("about");
       if (!about) return;
-
       event.preventDefault();
       scrollToSection(about);
       setActive("about");
-
       if (history.replaceState) {
         history.replaceState(null, "", "#about");
       }
@@ -77,11 +75,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let ticking = false;
 
   function updateFromScroll() {
-    const marker =
-      window.scrollY +
-      navHeight() +
-      Math.min(180, window.innerHeight * 0.26);
-
+    const marker = window.scrollY + navHeight() + Math.min(180, window.innerHeight * 0.26);
     let current = sections[0];
 
     sections.forEach(section => {
@@ -90,10 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
 
-    if (
-      window.innerHeight + window.scrollY >=
-      document.documentElement.scrollHeight - 4
-    ) {
+    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) {
       current = sections[sections.length - 1] || current;
     }
 
@@ -128,32 +119,28 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   /* Publication filters */
-  const filterButtons = Array.from(
-    document.querySelectorAll(".publication-filter")
-  );
-  const publicationRows = Array.from(
-    document.querySelectorAll(".publication-row")
-  );
+  const filterButtons = Array.from(document.querySelectorAll('.publication-filter'));
+  const publicationRows = Array.from(document.querySelectorAll('.publication-row'));
 
   function applyPublicationFilter(filter) {
     publicationRows.forEach(row => {
-      const category = row.getAttribute("data-category");
-      const visible = filter === "all" || category === filter;
-      row.classList.toggle("is-hidden", !visible);
+      const category = row.getAttribute('data-category');
+      const visible = filter === 'all' || category === filter;
+      row.classList.toggle('is-hidden', !visible);
     });
 
     filterButtons.forEach(button => {
-      const isActive = button.getAttribute("data-filter") === filter;
-      button.classList.toggle("active", isActive);
-      button.setAttribute("aria-pressed", isActive ? "true" : "false");
+      const isActive = button.getAttribute('data-filter') === filter;
+      button.classList.toggle('active', isActive);
+      button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
     });
   }
 
   filterButtons.forEach(button => {
-    button.addEventListener("click", function () {
-      applyPublicationFilter(this.getAttribute("data-filter"));
+    button.addEventListener('click', function () {
+      applyPublicationFilter(this.getAttribute('data-filter'));
     });
   });
 
-  applyPublicationFilter("all");
+  applyPublicationFilter('all');
 });
