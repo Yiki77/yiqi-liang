@@ -4626,6 +4626,213 @@
     }
   </style>
 
+
+  <style id="v15-education-card-patch">
+    /* V15 — Education card only. Existing V14 visuals remain untouched. */
+    .standalone-education-stage {
+      width: var(--v7-panel-width, var(--page-stage-width, min(1240px, calc(100% - 44px)))) !important;
+      max-width: none !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+      padding: 1.15rem 0 1.25rem !important;
+      position: relative !important;
+      overflow: visible !important;
+      box-sizing: border-box !important;
+    }
+
+    .standalone-education-stage .education-master-card {
+      position: relative !important;
+      z-index: 2 !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+      overflow: hidden !important;
+      border: 1px solid var(--v7-card-border, rgba(49,82,57,.16)) !important;
+      border-radius: 4px !important;
+      box-shadow: 0 16px 42px rgba(39,68,47,.065) !important;
+      background: linear-gradient(90deg,
+        #ffffff 0%,
+        #ffffff 24%,
+        #fafcf9 48%,
+        var(--master-green-mid) 72%,
+        var(--master-green-end) 100%) !important;
+    }
+
+    .standalone-education-stage .education-master-card > .container {
+      max-width: var(--page-inner-width, 1180px) !important;
+      width: 100% !important;
+      margin: 0 auto !important;
+      padding: 2.3rem 2.45rem 2.35rem !important;
+      box-sizing: border-box !important;
+    }
+
+    .standalone-education-stage #education.notebook-module {
+      margin: 0 !important;
+      padding: 0 !important;
+      background: transparent !important;
+      background-image: none !important;
+      border: 0 !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      transform: none !important;
+      overflow: visible !important;
+    }
+
+    .standalone-education-stage #education.notebook-module::before,
+    .standalone-education-stage #education.notebook-module::after {
+      display: none !important;
+    }
+
+    .standalone-education-stage .education-tape-sticker {
+      display: block !important;
+      position: absolute !important;
+      z-index: 8 !important;
+      width: clamp(145px, 15vw, 190px) !important;
+      height: 62px !important;
+      top: 0.72rem !important;
+      left: 3.5rem !important;
+      right: auto !important;
+      border-radius: 3px !important;
+      border: 1px solid rgba(176,145,43,.16) !important;
+      background: linear-gradient(110deg,
+        rgba(255,255,255,.94) 0%,
+        var(--v7-tape-yellow-soft, rgba(255,248,219,.92)) 42%,
+        var(--v7-tape-yellow, rgba(239,210,112,.82)) 100%) !important;
+      box-shadow: 0 4px 10px rgba(103,82,22,.08), inset 0 0 0 1px rgba(255,255,255,.28) !important;
+      opacity: .9 !important;
+      transform: rotate(-2deg) !important;
+      pointer-events: none !important;
+    }
+
+    .education-list {
+      display: grid;
+      gap: .9rem;
+    }
+
+    .education-item {
+      display: grid;
+      grid-template-columns: 180px minmax(0, 1fr);
+      gap: 1.35rem;
+      align-items: start;
+      padding: 1.08rem 1.2rem;
+      border: 1px solid rgba(79,123,87,.18);
+      border-radius: 10px;
+      background: rgba(255,255,255,.72);
+      transition: background .18s ease, border-color .18s ease, transform .18s ease, box-shadow .18s ease;
+    }
+
+    .education-item:hover {
+      background: linear-gradient(90deg, rgba(255,255,255,.94), rgba(231,243,232,.92));
+      border-color: rgba(79,123,87,.42);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(63,105,73,.08);
+    }
+
+    .education-period {
+      padding-top: .16rem;
+      color: var(--yiqi-green-dark);
+      font-family: "Montserrat", sans-serif;
+      font-size: .82rem;
+      font-weight: 700;
+      letter-spacing: .035em;
+      white-space: nowrap;
+    }
+
+    .education-school-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .education-school-row h3 {
+      margin: 0;
+      color: var(--yiqi-ink);
+      font-family: "Montserrat", sans-serif;
+      font-size: 1.02rem;
+      font-weight: 700;
+      line-height: 1.45;
+    }
+
+    .education-place {
+      color: var(--yiqi-green);
+      font-family: "Montserrat", sans-serif;
+      font-size: .74rem;
+      font-weight: 700;
+      letter-spacing: .025em;
+    }
+
+    .education-program {
+      margin: .3rem 0 0;
+      color: #5b665e;
+      font-size: .9rem;
+      line-height: 1.6;
+    }
+
+    .education-main {
+      min-width: 0;
+    }
+
+    .education-school-with-logo {
+      display: grid;
+      grid-template-columns: 64px minmax(0, 1fr);
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .education-logo {
+      width: 58px;
+      height: 58px;
+      object-fit: contain;
+      display: block;
+      border-radius: 10px;
+      background: rgba(255,255,255,.78);
+      padding: 5px;
+      box-sizing: border-box;
+    }
+
+    .education-school-copy {
+      min-width: 0;
+    }
+
+    @media (max-width: 767px) {
+      .standalone-education-stage {
+        width: min(100% - 24px, 1240px) !important;
+      }
+
+      .standalone-education-stage .education-master-card > .container {
+        padding: 1.55rem 1.15rem 1.6rem !important;
+      }
+
+      .standalone-education-stage .education-tape-sticker {
+        width: 128px !important;
+        height: 52px !important;
+        top: .55rem !important;
+        left: 1.2rem !important;
+      }
+
+      .education-item {
+        grid-template-columns: 1fr;
+        gap: .4rem;
+      }
+
+      .education-period {
+        white-space: normal;
+      }
+
+
+      .education-school-with-logo {
+        grid-template-columns: 52px minmax(0, 1fr);
+        gap: .8rem;
+      }
+
+      .education-logo {
+        width: 48px;
+        height: 48px;
+      }
+    }
+  </style>
+
 </head>
 <body id="page-top">
 
@@ -4641,6 +4848,7 @@
         <li class="nav-item"><a class="nav-link section-nav" href="#news">News</a></li>
         <li class="nav-item"><a class="nav-link section-nav" href="#publications">Publications</a></li>
         <li class="nav-item"><a class="nav-link section-nav" href="#projects">Projects</a></li>
+        <li class="nav-item"><a class="nav-link section-nav" href="#education">Education</a></li>
         <li class="nav-item"><a class="nav-link section-nav" href="#interest">Interest</a></li>
       </ul>
     </div>
@@ -4713,7 +4921,7 @@
     <section id="publications" class="single-page-section notebook-module">
       <div class="section-heading-row">
         <h2 class="single-page-heading">Publications</h2>
-        <span class="section-index">02 / 04</span>
+        <span class="section-index">02 / 05</span>
       </div>
       <p class="section-intro">Selected research in graphics, vision, and human-computer interaction.</p>
       <div class="publication-filters" role="group" aria-label="Filter publications">
@@ -4787,7 +4995,7 @@
     <section id="projects" class="single-page-section notebook-module">
       <div class="section-heading-row">
         <h2 class="single-page-heading">Projects</h2>
-        <span class="section-index">03 / 04</span>
+        <span class="section-index">03 / 05</span>
       </div>
       <p class="section-intro">Selected research prototypes and graphics systems.</p>
       <h3 class="list-category-title">Research &amp; Development</h3>
@@ -4832,6 +5040,55 @@
     </div>
   </div>
 
+
+  <!-- EDUCATION: standalone white-to-green card above Interest -->
+  <div class="standalone-stage standalone-education-stage">
+    <div class="card-tape-sticker education-tape-sticker" aria-hidden="true"></div>
+    <div class="master-gradient-card education-master-card">
+      <div class="container section-shell academic-flow">
+        <section id="education" class="single-page-section notebook-module education-section">
+          <div class="section-heading-row compact-heading-row">
+            <h2 class="single-page-heading">Education</h2>
+            <span class="section-index">04 / 05</span>
+          </div>
+          <div class="education-list">
+            <article class="education-item">
+              <div class="education-period">2018.09 — 2022.06</div>
+              <div class="education-main">
+                <div class="education-school-with-logo">
+                  <img class="education-logo" src="img/NUS.png" alt="Northeastern University logo">
+                  <div class="education-school-copy">
+                    <div class="education-school-row">
+                      <h3>Northeastern University</h3>
+                      <span class="education-place">Qinhuangdao, Hebei</span>
+                    </div>
+                    <p class="education-program">Computer Science and Technology</p>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="education-item">
+              <div class="education-period">2023.09 — 2025.09</div>
+              <div class="education-main">
+                <div class="education-school-with-logo">
+                  <img class="education-logo" src="img/HKUSTGZ.png" alt="HKUST(GZ) logo">
+                  <div class="education-school-copy">
+                    <div class="education-school-row">
+                      <h3>The Hong Kong University of Science and Technology (Guangzhou)</h3>
+                      <span class="education-place">Guangzhou, Guangdong</span>
+                    </div>
+                    <p class="education-program">Information Hub · Computational Media and Arts</p>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
   <!-- INTEREST: standalone stage, now inside its own white-to-green card -->
   <div class="standalone-stage standalone-interest-stage">
     <div class="card-tape-sticker interest-tape-sticker" aria-hidden="true"></div>
@@ -4841,7 +5098,7 @@
     <section id="interest" class="single-page-section notebook-module">
       <div class="section-heading-row compact-heading-row">
         <h2 class="single-page-heading">Interest</h2>
-        <span class="section-index">04 / 04</span>
+        <span class="section-index">05 / 05</span>
       </div>
       <p class="interest-intro" style="margin:-0.2rem 0 1rem;color:var(--yiqi-muted);font-size:0.92rem;">A small personal corner for things I enjoy outside research.</p>
       <div class="academic-interest-grid">
