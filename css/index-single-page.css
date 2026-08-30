@@ -1465,42 +1465,46 @@ highlight {
 }
 
 /* =================================================================
-   v15 — Research-note emphasis for Publications / Projects
-   Keeps About, navigation and layout unchanged.
+   FINAL — Publication / Project research-note emphasis
+   Visual enrichment only. Does NOT change About / navbar layout.
    ================================================================= */
 
-/* --- Note-card surface ------------------------------------------------ */
+/* Each work becomes a light paper note instead of a plain divider row. */
 #publications .academic-row,
 #projects .academic-row {
-  position: relative !important;
-  margin: 0.82rem 0 !important;
-  padding: 1.35rem 1.35rem 1.35rem 1.75rem !important;
-  overflow: visible !important;
+  position: relative;
+  isolation: isolate;
+  margin: 0.82rem 0;
+  padding: 1.35rem 1.35rem 1.35rem 1.7rem;
+  overflow: visible;
 
-  background-color: rgba(255, 255, 250, 0.88) !important;
-  background-image:
-    linear-gradient(rgba(72, 115, 90, 0.026) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(72, 115, 90, 0.020) 1px, transparent 1px) !important;
-  background-size: 22px 22px !important;
+  background:
+    linear-gradient(rgba(253, 253, 248, 0.94), rgba(253, 253, 248, 0.94)),
+    repeating-linear-gradient(
+      0deg,
+      rgba(72, 115, 90, 0.025) 0,
+      rgba(72, 115, 90, 0.025) 1px,
+      transparent 1px,
+      transparent 22px
+    );
 
-  border: 1px solid rgba(72, 115, 90, 0.15) !important;
-  border-radius: 14px 11px 15px 12px / 12px 15px 11px 14px !important;
-
+  border: 1px solid rgba(72, 115, 90, 0.13);
+  border-radius: 13px 11px 15px 12px / 12px 15px 11px 14px;
   box-shadow:
     3px 4px 0 rgba(72, 115, 90, 0.035),
-    0 7px 18px rgba(41, 72, 55, 0.025) !important;
+    0 6px 18px rgba(41, 72, 55, 0.025);
 
   transition:
     transform 0.22s ease,
-    box-shadow 0.22s ease,
     border-color 0.22s ease,
-    background-color 0.22s ease !important;
+    box-shadow 0.22s ease,
+    background-color 0.22s ease;
 }
 
-/* Remove the old top/bottom divider treatment inside the note cards. */
+/* Remove the old straight list borders inside the new paper-note treatment. */
 #publications .academic-row:first-of-type,
 #projects .academic-row:first-of-type {
-  border-top: 1px solid rgba(72, 115, 90, 0.15) !important;
+  border-top: 1px solid rgba(72, 115, 90, 0.13);
 }
 
 /* Hand-drawn marker at the left edge. */
@@ -1508,226 +1512,260 @@ highlight {
 #projects .academic-row::before {
   content: "";
   position: absolute;
-  left: 0.46rem;
-  top: 15%;
-  bottom: 15%;
+  z-index: 2;
+  left: 0.48rem;
+  top: 17%;
+  bottom: 17%;
   width: 4px;
-  border-radius: 5px 3px 6px 2px / 3px 6px 2px 5px;
-  transform: rotate(-0.65deg);
+  border-radius: 4px 2px 5px 3px / 3px 5px 2px 4px;
+  transform: rotate(-0.8deg);
   pointer-events: none;
 }
 
 #publications .academic-row::before {
   background: rgba(72, 115, 90, 0.72);
-  box-shadow: 2px 0 0 rgba(72, 115, 90, 0.10);
+  box-shadow: 1px 0 0 rgba(72, 115, 90, 0.12);
 }
 
 #projects .academic-row::before {
-  background: rgba(224, 177, 64, 0.78);
-  box-shadow: 2px 0 0 rgba(224, 177, 64, 0.12);
+  background: rgba(232, 185, 62, 0.82);
+  box-shadow: 1px 0 0 rgba(193, 143, 28, 0.12);
 }
 
-/* Small uneven paper corner accent. */
+/* Small sketch corner mark: subtle enough to stay academic. */
 #publications .academic-row::after,
 #projects .academic-row::after {
-  content: "";
+  content: "+";
   position: absolute;
-  right: 0.65rem;
-  top: 0.62rem;
-  width: 18px;
-  height: 10px;
-  border-top: 1px solid rgba(72, 115, 90, 0.20);
-  border-right: 1px solid rgba(72, 115, 90, 0.14);
-  transform: rotate(3deg);
+  z-index: 1;
+  right: 0.58rem;
+  top: 0.28rem;
+  color: rgba(72, 115, 90, 0.20);
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  line-height: 1;
+  transform: rotate(7deg);
   pointer-events: none;
 }
 
-#publications .academic-row:hover,
-#projects .academic-row:hover {
-  transform: translateY(-3px) rotate(-0.06deg) !important;
-  background-color: rgba(255, 255, 252, 0.98) !important;
-  border-color: rgba(72, 115, 90, 0.25) !important;
-  box-shadow:
-    5px 7px 0 rgba(72, 115, 90, 0.050),
-    0 10px 24px rgba(41, 72, 55, 0.055) !important;
+#projects .academic-row::after {
+  color: rgba(190, 142, 29, 0.22);
 }
 
-/* --- Image: double sketch frame -------------------------------------- */
+/* Paper lifts very slightly on hover. */
+#publications .academic-row:hover,
+#projects .academic-row:hover {
+  transform: translateY(-3px) rotate(-0.06deg);
+  border-color: rgba(72, 115, 90, 0.23);
+  box-shadow:
+    4px 6px 0 rgba(72, 115, 90, 0.05),
+    0 11px 26px rgba(41, 72, 55, 0.055);
+}
+
+#projects .academic-row:hover {
+  border-color: rgba(197, 154, 45, 0.24);
+  box-shadow:
+    4px 6px 0 rgba(218, 172, 54, 0.055),
+    0 11px 26px rgba(41, 72, 55, 0.045);
+}
+
+/* Image becomes a slightly offset sketch/photo frame. */
 #publications .academic-row-media,
 #projects .academic-row-media {
-  position: relative !important;
-  z-index: 1;
-  overflow: hidden !important;
-  border: 1px solid rgba(72, 115, 90, 0.24) !important;
-  border-radius: 10px 8px 11px 9px / 9px 11px 8px 10px !important;
-  background: #ffffff !important;
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid rgba(72, 115, 90, 0.22);
+  border-radius: 9px 7px 11px 8px / 8px 11px 7px 10px;
   box-shadow:
-    3px 3px 0 rgba(244, 201, 93, 0.18),
-    -1px -1px 0 rgba(72, 115, 90, 0.06) !important;
+    4px 4px 0 rgba(244, 201, 93, 0.16),
+    7px 7px 0 rgba(72, 115, 90, 0.045);
   transform: rotate(-0.18deg);
-  transition: transform 0.22s ease, box-shadow 0.22s ease !important;
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease,
+    border-color 0.22s ease;
+}
+
+#projects .academic-row-media {
+  box-shadow:
+    4px 4px 0 rgba(244, 201, 93, 0.21),
+    7px 7px 0 rgba(72, 115, 90, 0.04);
 }
 
 #publications .academic-row:nth-of-type(even) .academic-row-media,
 #projects .academic-row:nth-of-type(even) .academic-row-media {
-  transform: rotate(0.16deg);
+  transform: rotate(0.14deg);
 }
 
 #publications .academic-row:hover .academic-row-media,
 #projects .academic-row:hover .academic-row-media {
-  transform: rotate(0deg) translateY(-1px) !important;
+  transform: rotate(0deg) translateY(-1px);
+  border-color: rgba(72, 115, 90, 0.30);
   box-shadow:
-    4px 5px 0 rgba(244, 201, 93, 0.21),
-    0 7px 15px rgba(41, 72, 55, 0.055) !important;
+    5px 5px 0 rgba(244, 201, 93, 0.20),
+    8px 8px 0 rgba(72, 115, 90, 0.055);
 }
 
-#publications .academic-row-media img,
-#projects .academic-row-media img {
-  transition: transform 0.26s ease, filter 0.26s ease !important;
-}
-
-#publications .academic-row:hover .academic-row-media img,
-#projects .academic-row:hover .academic-row-media img {
-  transform: scale(1.018);
-}
-
-/* --- Typography hierarchy ------------------------------------------- */
+/* Title gets a hand-highlight stroke on hover. */
 #publications .academic-row-body h3,
 #projects .academic-row-body h3 {
   position: relative;
   z-index: 1;
-  margin-bottom: 0.58rem !important;
-  color: #203027 !important;
-  font-size: 1.03rem !important;
-  line-height: 1.46 !important;
+  width: fit-content;
+  max-width: 100%;
+  padding: 0 0.02em;
+  background-image: linear-gradient(
+    to top,
+    rgba(184, 215, 186, 0.45) 0,
+    rgba(184, 215, 186, 0.45) 38%,
+    transparent 38%,
+    transparent 100%
+  );
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  background-size: 0% 0.62em;
+  transition:
+    color 0.2s ease,
+    background-size 0.30s ease;
 }
 
-/* Brush-like underline that appears on hover. */
-#publications .academic-row-body h3::after,
-#projects .academic-row-body h3::after {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  left: -0.06em;
-  bottom: 0.02em;
-  width: 100%;
-  height: 0.30em;
-  border-radius: 50% 7px 45% 5px;
-  transform: scaleX(0) rotate(-0.45deg);
-  transform-origin: left center;
-  transition: transform 0.30s ease;
-  pointer-events: none;
+#projects .academic-row-body h3 {
+  background-image: linear-gradient(
+    to top,
+    rgba(244, 201, 93, 0.37) 0,
+    rgba(244, 201, 93, 0.37) 38%,
+    transparent 38%,
+    transparent 100%
+  );
 }
 
-#publications .academic-row-body h3::after {
-  background: rgba(168, 203, 171, 0.36);
+#publications .academic-row:hover .academic-row-body h3,
+#projects .academic-row:hover .academic-row-body h3 {
+  color: var(--yiqi-green-dark);
+  background-size: 100% 0.62em;
 }
 
-#projects .academic-row-body h3::after {
-  background: rgba(244, 201, 93, 0.38);
-}
-
-#publications .academic-row:hover .academic-row-body h3::after,
-#projects .academic-row:hover .academic-row-body h3::after {
-  transform: scaleX(1) rotate(-0.45deg);
-}
-
+/* Project title button inherits the title highlight rather than drawing its own box. */
 #projects .row-title-button {
-  color: inherit !important;
-  text-decoration: none !important;
+  color: inherit;
+  background: transparent !important;
 }
 
-#projects .row-title-button:hover {
-  color: var(--yiqi-green-dark) !important;
-}
-
-#publications .academic-row-authors,
-#projects .academic-row-description {
-  color: #59675e !important;
-}
-
-/* --- Venue as a small stamped label --------------------------------- */
-#publications .academic-row-venue {
-  margin: 0.48rem 0 0.2rem !important;
-}
-
-#publications .academic-row-venue strong {
-  display: inline-flex !important;
-  align-items: center;
-  padding: 0.28rem 0.58rem !important;
-  color: var(--yiqi-green-dark) !important;
+/* Category label looks like a small annotation tab. */
+#publications .publication-type-label {
+  margin-bottom: 0.55rem;
+  padding: 0.28rem 0.58rem;
+  color: var(--yiqi-green-dark);
   background:
     repeating-linear-gradient(
-      -5deg,
+      -6deg,
       rgba(232, 240, 232, 0.82),
-      rgba(232, 240, 232, 0.82) 7px,
-      rgba(247, 249, 244, 0.82) 7px,
-      rgba(247, 249, 244, 0.82) 14px
-    ) !important;
-  border: 1px solid rgba(72, 115, 90, 0.25) !important;
-  border-radius: 6px 5px 7px 4px / 5px 7px 4px 6px !important;
-  font-family: "Montserrat", sans-serif;
-  font-size: 0.69rem !important;
-  font-weight: 700 !important;
-  letter-spacing: 0.035em;
-  transform: rotate(-0.3deg);
-  box-shadow: 1px 2px 0 rgba(72, 115, 90, 0.055);
-}
-
-/* --- Category label: compact annotation ----------------------------- */
-#publications .publication-type-label {
-  padding: 0.28rem 0.56rem !important;
-  background: rgba(237, 243, 235, 0.88) !important;
-  border: 1px dashed rgba(72, 115, 90, 0.28) !important;
-  border-radius: 6px 8px 5px 7px !important;
-  color: var(--yiqi-green-dark) !important;
+      rgba(232, 240, 232, 0.82) 8px,
+      rgba(246, 249, 244, 0.82) 8px,
+      rgba(246, 249, 244, 0.82) 16px
+    );
+  border: 1px solid rgba(72, 115, 90, 0.20);
+  border-radius: 6px 5px 7px 5px / 5px 7px 5px 6px;
   transform: rotate(-0.25deg);
 }
 
-/* --- PDF / Code / Video links as paper tabs ------------------------- */
-#publications .academic-row-links a,
-#projects .academic-row-links a {
-  position: relative;
-  min-height: 28px !important;
-  padding: 0.25rem 0.62rem !important;
-  color: var(--yiqi-green-dark) !important;
-  background: rgba(247, 249, 243, 0.94) !important;
-  border: 1px solid rgba(72, 115, 90, 0.22) !important;
-  border-radius: 6px 5px 7px 4px / 5px 7px 4px 6px !important;
-  box-shadow: 1px 2px 0 rgba(72, 115, 90, 0.055);
-  transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease, box-shadow 0.18s ease !important;
+/* Venue becomes a compact conference stamp. */
+#publications .academic-row-venue {
+  margin-top: 0.48rem;
 }
 
+#publications .academic-row-venue strong {
+  display: inline-flex;
+  align-items: center;
+  min-height: 27px;
+  padding: 0.27rem 0.58rem;
+  color: var(--yiqi-green-dark);
+  background:
+    repeating-linear-gradient(
+      -5deg,
+      rgba(232, 240, 232, 0.76),
+      rgba(232, 240, 232, 0.76) 7px,
+      rgba(247, 250, 245, 0.76) 7px,
+      rgba(247, 250, 245, 0.76) 14px
+    );
+  border: 1px solid rgba(72, 115, 90, 0.25);
+  border-radius: 6px 5px 7px 4px / 5px 7px 4px 6px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.025em;
+  transform: rotate(-0.28deg);
+  box-shadow: 1px 2px 0 rgba(72, 115, 90, 0.035);
+}
+
+/* Links are a little more tactile, like small paper tabs. */
+#publications .academic-row-links a,
 #projects .academic-row-links a {
-  box-shadow: 1px 2px 0 rgba(224, 177, 64, 0.10);
+  border-radius: 6px 5px 7px 5px / 5px 7px 5px 6px;
+  box-shadow: 1px 2px 0 rgba(72, 115, 90, 0.04);
+  transform: rotate(-0.12deg);
+}
+
+#publications .academic-row-links a:nth-child(even),
+#projects .academic-row-links a:nth-child(even) {
+  transform: rotate(0.16deg);
 }
 
 #publications .academic-row-links a:hover,
 #projects .academic-row-links a:hover {
-  color: #ffffff !important;
-  background: var(--yiqi-green) !important;
-  border-color: var(--yiqi-green) !important;
-  transform: translateY(-2px) rotate(-0.3deg);
-  box-shadow: 2px 3px 0 rgba(41, 72, 55, 0.12) !important;
+  transform: translateY(-1px) rotate(0deg);
+  box-shadow: 2px 3px 0 rgba(72, 115, 90, 0.08);
 }
 
-/* --- Responsive: keep the note treatment, reduce visual noise -------- */
+/* Keep the content hierarchy clear. */
+#publications .academic-row-authors,
+#projects .academic-row-description {
+  color: #59665d;
+}
+
+#publications .academic-row-authors u {
+  text-decoration-color: rgba(72, 115, 90, 0.48);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+}
+
+/* Tablet / mobile: preserve the emphasis but reduce the paper offset. */
 @media (max-width: 767px) {
   #publications .academic-row,
   #projects .academic-row {
-    margin: 0.65rem 0 !important;
-    padding: 1rem 0.9rem 1rem 1.25rem !important;
+    margin: 0.68rem 0;
+    padding: 1.1rem 1rem 1.1rem 1.35rem;
   }
 
   #publications .academic-row::before,
   #projects .academic-row::before {
-    left: 0.32rem;
+    left: 0.36rem;
     width: 3px;
   }
 
+  #publications .academic-row-media,
+  #projects .academic-row-media,
+  #publications .academic-row:nth-of-type(even) .academic-row-media,
+  #projects .academic-row:nth-of-type(even) .academic-row-media {
+    transform: none;
+    box-shadow:
+      3px 3px 0 rgba(244, 201, 93, 0.16),
+      5px 5px 0 rgba(72, 115, 90, 0.035);
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
   #publications .academic-row:hover,
   #projects .academic-row:hover {
-    transform: translateY(-1px) !important;
+    transform: none;
+  }
+
+  #publications .academic-row-body h3,
+  #projects .academic-row-body h3 {
+    background-size: 100% 0.62em;
   }
 }
 
@@ -1736,9 +1774,10 @@ highlight {
   #projects .academic-row,
   #publications .academic-row-media,
   #projects .academic-row-media,
-  #publications .academic-row-body h3::after,
-  #projects .academic-row-body h3::after {
+  #publications .academic-row-body h3,
+  #projects .academic-row-body h3,
+  #publications .academic-row-links a,
+  #projects .academic-row-links a {
     transition: none !important;
-    transform: none !important;
   }
 }
