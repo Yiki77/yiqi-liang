@@ -4145,6 +4145,191 @@
     }
   </style>
 
+
+  <style id="v8-about-embedded-news-patch">
+    /* ================================================================
+       V8 TARGETED PATCH
+       Move News inside About card and make it a fixed-height scroll area.
+       No changes to Publications / Projects / Interest structure.
+       ================================================================ */
+
+    /* About card now contains both the hero and News. */
+    .about-master-card > .container {
+      padding-bottom: 2.15rem !important;
+    }
+
+    .about-news-embedded {
+      margin-top: 1.35rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid rgba(79, 123, 87, 0.14);
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Remove old standalone-section behavior now that News lives in About. */
+    .about-news-embedded #news.sticky-note {
+      margin: 0 !important;
+      padding: 0 !important;
+      background: transparent !important;
+      background-image: none !important;
+      border: 0 !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      transform: none !important;
+      overflow: visible !important;
+      position: relative !important;
+    }
+
+    .about-news-embedded #news.sticky-note::before,
+    .about-news-embedded #news.sticky-note::after {
+      display: none !important;
+    }
+
+    .about-news-embedded #news .section-heading-row {
+      margin: 0 0 0.78rem !important;
+      padding: 0 0 0.42rem !important;
+      border-bottom: 0 !important;
+    }
+
+    .about-news-embedded #news .single-page-heading {
+      font-size: 1.45rem !important;
+    }
+
+    /* Fixed-height grid-paper News window. */
+    .about-news-embedded #news .news-list {
+      position: relative !important;
+      width: 100% !important;
+      height: 228px !important;
+      max-height: 228px !important;
+      overflow-y: auto !important;
+      overflow-x: hidden !important;
+      box-sizing: border-box !important;
+      margin: 0 !important;
+      padding: 1.1rem 2.55rem 0.55rem 1.25rem !important;
+      background-color: var(--paper-bg, rgba(252,251,245,.98)) !important;
+      background-image:
+        linear-gradient(var(--paper-grid, rgba(79,123,87,.07)) 1px, transparent 1px),
+        linear-gradient(90deg, var(--paper-grid, rgba(79,123,87,.07)) 1px, transparent 1px) !important;
+      background-size: var(--paper-size, 16px) var(--paper-size, 16px) !important;
+      background-position: 0 0 !important;
+      border: 1px solid rgba(79,123,87,.18) !important;
+      border-radius: 3px !important;
+      box-shadow: inset -1px 0 0 rgba(67,96,72,.14) !important;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(79,123,87,.38) transparent;
+    }
+
+    .about-news-embedded #news .news-list::-webkit-scrollbar {
+      width: 7px;
+    }
+
+    .about-news-embedded #news .news-list::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .about-news-embedded #news .news-list::-webkit-scrollbar-thumb {
+      background: rgba(79,123,87,.28);
+      border-radius: 99px;
+      border: 2px solid transparent;
+      background-clip: padding-box;
+    }
+
+    .about-news-embedded #news .news-list::-webkit-scrollbar-thumb:hover {
+      background: rgba(79,123,87,.42);
+      border: 2px solid transparent;
+      background-clip: padding-box;
+    }
+
+    /* Keep the timeline inside the scrollable paper. */
+    .about-news-embedded #news .news-list::before {
+      left: 104px !important;
+      top: 1.05rem !important;
+      bottom: 0.75rem !important;
+      width: 2px !important;
+      background: rgba(79,123,87,.28) !important;
+      transform: none !important;
+    }
+
+    .about-news-embedded #news .news-list li {
+      grid-template-columns: 76px minmax(0, 1fr) !important;
+      gap: 1.25rem !important;
+      padding: 0.14rem 0 0.95rem 1.68rem !important;
+      border: 0 !important;
+      transform: none !important;
+    }
+
+    .about-news-embedded #news .news-list li::before {
+      left: 104px !important;
+      top: 0.43rem !important;
+      width: 10px !important;
+      height: 10px !important;
+      border-radius: 50% !important;
+      border: 2px solid #4f7b57 !important;
+      background: var(--paper-bg, #fcfbf5) !important;
+      box-shadow: none !important;
+      transform: translateX(-50%) !important;
+    }
+
+    /* Old right-coil pseudo-element was attached to the standalone News list.
+       Hide it here so it does not scroll with content. */
+    .about-news-embedded #news .news-list::after {
+      display: none !important;
+    }
+
+    /* A stationary right-side coil for the embedded News paper. */
+    .about-news-embedded #news::after {
+      content: '' !important;
+      display: block !important;
+      position: absolute !important;
+      z-index: 8 !important;
+      right: -18px !important;
+      top: 3.15rem !important;
+      width: 30px !important;
+      height: 205px !important;
+      pointer-events: none !important;
+      background:
+        radial-gradient(ellipse 9px 6px at 15px 7px,
+          transparent 0 4.8px,
+          rgba(67,96,72,.56) 5px 6.1px,
+          transparent 6.3px) 0 0 / 30px 20px repeat-y !important;
+      transform: rotate(.3deg) !important;
+      opacity: .96 !important;
+    }
+
+    @media (max-width: 767px) {
+      .about-news-embedded {
+        margin-top: 1rem;
+        padding-top: 1rem;
+      }
+
+      .about-news-embedded #news .news-list {
+        height: 210px !important;
+        max-height: 210px !important;
+        padding-right: 1.7rem !important;
+      }
+
+      .about-news-embedded #news .news-list::before {
+        left: 78px !important;
+      }
+
+      .about-news-embedded #news .news-list li {
+        grid-template-columns: 55px minmax(0,1fr) !important;
+        gap: .85rem !important;
+        padding-left: 1.3rem !important;
+      }
+
+      .about-news-embedded #news .news-list li::before {
+        left: 78px !important;
+      }
+
+      .about-news-embedded #news::after {
+        right: -14px !important;
+        top: 3.1rem !important;
+        height: 188px !important;
+      }
+    }
+  </style>
+
 </head>
 <body id="page-top">
 
@@ -4198,15 +4383,11 @@
         </div>
       </div>
     </section>
-      </div>
-    </div>
-  </div>
 
-  <!-- NEWS: standalone grid-paper block aligned to About width -->
-  <div class="standalone-stage standalone-news-stage">
-    <div class="container section-shell academic-flow">
-    <!-- NEWS (sticky note) -->
-    <section id="news" class="single-page-section sticky-note">
+
+    <!-- NEWS: embedded inside About card, scrollable -->
+    <div class="about-news-embedded">
+<section id="news" class="single-page-section sticky-note">
       <div class="section-heading-row">
         <h2 class="single-page-heading">News</h2>
         <span class="section-index">01 / 04</span>
@@ -4222,6 +4403,8 @@
         <li><span class="news-date">2022/09</span><span>Research Assistant in Computer Graphics under supervision of <a href="https://liruihui.github.io/" target="_blank" rel="noopener" class="font-underline">Prof. Ruihui LI</a>.</span></li>
       </ul>
     </section>
+    </div>
+      </div>
     </div>
   </div>
 
