@@ -1305,16 +1305,18 @@
     }
     .academic-row-media::after { display: none !important; }
     .academic-row-media img {
-      width: 100%;
-      min-height: 0 !important;
-      aspect-ratio: 16 / 10;
-      object-fit: cover;
-      border-radius: 0;
-      filter: saturate(0.95);
-      transition: transform .22s ease, filter .22s ease;
-    }
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    aspect-ratio: auto;
+    display: block;
+    object-fit: contain;
+    object-position: center;
+    background: #ffffff;
+    transition: filter 0.28s ease;
+  }
     .academic-row:hover .academic-row-media img {
-      transform: scale(1.018);
+      transform: none;
       filter: saturate(1.02);
     }
 
@@ -1858,8 +1860,11 @@
     }
 
     .academic-row-media img {
+      width: 100%;
+      height: 100%;
       aspect-ratio: 16 / 10;
-      transition: transform 0.2s ease;
+      object-fit: contain;
+      background: white;
     }
 
     .academic-row-body h3 {
