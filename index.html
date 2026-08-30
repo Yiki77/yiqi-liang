@@ -15,1499 +15,705 @@
   <meta name="twitter:card" content="summary">
 
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Dosis:400,700|Montserrat:400,700|Lato:400,700,400italic,700italic" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
   <link rel="shortcut icon" href="green_Favorite.ico" type="image/x-icon">
 
   <link href="css/freelancer.css" rel="stylesheet">
+
   <style>
     /* ================================================================
-       BASE & VARIABLES
+       MODERN ACADEMIC PORTFOLIO — clean, airy, content-first
        ================================================================ */
     :root {
-      /* richer yellow + forest-green academic palette */
-      --yiqi-green: #3f7452;
-      --yiqi-green-bright: #6f9b68;
-      --yiqi-green-dark: #1f432f;
-      --yiqi-green-soft: #e5f0e5;
-      --yiqi-green-pale: #f1f7ef;
-      --yiqi-yellow: #f4c64f;
-      --yiqi-yellow-bright: #ffd96a;
-      --yiqi-yellow-soft: #fff2bd;
-      --yiqi-yellow-deep: #a96808;
-      --yiqi-apricot: #ed9362;
-      --yiqi-apricot-soft: #fbe9dd;
-      --yiqi-blue-soft: #e5f0f2;
-      --yiqi-blue-deep: #4f7f88;
-      --yiqi-coral-soft: #fae9df;
-      --yiqi-coral-deep: #b56349;
-      --yiqi-ink: #1f2b23;
-      --yiqi-muted: #647067;
-      --yiqi-line: #d8d6c8;
-      --yiqi-bg: #f8f6ef;
-      --yiqi-white: #ffffff;
-      --yiqi-cream: #fffaf0;
-      --yiqi-nav-height: 76px;
-      --grid-color: rgba(63, 116, 82, 0.115);
-      --grid-size: 24px;
-      --notebook-shadow: 0 10px 28px rgba(38, 69, 48, 0.10);
-      --paper-color: #fff9e9;
-      --paper-shadow: 0 8px 22px rgba(71, 58, 29, 0.08);
+      --primary: #2d5a3d;
+      --primary-light: #eaf1eb;
+      --primary-dark: #1a3a26;
+      --accent: #e9c46a;
+      --accent-soft: #fcf3d9;
+      --text: #1e2622;
+      --text-muted: #5a6b62;
+      --border: #e6e9e6;
+      --bg: #f8faf8;
+      --card-bg: #ffffff;
+      --nav-height: 64px;
     }
 
-    html { scroll-behavior: smooth; }
+    * { box-sizing: border-box; }
+
     body {
-      color: var(--yiqi-ink);
-      background: var(--yiqi-bg);
-      font-family: "Lato", sans-serif;
-      line-height: 1.72;
-      padding-top: var(--yiqi-nav-height);
+      margin: 0;
+      padding-top: var(--nav-height);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+    a:hover { color: var(--primary-dark); }
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 24px;
     }
 
     /* ================================================================
-       TWO BACKGROUND ZONES
-       About + News keep the grid-paper identity; everything below is clean.
-       ================================================================ */
-    .grid-paper-zone {
-      position: relative;
-      isolation: isolate;
-      padding: 1.15rem 0 2.9rem;
-      background-color: #fffdf5;
-      background-image:
-        linear-gradient(var(--grid-color) 1px, transparent 1px),
-        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px),
-        radial-gradient(circle at 88% 10%, rgba(244,198,79,0.24), transparent 21rem),
-        radial-gradient(circle at 8% 72%, rgba(111,155,104,0.16), transparent 19rem);
-      background-size:
-        var(--grid-size) var(--grid-size),
-        var(--grid-size) var(--grid-size),
-        auto,
-        auto;
-      background-position: 0 0, 0 0, center, center;
-      border-bottom: 1px solid rgba(169,104,8,0.14);
-    }
-
-    .grid-paper-zone::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: -1px;
-      height: 46px;
-      z-index: 0;
-      pointer-events: none;
-      background: linear-gradient(to bottom, rgba(255,253,245,0), var(--yiqi-bg));
-    }
-    .grid-paper-zone > .container { position: relative; z-index: 1; }
-
-    .clean-content-zone {
-      position: relative;
-      padding: 2.4rem 0 1.4rem;
-      background:
-        radial-gradient(circle at 98% 16%, rgba(244,198,79,0.10), transparent 24rem),
-        radial-gradient(circle at 2% 64%, rgba(63,116,82,0.07), transparent 26rem),
-        var(--yiqi-bg);
-    }
-
-    .grid-paper-zone .academic-flow,
-    .clean-content-zone .academic-flow { gap: 0.8rem; }
-
-    a { color: var(--yiqi-green-dark); }
-    a:hover { color: var(--yiqi-yellow-deep); text-decoration: none; }
-    ::selection { background: var(--yiqi-yellow-soft); color: var(--yiqi-green-dark); }
-
-    /* ================================================================
-       NAV: GRID PAPER STYLE (no mosaic)
+       NAVIGATION — minimal, clean
        ================================================================ */
     #mainNav {
-      min-height: var(--yiqi-nav-height);
-      padding: 0;
-      background: rgba(255, 250, 236, 0.95) !important;
-      border-bottom: 2px solid rgba(244, 198, 79, 0.60);
-      box-shadow: 0 2px 12px rgba(0,0,0,0.03);
-      backdrop-filter: blur(4px);
       position: fixed;
       top: 0;
-      width: 100%;
+      left: 0;
+      right: 0;
+      height: var(--nav-height);
       z-index: 1030;
-    }
-
-    /* Grid paper pattern on nav */
-    #mainNav::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background-image:
-        linear-gradient(rgba(72, 115, 90, 0.06) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(72, 115, 90, 0.06) 1px, transparent 1px);
-      background-size: 16px 16px;
-      background-position: 0 0;
-      opacity: 0.5;
-      z-index: 0;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
     }
 
     #mainNav .container {
-      position: relative;
-      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0;
     }
 
     #mainNav .navbar-brand {
-      color: var(--yiqi-green-dark) !important;
-      font-family: "Montserrat", sans-serif;
-      font-size: 1.1rem;
+      font-size: 1rem;
       font-weight: 700;
-      letter-spacing: 0.04em;
-      position: relative;
-      z-index: 2;
+      letter-spacing: -0.01em;
+      color: var(--text);
     }
+
+    #mainNav .navbar-brand:hover { color: var(--primary); }
 
     #mainNav .navbar-toggler {
-      position: relative;
-      z-index: 2;
-      color: var(--yiqi-green-dark) !important;
-      background: transparent !important;
-      border: 1px solid var(--yiqi-line) !important;
-      font-size: 0.72rem;
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.1rem;
+      color: var(--text);
+      cursor: pointer;
+      padding: 4px 8px;
     }
 
-    #mainNav .navbar-nav { align-items: center; }
+    #mainNav .navbar-nav {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
 
     #mainNav .nav-link {
-      position: relative;
-      z-index: 2;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 36px;
-      margin-left: 0.58rem;
-      padding: 0.48rem 0.80rem !important;
-      color: #526158 !important;
-      border: 1px solid transparent !important;
-      border-radius: 6px;
+      padding: 8px 16px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      border-radius: 8px;
+      transition: all 0.15s ease;
       background: transparent;
-      transition: color 0.20s, background 0.20s, border-color 0.20s, transform 0.20s;
-      font-family: "Montserrat", sans-serif;
-      font-size: 0.78rem !important;
-      font-weight: 600;
-      letter-spacing: 0.035em;
+      border: none;
+      cursor: pointer;
     }
 
-    #mainNav .nav-link::after { display: none !important; }
-
     #mainNav .nav-link:hover {
-      color: var(--yiqi-green-dark) !important;
-      background: rgba(232, 240, 232, 0.50) !important;
-      border-color: rgba(72, 115, 90, 0.20) !important;
-      transform: translateY(-1px);
+      color: var(--text);
+      background: var(--primary-light);
     }
 
     #mainNav .nav-link.active {
-      color: var(--yiqi-green-dark) !important;
-      background: var(--yiqi-yellow) !important;
-      border-color: #e7b638 !important;
-      border-radius: 6px;
-      box-shadow: 0 5px 14px rgba(180, 124, 16, 0.24);
+      color: var(--text);
+      background: var(--accent-soft);
+      font-weight: 600;
     }
 
-    @media (max-width: 991px) {
+    @media (max-width: 768px) {
+      #mainNav .navbar-toggler { display: block; }
       #mainNav .navbar-collapse {
-        position: relative;
-        z-index: 5;
-        margin-top: 2px;
-        padding: 0.45rem 0.55rem 0.65rem !important;
-        background: rgba(255, 252, 245, 0.95);
-        border: 1px solid var(--yiqi-line);
-        border-radius: 8px;
-        backdrop-filter: blur(4px);
+        display: none;
+        position: absolute;
+        top: var(--nav-height);
+        left: 0;
+        right: 0;
+        background: rgba(255,255,255,0.98);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border);
+        padding: 12px 24px;
+      }
+      #mainNav .navbar-collapse.show { display: block; }
+      #mainNav .navbar-nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
       }
       #mainNav .nav-link {
-        margin: 0.20rem 0 !important;
-        padding: 0.44rem 0.72rem !important;
-        width: fit-content;
+        padding: 10px 12px;
+        width: 100%;
+        font-size: 0.9rem;
       }
     }
 
     /* ================================================================
-       STICKY NOTE (for About & News)
+       SECTIONS
        ================================================================ */
-    .sticky-note {
-      background: rgba(255, 249, 233, 0.96);
-      border-radius: 8px 8px 8px 8px;
-      box-shadow: var(--paper-shadow), 0 2px 8px rgba(0,0,0,0.04);
-      padding: 1.8rem 2rem 2rem;
-      margin-bottom: 2.5rem;
-      position: relative;
-      border: 1px solid rgba(190, 159, 82, 0.30);
+    section {
+      padding: 64px 0;
+      scroll-margin-top: calc(var(--nav-height) + 16px);
     }
 
-    /* Tape decoration */
-    .sticky-note::before {
-      content: '';
-      position: absolute;
-      top: -8px;
-      left: 50%;
-      transform: translateX(-50%) rotate(-2deg);
-      width: 80px;
-      height: 28px;
-      background: rgba(244, 198, 79, 0.50);
-      border-radius: 0 0 4px 4px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.04);
-      pointer-events: none;
+    section:not(:last-of-type) {
+      border-bottom: 1px solid var(--border);
     }
 
-    /* Pin / thumbtack */
-    .sticky-note::after {
-      content: '●';
-      position: absolute;
-      top: 4px;
-      left: 50%;
-      transform: translateX(-50%);
-      color: var(--yiqi-apricot);
-      font-size: 16px;
-      text-shadow: 0 1px 2px rgba(0,0,0,0.10);
-      pointer-events: none;
-      opacity: 0.5;
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 24px;
     }
 
-    /* Different tape color for news */
-    #news.sticky-note::before {
-      background: rgba(111, 155, 104, 0.38);
-      width: 60px;
-      transform: translateX(-50%) rotate(3deg);
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin: 0;
     }
-    #news.sticky-note::after {
-      color: var(--yiqi-green-dark);
-      opacity: 0.4;
+
+    .section-title .highlight {
+      display: inline-block;
+      width: 32px;
+      height: 4px;
+      background: var(--accent);
+      border-radius: 4px;
+      margin-left: 10px;
+      transform: translateY(-6px);
+    }
+
+    .section-index {
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+    }
+
+    .section-description {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      max-width: 680px;
+      margin: -12px 0 28px;
     }
 
     /* ================================================================
-       COIL‑NOTEBOOK MODULES (left side coils)
+       ABOUT — clean two-column layout
        ================================================================ */
-    .notebook-module {
-      background: rgba(255, 253, 247, 0.97);
-      backdrop-filter: blur(2px);
-      border-radius: 4px 16px 16px 4px;
-      box-shadow: var(--notebook-shadow), inset 0 0 0 1px rgba(200, 190, 170, 0.20);
-      padding: 1.8rem 2rem 2rem 3.2rem;
-      margin-bottom: 2.5rem;
-      position: relative;
-      transition: box-shadow 0.2s;
-      border-left: 4px solid rgba(244, 198, 79, 0.72);
+    #about {
+      padding-top: 48px;
     }
 
-    /* Left side coil rings */
-    .notebook-module::before {
-      content: '';
-      position: absolute;
-      top: 20px;
-      bottom: 20px;
-      left: 6px;
-      width: 16px;
-      background: repeating-linear-gradient(
-        180deg,
-        #b8c9b8 0px,
-        #b8c9b8 5px,
-        transparent 5px,
-        transparent 14px,
-        #b8c9b8 14px,
-        #b8c9b8 19px,
-        transparent 19px,
-        transparent 28px
-      );
-      border-radius: 0 12px 12px 0;
-      opacity: 0.35;
-      pointer-events: none;
-    }
-
-    /* coil shadow */
-    .notebook-module::after {
-      content: '';
-      position: absolute;
-      top: 30px;
-      bottom: 30px;
-      left: 2px;
-      width: 6px;
-      background: rgba(72, 115, 90, 0.04);
-      border-radius: 40%;
-      filter: blur(3px);
-      pointer-events: none;
-    }
-
-    .section-shell {
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 0 1.2rem;
-    }
-
-    /* ================================================================
-       ABOUT: 1:1 split (Hello text | portrait + tags) inside sticky
-       ================================================================ */
-    .about-hero {
+    .about-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2.8rem;
+      grid-template-columns: 1fr 240px;
+      gap: 48px;
       align-items: center;
-      padding: 0.2rem 0 0.2rem;
     }
 
-    .about-hero-copy .about-kicker {
-      margin: 0 0 0.4rem;
-      color: var(--yiqi-yellow-deep);
-      font-family: "Montserrat", sans-serif;
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.055em;
+    .about-content .kicker {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--primary);
+      letter-spacing: 0.03em;
       text-transform: uppercase;
+      margin-bottom: 4px;
     }
 
-    .about-hero-copy .masthead-heading {
-      margin: 0 0 1.15rem !important;
-      color: var(--yiqi-green-dark);
-      font-family: "Montserrat", sans-serif;
-      font-size: clamp(2.4rem, 4vw, 3.4rem) !important;
+    .about-content h1 {
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
       font-weight: 700;
-      line-height: 1.08;
-      letter-spacing: -0.035em;
+      letter-spacing: -0.04em;
+      margin: 0 0 12px;
+      color: var(--text);
     }
 
-    .about-hero-copy p {
-      margin-bottom: 1rem;
-      color: #4f5c53;
+    .about-content p {
+      color: #3e4a44;
       font-size: 0.92rem;
       line-height: 1.7;
+      margin-bottom: 12px;
     }
 
-    .about-hero-visual {
+    .about-content p:last-of-type { margin-bottom: 0; }
+
+    .about-side {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 0.6rem;
-      text-align: center;
+      gap: 10px;
     }
 
-    .masthead-avatar {
-      width: 200px;
-      height: 200px;
+    .about-side .avatar {
+      width: 190px;
+      height: 190px;
+      border-radius: 50%;
       object-fit: cover;
-      border-radius: 50% !important;
-      border: 2px solid #d7ded7;
-      box-shadow: 0 10px 30px rgba(43, 69, 53, 0.07);
+      border: 2px solid var(--border);
+      background: #fff;
+      padding: 4px;
     }
 
-    .social-row {
+    .about-side .social-links {
       display: flex;
-      justify-content: center;
+      gap: 6px;
       flex-wrap: wrap;
-      gap: 0.42rem;
-      margin: 0.6rem 0 0.3rem;
+      justify-content: center;
     }
 
-    .social-row .btn-social {
-      width: 38px;
-      height: 38px;
+    .about-side .social-links a {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 0;
-      color: var(--yiqi-green-dark) !important;
-      background: var(--yiqi-white) !important;
-      border: 1px solid #becbbf !important;
-      border-radius: 50% !important;
-      transition: all 0.2s ease;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      background: #fff;
+      transition: all 0.15s ease;
+      font-size: 0.85rem;
     }
-    .social-row .btn-social:hover {
-      color: var(--yiqi-green-dark) !important;
-      background: var(--yiqi-yellow) !important;
-      border-color: var(--yiqi-yellow) !important;
+    .about-side .social-links a:hover {
+      color: var(--text);
+      border-color: var(--primary);
+      background: var(--primary-light);
       transform: translateY(-2px);
     }
 
-    .cv-row { margin-top: 0.25rem; font-family: "Montserrat", sans-serif; font-size: 0.78rem; font-weight: 600; }
+    .about-side .cv-link {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text);
+      padding: 6px 16px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      transition: all 0.15s ease;
+    }
+    .about-side .cv-link:hover {
+      border-color: var(--primary);
+      background: var(--primary-light);
+    }
 
-    .research-tags {
+    .about-side .topic-tags {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 0.45rem;
-      margin-top: 0.8rem;
+      gap: 6px;
+      margin-top: 2px;
     }
-    .research-tags span {
-      padding: 0.32rem 0.58rem;
-      color: var(--yiqi-green-dark);
-      background: var(--yiqi-green-pale);
-      border: 1px solid #dce7db;
-      border-radius: 999px;
-      font-family: "Montserrat", sans-serif;
-      font-size: 0.68rem;
-      font-weight: 600;
-    }
-    .research-tags span:nth-child(3n+2) {
-      background: var(--yiqi-yellow-soft);
-      border-color: rgba(169,104,8,0.18);
-      color: #7b570b;
-    }
-    .research-tags span:nth-child(3n) {
-      background: var(--yiqi-apricot-soft);
-      border-color: rgba(181,91,59,0.14);
-      color: #8c4e38;
+
+    .about-side .topic-tags span {
+      font-size: 0.65rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      padding: 2px 10px;
+      border-radius: 12px;
+      background: var(--primary-light);
+      border: 1px solid transparent;
     }
 
     /* ================================================================
-       SINGLE‑PAGE SECTIONS
+       NEWS — minimal, clean list with subtle timeline
        ================================================================ */
-    .academic-flow {
-      display: flex;
-      flex-direction: column;
-      gap: 0.8rem;
-    }
-
-    .single-page-section {
-      scroll-margin-top: calc(var(--yiqi-nav-height) + 28px);
-    }
-
-    .section-heading-row {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 1.5rem;
-      margin-bottom: 0.9rem;
-      padding-bottom: 0.72rem;
-      border-bottom: 1px solid rgba(63, 116, 82, 0.22);
-      position: relative;
-    }
-    .section-heading-row::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: -1px;
-      width: 62px;
-      height: 3px;
-      border-radius: 99px;
-      background: linear-gradient(90deg, var(--yiqi-green), var(--yiqi-yellow));
-    }
-    .section-intro {
-      margin: 0 0 1.25rem;
-      max-width: 760px;
-      color: var(--yiqi-muted);
-      font-size: 0.86rem;
-      line-height: 1.65;
-    }
-
-    .single-page-heading {
-      margin: 0;
-      color: var(--yiqi-green-dark);
-      font-family: "Montserrat", sans-serif;
-      font-size: clamp(1.8rem, 3vw, 2.5rem);
-      font-weight: 700;
-      letter-spacing: -0.025em;
-    }
-    .section-index {
-      color: #97a39a;
-      font-family: "Montserrat", sans-serif;
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-    }
-
-    /* news */
     .news-list {
+      list-style: none;
       margin: 0;
       padding: 0;
-      list-style: none;
-      border-top: 1px solid var(--yiqi-line);
-    }
-    .news-list li {
-      display: grid;
-      grid-template-columns: 82px minmax(0, 1fr);
-      gap: 1rem;
-      padding: 0.78rem 0;
-      border-bottom: 1px solid rgba(220, 227, 220, 0.82);
-      color: #4f5c53;
-      font-size: 0.88rem;
-      line-height: 1.55;
-    }
-    .news-list strong { color: var(--yiqi-green-dark); font-family: "Montserrat", sans-serif; font-weight: 700; }
-    .news-list a:hover strong { color: var(--yiqi-yellow-deep); }
-    .news-date {
-      color: var(--yiqi-green);
-      font-family: "Montserrat", sans-serif;
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-      white-space: nowrap;
+      position: relative;
     }
 
-    /* publication filters */
-    .publication-filters {
+    .news-list::before {
+      content: '';
+      position: absolute;
+      left: 76px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: repeating-linear-gradient(
+        to bottom,
+        var(--border) 0,
+        var(--border) 6px,
+        transparent 6px,
+        transparent 10px
+      );
+    }
+
+    .news-list li {
+      display: grid;
+      grid-template-columns: 64px 1fr;
+      gap: 16px;
+      padding: 12px 0 12px 0;
+      position: relative;
+    }
+
+    .news-list li::before {
+      content: '';
+      position: absolute;
+      left: 72px;
+      top: 18px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #fff;
+      border: 2px solid var(--primary);
+      transform: translateX(-50%);
+    }
+
+    .news-list .date {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--primary);
+      letter-spacing: 0.02em;
+      padding-top: 2px;
+    }
+
+    .news-list .content {
+      font-size: 0.88rem;
+      color: #3e4a44;
+      line-height: 1.5;
+    }
+
+    .news-list .content strong { color: var(--text); font-weight: 600; }
+
+    /* ================================================================
+       PUBLICATIONS / PROJECTS — clean rows
+       ================================================================ */
+    .filter-bar {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.4rem 0.6rem;
-      margin-bottom: 1.2rem;
+      gap: 4px 12px;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
     }
-    .publication-filter {
-      appearance: none;
-      border: 1px solid var(--yiqi-line);
-      background: rgba(255,255,255,0.4);
-      padding: 0.28rem 0.8rem;
-      border-radius: 40px;
-      font-family: "Montserrat", sans-serif;
-      font-size: 0.72rem;
-      font-weight: 600;
-      color: var(--yiqi-muted);
-      transition: all 0.15s;
+
+    .filter-bar button {
+      background: none;
+      border: none;
+      padding: 4px 0;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text-muted);
       cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: all 0.15s ease;
+      font-family: inherit;
     }
-    .publication-filter.active {
-      background: var(--yiqi-yellow);
-      color: var(--yiqi-green-dark);
-      border-color: #e7b638;
-      box-shadow: 0 3px 9px rgba(180,124,16,0.14);
+
+    .filter-bar button:hover { color: var(--text); }
+    .filter-bar button.active {
+      color: var(--text);
+      border-bottom-color: var(--accent);
+      font-weight: 600;
     }
-    .filter-count { margin-left: 0.2rem; opacity: 0.7; font-weight: 400; }
+
+    .filter-bar button .count {
+      color: var(--text-muted);
+      font-weight: 400;
+      margin-left: 2px;
+    }
 
     .publication-row.is-hidden { display: none; }
 
-    /* ================================================================
-       RESEARCH / PROJECT WORK CARDS
-       Each work is visually independent while staying in the notebook style.
-       ================================================================ */
-    .publication-filter-results { counter-reset: publication; }
-    #projects { counter-reset: project; }
-
-    .academic-row {
-      --work-accent: var(--yiqi-green);
-      --work-soft: var(--yiqi-green-pale);
+    .work-item {
       display: grid;
-      grid-template-columns: 220px minmax(0, 1fr);
-      gap: 1.45rem;
-      align-items: stretch;
-      margin: 0.82rem 0;
-      padding: 1.05rem 1.15rem 1.05rem 1.3rem;
-      border: 1px solid rgba(63, 116, 82, 0.18);
-      border-radius: 16px;
-      background:
-        linear-gradient(112deg, rgba(255,255,255,0.99), rgba(255,249,232,0.86));
-      box-shadow: 0 8px 21px rgba(38, 69, 48, 0.065);
-      position: relative;
+      grid-template-columns: 180px 1fr;
+      gap: 20px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+      align-items: start;
+      transition: background 0.15s ease;
+    }
+
+    .work-item:first-of-type { border-top: 1px solid var(--border); }
+
+    .work-item .media {
       overflow: hidden;
-      transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
-    }
-    .academic-row:first-of-type { border-top: 1px solid rgba(72, 115, 90, 0.16); }
-
-    /* slim identity stripe for every work */
-    .academic-row::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 16px;
-      bottom: 16px;
-      width: 4px;
-      border-radius: 0 99px 99px 0;
-      background: var(--work-accent);
-      opacity: 0.92;
-      transition: top 0.22s ease, bottom 0.22s ease, width 0.22s ease;
-    }
-
-    /* tiny paper-fold corner keeps the handmade notebook language */
-    .academic-row::after {
-      content: '';
-      position: absolute;
-      right: 0;
-      bottom: 0;
-      width: 22px;
-      height: 22px;
-      background: linear-gradient(135deg, transparent 49%, color-mix(in srgb, var(--work-accent) 14%, white) 50%);
-      opacity: 0;
-      transition: opacity 0.22s ease;
-      pointer-events: none;
-    }
-
-    .academic-row:hover {
-      transform: translateY(-3px);
-      border-color: color-mix(in srgb, var(--work-accent) 38%, #d7ded7);
-      box-shadow: 0 15px 34px rgba(38, 69, 48, 0.13);
-    }
-    .academic-row:hover::before { top: 10px; bottom: 10px; width: 5px; }
-    .academic-row:hover::after { opacity: 1; }
-
-    /* Category identity: low-saturation, research-like, not rainbow-like. */
-    .publication-row[data-category="sketching"] {
-      --work-accent: var(--yiqi-yellow);
-      --work-soft: var(--yiqi-yellow-soft);
-    }
-    .publication-row[data-category="point-cloud"] {
-      --work-accent: var(--yiqi-blue-deep);
-      --work-soft: var(--yiqi-blue-soft);
-    }
-    .publication-row[data-category="hci"] {
-      --work-accent: var(--yiqi-green);
-      --work-soft: var(--yiqi-green-pale);
-    }
-    .project-row:nth-of-type(4n+1) {
-      --work-accent: var(--yiqi-green);
-      --work-soft: var(--yiqi-green-pale);
-    }
-    .project-row:nth-of-type(4n+2) {
-      --work-accent: var(--yiqi-yellow);
-      --work-soft: var(--yiqi-yellow-soft);
-    }
-    .project-row:nth-of-type(4n+3) {
-      --work-accent: var(--yiqi-apricot);
-      --work-soft: var(--yiqi-apricot-soft);
-    }
-    .project-row:nth-of-type(4n) {
-      --work-accent: var(--yiqi-blue-deep);
-      --work-soft: var(--yiqi-blue-soft);
-    }
-
-    .publication-row { counter-increment: publication; }
-    .project-row { counter-increment: project; }
-
-    .academic-row-media {
-      width: 100%;
-      height: 100%;
-      min-height: 142px;
-      overflow: hidden;
-      background: #ffffff;
-      border: 1px solid rgba(72, 115, 90, 0.13);
-      border-radius: 11px;
-      box-shadow: 0 5px 14px rgba(43, 69, 53, 0.055);
-      position: relative;
-      z-index: 2;
-    }
-    .academic-row-media::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.38);
-      pointer-events: none;
-    }
-    .academic-row-media img {
-      width: 100%;
-      height: 100%;
-      min-height: 142px;
-      aspect-ratio: 16 / 10;
-      display: block;
-      object-fit: cover;
-      background: #ffffff;
-      transition: transform 0.28s ease, filter 0.28s ease;
-    }
-    .academic-row:hover .academic-row-media img { transform: scale(1.025); }
-
-    .project-media-button {
-      appearance: none;
-      cursor: pointer;
+      border-radius: 8px;
+      border: 1px solid var(--border);
       background: #fff;
-      border: 1px solid rgba(72, 115, 90, 0.13);
+      aspect-ratio: 16 / 10;
+    }
+
+    .work-item .media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.2s ease;
+    }
+
+    .work-item:hover .media img { transform: scale(1.02); }
+
+    .work-item .media-button {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: none;
       padding: 0;
-      text-align: initial;
-    }
-    .project-media-button:focus-visible,
-    .row-title-button:focus-visible,
-    .publication-filter:focus-visible {
-      outline: 3px solid rgba(241, 199, 91, 0.42);
-      outline-offset: 3px;
-    }
-
-    .academic-row-body {
-      min-width: 0;
-      position: relative;
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding-right: 2.25rem;
-    }
-
-    /* P01/P02 and PROJECT 01/02 labels */
-    .publication-row .academic-row-body::after,
-    .project-row .academic-row-body::after {
-      position: absolute;
-      top: 0;
-      right: 0;
-      color: color-mix(in srgb, var(--work-accent) 66%, #8d978f);
-      font-family: "Montserrat", sans-serif;
-      font-size: 0.60rem;
-      font-weight: 700;
-      letter-spacing: 0.09em;
-      opacity: 0.62;
-      white-space: nowrap;
-    }
-    .publication-row .academic-row-body::after { content: "P" counter(publication, decimal-leading-zero); }
-    .project-row .academic-row-body::after { content: "PROJECT " counter(project, decimal-leading-zero); }
-
-    .work-topline {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 0.46rem;
-      margin-bottom: 0.48rem;
-    }
-    .publication-type-label,
-    .project-type-label,
-    .work-chip {
-      display: inline-flex;
-      align-items: center;
-      min-height: 24px;
-      padding: 0.20rem 0.58rem;
-      border: 1px solid color-mix(in srgb, var(--work-accent) 24%, transparent);
-      border-radius: 999px;
-      color: color-mix(in srgb, var(--work-accent) 75%, #36443a);
-      background: var(--work-soft);
-      font-family: "Montserrat", sans-serif;
-      font-size: 0.62rem !important;
-      font-weight: 700 !important;
-      letter-spacing: 0.055em;
-      line-height: 1.2;
-      text-transform: uppercase;
-    }
-
-    .academic-row-body h3 {
-      margin: 0 0 0.5rem;
-      max-width: 860px;
-      color: var(--yiqi-ink);
-      font-family: "Montserrat", sans-serif;
-      font-size: 1.02rem;
-      font-weight: 700;
-      line-height: 1.42;
-      letter-spacing: -0.012em;
-      transition: color 0.2s ease;
-    }
-    .academic-row:hover .academic-row-body h3 { color: var(--yiqi-green-dark); }
-
-    .academic-row-authors,
-    .academic-row-description,
-    .academic-row-venue {
-      margin: 0.22rem 0;
-      color: #667169;
-      font-size: 0.80rem;
-      line-height: 1.52;
-    }
-    .academic-row-authors u {
-      color: var(--yiqi-green-dark);
-      font-weight: 700;
-      text-decoration-color: rgba(72, 115, 90, 0.32);
-      text-underline-offset: 3px;
-    }
-    .academic-row-venue {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 0.42rem;
-      margin-top: 0.36rem;
-    }
-    .academic-row-venue strong {
-      color: var(--yiqi-green-dark);
-      font-family: "Montserrat", sans-serif;
-      font-size: 0.74rem;
-      font-weight: 700;
-      letter-spacing: 0.015em;
-    }
-    .oral-badge {
-      display: inline-flex;
-      align-items: center;
-      padding: 0.16rem 0.46rem;
-      border-radius: 999px;
-      color: #7b570b;
-      background: var(--yiqi-yellow-soft);
-      border: 1px solid rgba(169, 118, 20, 0.20);
-      font-family: "Montserrat", sans-serif;
-      font-size: 0.59rem;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-    }
-
-    .academic-row-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.45rem;
-      margin-top: 0.68rem;
-    }
-    .academic-row-links a {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.28rem;
-      min-height: 29px;
-      padding: 0.24rem 0.66rem;
-      color: var(--yiqi-green-dark);
-      background: rgba(255,255,255,0.72);
-      border: 1px solid rgba(72, 115, 90, 0.18);
-      border-radius: 7px;
-      font-family: "Montserrat", sans-serif;
-      font-size: 0.64rem;
-      font-weight: 700;
-      letter-spacing: 0.035em;
-      text-transform: uppercase;
-      transition: transform 0.18s ease, color 0.18s ease, background 0.18s ease, border-color 0.18s ease;
-    }
-    .academic-row-links a::after {
-      content: '↗';
-      font-size: 0.72rem;
-      opacity: 0.56;
-      transform: translateY(-1px);
-    }
-    .academic-row-links a:hover {
-      color: var(--yiqi-green-dark);
-      background: var(--yiqi-yellow);
-      border-color: #e7b638;
-      transform: translateY(-1px);
-      box-shadow: 0 3px 8px rgba(180,124,16,0.14);
-    }
-
-    .row-title-button {
-      appearance: none;
-      display: inline;
-      margin: 0;
-      padding: 0;
-      color: inherit;
       background: none;
-      border: 0;
-      font: inherit;
-      text-align: left;
       cursor: pointer;
     }
-    .row-title-button:hover { color: var(--yiqi-green); }
 
-    /* Interest grid */
-    .academic-interest-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.45fr;
-      gap: 1.2rem 1.6rem;
-      border-top: 1px solid var(--yiqi-line);
-      padding-top: 0.8rem;
-    }
-    .academic-interest-grid .interest-card {
-      min-height: 0 !important;
-      margin: 0 !important;
-      padding: 0.6rem 0 0.2rem !important;
-      border: 0 !important;
-    }
-    .academic-interest-grid .interest-card h3 {
-      font-size: 0.92rem !important;
-      margin: 0 0 0.42rem !important;
-      color: var(--yiqi-green-dark);
-      font-family: "Montserrat", sans-serif;
-      font-weight: 700;
-    }
-    .academic-interest-grid .interest-card p,
-    .academic-interest-grid .interest-card li {
-      font-size: 0.76rem !important;
-      line-height: 1.55 !important;
-      color: #5a665d;
-    }
-    .interest-symbol {
-      display: inline-block;
-      margin-right: 0.3rem;
-      color: var(--yiqi-green);
-    }
-    .interest-card ul { padding-left: 1.15rem; margin: 0; }
+    .work-item .body { min-width: 0; }
 
-    /* footer */
-    .site-footer {
-      padding: 2rem 0;
-      color: #677168;
-      background: #f1eee4;
-      border-top: 3px solid var(--yiqi-yellow);
-      font-size: 0.76rem;
-      margin-top: 0;
-    }
-    .footer-row {
+    .work-item .topline {
       display: flex;
-      justify-content: space-between;
-      gap: 1rem;
       flex-wrap: wrap;
-    }
-    .footer-row strong { color: var(--yiqi-green-dark); font-family: "Montserrat", sans-serif; }
-
-    /* responsive */
-    @media (max-width: 991px) {
-      .about-hero { gap: 2rem; }
-      .masthead-avatar { width: 170px; height: 170px; }
-      .academic-row { grid-template-columns: 190px minmax(0, 1fr); }
-    }
-    @media (max-width: 767px) {
-      .about-hero { grid-template-columns: 1fr; gap: 1.5rem; }
-      .about-hero-copy { order: 1; }
-      .about-hero-visual { order: 2; }
-      .masthead-avatar { width: 180px; height: 180px; }
-      .academic-row { grid-template-columns: 1fr; gap: 0.95rem; padding: 0.9rem; }
-      .academic-row-body { padding-right: 0; padding-top: 0.2rem; }
-      .publication-row .academic-row-body::after, .project-row .academic-row-body::after { position: static; display: block; margin-bottom: 0.42rem; }
-      .academic-row-media, .academic-row-media img { min-height: 0; }
-      .academic-interest-grid { grid-template-columns: 1fr; }
-      .notebook-module { padding: 1.2rem 1rem 1.5rem 2.2rem; }
-      .sticky-note { padding: 1.2rem 1rem 1.5rem; }
-    }
-    @media (max-width: 560px) {
-      .news-list li { grid-template-columns: 68px minmax(0, 1fr); gap: 0.65rem; font-size: 0.82rem; }
-      .notebook-module { padding: 1rem 0.8rem 1.2rem 1.8rem; }
-      .notebook-module::before { left: 2px; width: 10px; }
-    }
-
-    /* modals */
-    .portfolio-modal .modal-content { background: var(--yiqi-bg); color: var(--yiqi-ink); }
-    .portfolio-modal .close { color: var(--yiqi-green-dark) !important; }
-    .portfolio-modal-title { color: var(--yiqi-green-dark); font-family: "Montserrat", sans-serif; font-weight: 700; }
-
-    highlight {
-      padding: 0 0.08em;
-      color: inherit;
-      background: linear-gradient(transparent 60%, rgba(255, 217, 106, 0.72) 60%);
-    }
-    .font-underline {
-      text-decoration: underline;
-      text-decoration-color: rgba(244, 198, 79, 0.90);
-      text-decoration-thickness: 1px;
-      text-underline-offset: 3px;
-    }
-    .list-category-title {
-      margin: 0 0 0.5rem;
-      font-size: 0.72rem;
-      color: #718077;
-      text-transform: uppercase;
-      letter-spacing: 0.075em;
-    }
-
-
-    /* ================================================================
-       MINIMAL ACADEMIC OVERRIDE — 2026 refresh
-       Inspired by direct academic-homepage layouts: content first,
-       decoration second. Keeps a very subtle grid only in the top zone.
-       ================================================================ */
-    :root {
-      --yiqi-green: #496556;
-      --yiqi-green-dark: #263b31;
-      --yiqi-green-soft: #edf2ee;
-      --yiqi-yellow: #e6b84a;
-      --yiqi-yellow-soft: #fbf1cf;
-      --yiqi-ink: #1d211e;
-      --yiqi-muted: #6a706c;
-      --yiqi-line: #e3e5e1;
-      --yiqi-bg: #ffffff;
-      --yiqi-white: #ffffff;
-      --yiqi-nav-height: 64px;
-      --grid-color: rgba(73, 101, 86, 0.055);
-      --grid-size: 28px;
-    }
-
-    html { background: #fff; }
-    body {
-      padding-top: var(--yiqi-nav-height);
-      color: var(--yiqi-ink);
-      background: #fff;
-      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      font-size: 15px;
-      line-height: 1.68;
-      letter-spacing: -0.005em;
-    }
-
-    .section-shell { max-width: 1080px; padding-left: 24px; padding-right: 24px; }
-    .academic-flow { gap: 0 !important; }
-
-    /* Top: keep the user's grid-paper idea, but almost invisible. */
-    .grid-paper-zone {
-      padding: 0;
-      background-color: #fbfcfa;
-      background-image:
-        linear-gradient(var(--grid-color) 1px, transparent 1px),
-        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
-      background-size: var(--grid-size) var(--grid-size);
-      background-position: center top;
-      border-bottom: 1px solid var(--yiqi-line);
-    }
-    .grid-paper-zone::after { display: none !important; }
-    .clean-content-zone {
-      padding: 0;
-      background: #fff !important;
-    }
-
-    /* Navbar: no colored block, no grid, no shadow. */
-    #mainNav {
-      min-height: var(--yiqi-nav-height);
-      background: rgba(255,255,255,0.94) !important;
-      border-bottom: 1px solid rgba(29,33,30,0.09);
-      box-shadow: none;
-      backdrop-filter: blur(10px);
-    }
-    #mainNav::before { display: none !important; }
-    #mainNav .navbar-brand {
-      color: var(--yiqi-ink) !important;
-      font-family: inherit;
-      font-size: 0.96rem;
-      font-weight: 720;
-      letter-spacing: -0.01em;
-    }
-    #mainNav .navbar-nav { gap: 1.45rem; }
-    #mainNav .nav-link {
-      min-height: auto;
-      margin: 0 !important;
-      padding: 22px 0 18px !important;
-      color: #6d726e !important;
-      border: 0 !important;
-      border-bottom: 2px solid transparent !important;
-      border-radius: 0 !important;
-      background: transparent !important;
-      box-shadow: none !important;
-      font-family: inherit;
-      font-size: 0.79rem !important;
-      font-weight: 560;
-      letter-spacing: 0;
-      transform: none !important;
-    }
-    #mainNav .nav-link:hover {
-      color: var(--yiqi-ink) !important;
-      border-bottom-color: #d8d9d5 !important;
-      background: transparent !important;
-    }
-    #mainNav .nav-link.active {
-      color: var(--yiqi-ink) !important;
-      border-bottom-color: var(--yiqi-yellow) !important;
-      background: transparent !important;
-    }
-    #mainNav .navbar-toggler {
-      border: 0 !important;
-      color: var(--yiqi-ink) !important;
-      font-family: inherit;
-      padding-right: 0;
-    }
-
-    /* Remove the old notebook/sticky-note visual language entirely. */
-    .sticky-note,
-    .notebook-module {
-      margin: 0 !important;
-      padding: 72px 0 !important;
-      background: transparent !important;
-      border: 0 !important;
-      border-radius: 0 !important;
-      box-shadow: none !important;
-      backdrop-filter: none !important;
-    }
-    .sticky-note::before,
-    .sticky-note::after,
-    .notebook-module::before,
-    .notebook-module::after { display: none !important; }
-
-    #about { padding-top: 82px !important; padding-bottom: 66px !important; }
-    #news { padding-top: 40px !important; padding-bottom: 72px !important; }
-    #publications { padding-top: 76px !important; padding-bottom: 60px !important; }
-    #projects, #interest { padding-top: 66px !important; padding-bottom: 60px !important; border-top: 1px solid var(--yiqi-line) !important; }
-
-    /* Hero: information first. */
-    .about-hero {
-      grid-template-columns: minmax(0, 1.62fr) minmax(240px, 0.72fr);
-      gap: clamp(44px, 7vw, 86px);
       align-items: center;
-    }
-    .about-hero-copy .about-kicker {
-      margin-bottom: 0.55rem;
-      color: var(--yiqi-green);
-      font-family: inherit;
-      font-size: 0.76rem;
-      font-weight: 680;
-      letter-spacing: 0.025em;
-      text-transform: none;
-    }
-    .about-hero-copy .masthead-heading {
-      margin-bottom: 1.15rem !important;
-      color: var(--yiqi-ink);
-      font-family: inherit;
-      font-size: clamp(2.65rem, 5vw, 4rem) !important;
-      font-weight: 760;
-      line-height: 1.02;
-      letter-spacing: -0.055em;
-    }
-    .about-hero-copy p {
-      max-width: 720px;
-      margin-bottom: 0.92rem;
-      color: #4f5651;
-      font-size: 0.94rem;
-      line-height: 1.72;
-    }
-    highlight {
-      padding: 0;
-      background: linear-gradient(transparent 72%, rgba(230,184,74,0.34) 72%);
-    }
-    .font-underline {
-      color: var(--yiqi-green-dark);
-      text-decoration-color: #bdc7c0;
-      text-decoration-thickness: 1px;
-      text-underline-offset: 3px;
-    }
-    .font-underline:hover { color: var(--yiqi-green); text-decoration-color: var(--yiqi-yellow); }
-
-    .about-hero-visual { gap: 0.72rem; }
-    .masthead-avatar {
-      width: 190px;
-      height: 190px;
-      border: 0;
-      box-shadow: 0 0 0 1px rgba(29,33,30,0.10);
-    }
-    .social-row { margin: 0.55rem 0 0; gap: 0.38rem; }
-    .social-row .btn-social {
-      width: 34px;
-      height: 34px;
-      color: #4b534e !important;
-      background: #fff !important;
-      border: 1px solid #dfe3df !important;
-      border-radius: 50% !important;
-      box-shadow: none;
-    }
-    .social-row .btn-social:hover {
-      color: var(--yiqi-ink) !important;
-      background: var(--yiqi-yellow-soft) !important;
-      border-color: rgba(230,184,74,0.62) !important;
-      transform: translateY(-1px);
-    }
-    .cv-row {
-      margin-top: 0.12rem;
-      font-family: inherit;
-      font-size: 0.75rem;
-      font-weight: 620;
-    }
-    .research-tags { gap: 0.25rem 0.72rem; margin-top: 0.65rem; max-width: 300px; }
-    .research-tags span {
-      position: relative;
-      padding: 0;
-      color: #737975;
-      background: transparent !important;
-      border: 0 !important;
-      border-radius: 0;
-      font-family: inherit;
-      font-size: 0.69rem;
-      font-weight: 520;
-    }
-    .research-tags span:not(:last-child)::after {
-      content: '·';
-      position: absolute;
-      right: -0.48rem;
-      color: #c1c5c2;
+      gap: 8px;
+      margin-bottom: 4px;
     }
 
-    /* Section headings: plain, left aligned, no index numbers. */
-    .section-heading-row {
-      align-items: flex-end;
-      justify-content: flex-start;
-      margin-bottom: 1.1rem;
-      padding-bottom: 0;
-      border: 0;
-    }
-    .single-page-heading {
-      position: relative;
-      color: var(--yiqi-ink);
-      font-family: inherit;
-      font-size: clamp(1.55rem, 2.8vw, 2rem);
-      font-weight: 730;
-      line-height: 1.2;
-      letter-spacing: -0.035em;
-    }
-    .single-page-heading::after {
-      content: '';
-      display: inline-block;
-      width: 27px;
-      height: 3px;
-      margin-left: 10px;
-      transform: translateY(-4px);
-      background: var(--yiqi-yellow);
-      border-radius: 99px;
-    }
-    .section-index { display: none !important; }
-    .section-intro {
-      max-width: 690px;
-      margin: -0.35rem 0 1.45rem !important;
-      color: #7a807c !important;
-      font-size: 0.82rem !important;
-      line-height: 1.55 !important;
-    }
-
-    /* News: compact academic list. */
-    .news-list {
-      max-width: 920px;
-      border-top: 1px solid var(--yiqi-line);
-    }
-    .news-list li {
-      grid-template-columns: 88px minmax(0,1fr);
-      gap: 1rem;
-      padding: 0.68rem 0;
-      border-bottom: 1px solid var(--yiqi-line);
-      color: #555c57;
-      font-size: 0.84rem;
-      line-height: 1.48;
-    }
-    .news-date {
-      color: #8b918d;
-      font-family: inherit;
-      font-size: 0.72rem;
-      font-weight: 620;
-      letter-spacing: 0;
-    }
-
-    /* Publication filters become simple text tabs. */
-    .publication-filters {
-      gap: 1.1rem;
-      margin: 0 0 0.7rem;
-      padding-bottom: 0.55rem;
-      border-bottom: 1px solid var(--yiqi-line);
-    }
-    .publication-filter {
-      padding: 0 0 0.34rem;
-      color: #8a8f8b;
-      background: transparent !important;
-      border: 0 !important;
-      border-bottom: 2px solid transparent !important;
-      border-radius: 0;
-      font-family: inherit;
-      font-size: 0.72rem;
-      font-weight: 590;
-    }
-    .publication-filter:hover { color: var(--yiqi-ink); }
-    .publication-filter.active {
-      color: var(--yiqi-ink);
-      background: transparent !important;
-      border-bottom-color: var(--yiqi-yellow) !important;
-    }
-    .filter-count { color: #a5aaa6; opacity: 1; }
-
-    /* The works themselves: flat rows, not cards. */
-    .publication-filter-results { counter-reset: none !important; }
-    #projects { counter-reset: none !important; }
-    .academic-row {
-      display: grid;
-      grid-template-columns: 186px minmax(0, 1fr);
-      gap: 1.55rem;
-      align-items: center;
-      margin: 0 !important;
-      padding: 1.3rem 0 !important;
-      background: transparent !important;
-      border: 0 !important;
-      border-bottom: 1px solid var(--yiqi-line) !important;
-      border-radius: 0 !important;
-      box-shadow: none !important;
-      transform: none !important;
-      overflow: visible;
-    }
-    .academic-row:first-of-type { border-top: 0 !important; }
-    .academic-row::before,
-    .academic-row::after { display: none !important; }
-    .academic-row:hover {
-      background: transparent !important;
-      box-shadow: none !important;
-      transform: none !important;
-    }
-
-    .academic-row-media {
-      border: 1px solid #e6e8e5 !important;
-      border-radius: 5px !important;
-      background: #fafafa !important;
-      box-shadow: none !important;
-      overflow: hidden;
-    }
-    .academic-row-media::after { display: none !important; }
-    .academic-row-media img {
-      width: 100%;
-      min-height: 0 !important;
-      aspect-ratio: 16 / 10;
-      object-fit: cover;
-      border-radius: 0;
-      filter: saturate(0.95);
-      transition: transform .22s ease, filter .22s ease;
-    }
-    .academic-row:hover .academic-row-media img {
-      transform: scale(1.018);
-      filter: saturate(1.02);
-    }
-
-    .academic-row-body {
-      display: block;
-      min-width: 0;
-      padding-right: 0 !important;
-    }
-    .publication-row .academic-row-body::after,
-    .project-row .academic-row-body::after { display: none !important; }
-    .work-topline { margin: 0 0 0.35rem; }
-    .publication-type-label,
-    .project-type-label,
-    .publication-row[data-category] .publication-type-label,
-    .project-row:nth-of-type(n) .project-type-label {
-      display: inline;
-      padding: 0 !important;
-      color: var(--yiqi-green) !important;
-      background: transparent !important;
-      border: 0 !important;
-      border-radius: 0 !important;
-      font-family: inherit;
-      font-size: 0.66rem;
-      font-weight: 680;
-      letter-spacing: 0.045em;
+    .work-item .topline .label {
+      font-size: 0.6rem;
+      font-weight: 600;
       text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--primary);
+      background: var(--primary-light);
+      padding: 2px 10px;
+      border-radius: 12px;
     }
-    .academic-row-body h3 {
-      margin: 0 0 0.42rem;
-      color: var(--yiqi-ink);
-      font-family: inherit;
+
+    .work-item h3 {
       font-size: 1rem;
-      font-weight: 690;
-      line-height: 1.42;
-      letter-spacing: -0.015em;
+      font-weight: 600;
+      margin: 0 0 4px;
+      line-height: 1.4;
+      color: var(--text);
     }
-    .academic-row:hover .academic-row-body h3 { color: var(--yiqi-green-dark); }
-    .academic-row-authors,
-    .academic-row-description,
-    .academic-row-venue {
-      margin: 0.18rem 0;
-      color: #737975;
-      font-size: 0.76rem;
-      line-height: 1.5;
-    }
-    .academic-row-authors u {
-      color: var(--yiqi-ink);
-      font-weight: 650;
-      text-decoration-color: rgba(230,184,74,.8);
-      text-decoration-thickness: 2px;
-      text-underline-offset: 2px;
-    }
-    .academic-row-venue { margin-top: 0.3rem; }
-    .academic-row-venue strong {
-      color: var(--yiqi-green-dark);
-      font-weight: 700;
-    }
-    .oral-badge {
-      display: inline-flex;
-      margin-left: 0.55rem;
-      padding: 0 !important;
-      color: #9a7116 !important;
-      background: transparent !important;
-      border: 0 !important;
-      border-radius: 0 !important;
-      font-size: 0.68rem !important;
-      font-weight: 650 !important;
-    }
-    .oral-badge::before { content: '•'; margin-right: 0.32rem; color: var(--yiqi-yellow); }
 
-    .academic-row-links { gap: 0.9rem; margin-top: 0.5rem; }
-    .academic-row-links a {
-      min-height: auto;
-      padding: 0 !important;
-      color: #555d58;
-      background: transparent !important;
-      border: 0 !important;
-      border-radius: 0 !important;
-      font-family: inherit;
-      font-size: 0.69rem;
-      font-weight: 650;
-      letter-spacing: 0;
-      text-transform: none;
+    .work-item .authors {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin: 0 0 2px;
     }
-    .academic-row-links a::after {
-      content: ' ↗';
-      margin-left: 0.12rem;
+
+    .work-item .authors u {
+      color: var(--text);
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 2px solid var(--accent-soft);
+    }
+
+    .work-item .venue {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin: 2px 0 6px;
+    }
+
+    .work-item .venue strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .work-item .venue .oral {
+      font-size: 0.6rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: #8a7510;
+      background: var(--accent-soft);
+      padding: 2px 10px;
+      border-radius: 12px;
+    }
+
+    .work-item .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .work-item .links a {
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      transition: color 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+    }
+
+    .work-item .links a::after {
+      content: '↗';
+      font-size: 0.7rem;
       opacity: 0.5;
     }
-    .academic-row:hover .academic-row-links a { background: transparent !important; border: 0 !important; color: #555d58; }
-    .academic-row .academic-row-links a:hover {
-      color: var(--yiqi-green-dark) !important;
-      background: transparent !important;
-      border: 0 !important;
-      text-decoration: underline;
-      text-decoration-color: var(--yiqi-yellow);
-      text-underline-offset: 3px;
-    }
-    .row-title-button:hover { color: var(--yiqi-green-dark); }
-    .list-category-title { display: none; }
 
-    /* Interest: understated text columns. */
-    .academic-interest-grid {
-      grid-template-columns: 1fr 1fr;
-      gap: 0 3rem;
-      padding-top: 0.5rem;
-      border-top: 1px solid var(--yiqi-line);
-    }
-    .academic-interest-grid .interest-card {
-      padding: 1rem 0 0.75rem !important;
-      border-bottom: 1px solid #eff0ed !important;
-    }
-    .academic-interest-grid .interest-card h3 {
-      color: var(--yiqi-ink);
-      font-family: inherit;
-      font-size: 0.82rem !important;
-      font-weight: 680;
-    }
-    .academic-interest-grid .interest-card p,
-    .academic-interest-grid .interest-card li {
-      color: #747a76;
-      font-size: 0.72rem !important;
-      line-height: 1.55 !important;
-    }
-    .interest-symbol { color: var(--yiqi-yellow); }
+    .work-item .links a:hover { color: var(--text); }
 
-    /* Footer: almost invisible. */
+    /* ================================================================
+       INTEREST — clean card grid
+       ================================================================ */
+    .interest-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 12px 24px;
+    }
+
+    .interest-grid .card {
+      padding: 16px 0 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .interest-grid .card h4 {
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin: 0 0 4px;
+      color: var(--text);
+    }
+
+    .interest-grid .card p,
+    .interest-grid .card li {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .interest-grid .card ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .interest-grid .card .sym {
+      display: inline-block;
+      margin-right: 4px;
+      color: var(--accent);
+    }
+
+    /* ================================================================
+       FOOTER
+       ================================================================ */
     .site-footer {
-      margin-top: 0;
-      padding: 1.55rem 0 2.1rem;
-      color: #969b97;
+      padding: 32px 0;
+      border-top: 1px solid var(--border);
       background: #fff;
-      border-top: 1px solid var(--yiqi-line);
-      font-size: 0.69rem;
-    }
-    .site-footer::before { display: none !important; }
-    .footer-row strong { color: #656b67; font-family: inherit; font-weight: 620; }
-
-    /* Modals follow the same clean visual system. */
-    .portfolio-modal .modal-content { background: #fff; }
-    .portfolio-modal-title { color: var(--yiqi-ink); font-family: inherit; }
-
-    @media (max-width: 991px) {
-      #mainNav .navbar-collapse {
-        margin-top: 0;
-        padding: 0.5rem 0 0.8rem !important;
-        background: #fff;
-        border: 0;
-        border-top: 1px solid var(--yiqi-line);
-        border-radius: 0;
-      }
-      #mainNav .navbar-nav { align-items: flex-start; gap: 0; }
-      #mainNav .nav-link { padding: 0.55rem 0 !important; width: auto; }
-      .about-hero { grid-template-columns: minmax(0,1.45fr) minmax(200px,.65fr); gap: 44px; }
-      .academic-row { grid-template-columns: 166px minmax(0,1fr); }
+      font-size: 0.75rem;
+      color: var(--text-muted);
     }
 
-    @media (max-width: 767px) {
-      .section-shell { padding-left: 20px; padding-right: 20px; }
-      .sticky-note, .notebook-module { padding: 52px 0 !important; }
-      #about { padding-top: 58px !important; }
-      #news { padding-top: 24px !important; }
-      .about-hero { grid-template-columns: 1fr; gap: 30px; }
-      .about-hero-copy { order: 1; }
-      .about-hero-visual { order: 2; align-items: flex-start; text-align: left; }
-      .social-row, .research-tags { justify-content: flex-start; }
-      .masthead-avatar { width: 150px; height: 150px; }
-      .academic-row { grid-template-columns: 1fr; gap: 0.85rem; padding: 1.15rem 0 !important; }
-      .academic-row-media { max-width: 360px; }
-      .academic-interest-grid { grid-template-columns: 1fr; }
+    .site-footer .inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
     }
 
-    @media (max-width: 560px) {
-      .section-shell { padding-left: 17px; padding-right: 17px; }
-      .about-hero-copy .masthead-heading { font-size: 2.55rem !important; }
-      .news-list li { grid-template-columns: 70px minmax(0,1fr); gap: 0.7rem; }
-      .publication-filters { gap: 0.75rem; }
-      .single-page-heading::after { width: 22px; }
+    .site-footer .inner strong { color: var(--text); font-weight: 600; }
+
+    /* ================================================================
+       MODALS
+       ================================================================ */
+    .portfolio-modal .modal-content {
+      background: #fff;
+      border: none;
+      border-radius: 12px;
     }
 
+    .portfolio-modal .close {
+      color: var(--text);
+      opacity: 0.6;
+    }
+
+    .portfolio-modal .close:hover { opacity: 1; }
+
+    .portfolio-modal-title {
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    highlight {
+      background: linear-gradient(transparent 60%, rgba(233, 196, 106, 0.35) 60%);
+      padding: 0 2px;
+    }
+
+    .font-underline {
+      text-decoration: underline;
+      text-decoration-color: var(--accent);
+      text-underline-offset: 3px;
+      text-decoration-thickness: 2px;
+    }
+
+    /* ================================================================
+       RESPONSIVE
+       ================================================================ */
+    @media (max-width: 992px) {
+      .about-grid { grid-template-columns: 1fr 200px; gap: 32px; }
+    }
+
+    @media (max-width: 768px) {
+      .about-grid { grid-template-columns: 1fr; gap: 24px; }
+      .about-side { order: 2; align-items: flex-start; }
+      .about-side .topic-tags { justify-content: flex-start; }
+      .about-content { order: 1; }
+
+      .work-item { grid-template-columns: 1fr; gap: 12px; }
+      .work-item .media { max-width: 320px; }
+
+      .interest-grid { grid-template-columns: 1fr; }
+
+      section { padding: 40px 0; }
+      .news-list::before { left: 60px; }
+      .news-list li { grid-template-columns: 48px 1fr; gap: 12px; }
+      .news-list li::before { left: 56px; }
+    }
+
+    @media (max-width: 480px) {
+      .container { padding: 0 16px; }
+      .section-title { font-size: 1.25rem; }
+      .about-side .avatar { width: 140px; height: 140px; }
+    }
+
+    /* Utilities */
+    .mt-0 { margin-top: 0; }
+    .mb-0 { margin-bottom: 0; }
   </style>
 </head>
 <body id="page-top">
 
+<!-- ================================================================
+     NAVIGATION
+     ================================================================ -->
 <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
   <div class="container">
     <a class="navbar-brand" href="#about">Yiqi LIANG</a>
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-      Menu <i class="fas fa-bars"></i>
+    <button class="navbar-toggler" type="button" aria-label="Toggle navigation">
+      <i class="fas fa-bars"></i>
     </button>
-    <div class="collapse navbar-collapse" id="navbarResponsive">
+    <div class="navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item"><a class="nav-link section-nav active" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link section-nav" href="#news">News</a></li>
         <li class="nav-item"><a class="nav-link section-nav" href="#publications">Publications</a></li>
         <li class="nav-item"><a class="nav-link section-nav" href="#projects">Projects</a></li>
         <li class="nav-item"><a class="nav-link section-nav" href="#interest">Interest</a></li>
@@ -1516,215 +722,253 @@
   </div>
 </nav>
 
-<main class="academic-home">
-  <div class="grid-paper-zone">
-    <div class="container section-shell academic-flow">
+<!-- ================================================================
+     MAIN CONTENT
+     ================================================================ -->
+<main>
 
-    <!-- ABOUT (sticky note) -->
-    <section id="about" class="single-page-section sticky-note">
-      <div class="about-hero">
-        <div class="about-hero-copy">
-          <div class="about-kicker">M.Phil. Student · HKUST(GZ) · Computer Graphics &amp; HCI</div>
-          <h1 class="masthead-heading">Yiqi Liang</h1>
-          <p>I am a second-year M. Phil. student at <highlight>The Hong Kong University of Science and Technology (Guangzhou)</highlight> under supervision of <a href="https://www.mingmingfan.com/" target="_blank" rel="noopener" class="font-underline">Prof. Mingming FAN</a> and <a href="https://luoyuyu.vip/" target="_blank" rel="noopener" class="font-underline">Prof. Yuyu LUO</a>. I am a member of <a href="https://www.mingmingfan.com/lab/" target="_blank" rel="noopener" class="font-underline">Accessible &amp; Pervasive User EXperience (APEX) Group</a>.</p>
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-content">
+          <div class="kicker">M.Phil. Student · HKUST(GZ)</div>
+          <h1>Yiqi Liang</h1>
+          <p>I am a second-year M.Phil. student at <highlight>The Hong Kong University of Science and Technology (Guangzhou)</highlight> under supervision of <a href="https://www.mingmingfan.com/" target="_blank" rel="noopener" class="font-underline">Prof. Mingming FAN</a> and <a href="https://luoyuyu.vip/" target="_blank" rel="noopener" class="font-underline">Prof. Yuyu LUO</a>. I am a member of <a href="https://www.mingmingfan.com/lab/" target="_blank" rel="noopener" class="font-underline">Accessible &amp; Pervasive User EXperience (APEX) Group</a>.</p>
           <p>I am interested in <highlight>Computer Vision</highlight> and <highlight>Computer Graphics</highlight>. I like to design and use different tools of AI and generative models to tackle different vision tasks. More recently, I am learning and doing research on <highlight>Human-Computer Interaction (HCI)</highlight>. My research currently centers around <highlight>the intersection of Computer Graphics and Human-Computer Interaction (HCI)</highlight>, exploring themes around <highlight>Computer Vision</highlight>, <highlight>Human-AI Collaboration with Generative AI</highlight> and <highlight>Assistive Technology</highlight>.</p>
           <p>Please reach out if you think we can collaborate or share ideas :)</p>
         </div>
-        <div class="about-hero-visual">
-          <img class="masthead-avatar img-fluid rounded-circle" src="img/portrait.png" alt="Yiqi Liang">
-          <div class="social-row">
-            <a class="btn btn-social" href="mailto:yliang339@connect.hkust-gz.edu.cn" aria-label="Email"><i class="fa fa-envelope"></i></a>
-            <a class="btn btn-social" href="https://scholar.google.com.hk/citations?user=KTctIuUAAAAJ&hl=zh-CN" target="_blank" rel="noopener" aria-label="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
-            <a class="btn btn-social" href="https://github.com/Yiki77" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
-            <a class="btn btn-social" href="https://orcid.org/0009-0005-2596-5428" target="_blank" rel="noopener" aria-label="ORCID"><i class="fab fa-orcid"></i></a>
+        <div class="about-side">
+          <img class="avatar" src="img/portrait.png" alt="Yiqi Liang">
+          <div class="social-links">
+            <a href="mailto:yliang339@connect.hkust-gz.edu.cn" aria-label="Email"><i class="fa fa-envelope"></i></a>
+            <a href="https://scholar.google.com.hk/citations?user=KTctIuUAAAAJ&hl=zh-CN" target="_blank" rel="noopener" aria-label="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+            <a href="https://github.com/Yiki77" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://orcid.org/0009-0005-2596-5428" target="_blank" rel="noopener" aria-label="ORCID"><i class="fab fa-orcid"></i></a>
           </div>
-          <div class="cv-row"><a href="documents/Yiqi Liang_s_CV.pdf" target="_blank" rel="noopener">Curriculum Vitae ↗</a></div>
-          <div class="research-tags">
-            <span>Computer Graphics</span><span>Computer Vision</span><span>Human-Computer Interaction</span>
-            <span>Generative AI</span><span>Human-AI Collaboration</span><span>Assistive Technology</span>
+          <a class="cv-link" href="documents/Yiqi Liang_s_CV.pdf" target="_blank" rel="noopener">Curriculum Vitae ↗</a>
+          <div class="topic-tags">
+            <span>Computer Graphics</span>
+            <span>Computer Vision</span>
+            <span>HCI</span>
+            <span>Generative AI</span>
+            <span>Human-AI Collaboration</span>
+            <span>Assistive Technology</span>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- NEWS (sticky note) -->
-    <section id="news" class="single-page-section sticky-note">
-      <div class="section-heading-row">
-        <h2 class="single-page-heading">News</h2>
+  <!-- NEWS -->
+  <section id="news">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">News <span class="highlight"></span></h2>
         <span class="section-index">01 / 04</span>
       </div>
       <ul class="news-list">
-        <li><span class="news-date">2026/04</span><span>Work <a href="https://arxiv.org/abs/2410.04182" target="_blank" rel="noopener" class="font-underline"><strong>ProtraVec</strong></a> has been accepted to ICME 2026.</span></li>
-        <li><span class="news-date">2025/09</span><span>Work <a href="https://dl.acm.org/doi/10.1145/3770691" target="_blank" rel="noopener" class="font-underline"><strong>VR-Shuttlecock</strong></a> has been accepted to IMWUT 2025!</span></li>
-        <li><span class="news-date">2025/04</span><span>Work <a href="https://arxiv.org/abs/2410.04072" target="_blank" rel="noopener" class="font-underline"><strong>MROSS</strong></a> has been accepted to ICME 2025.</span></li>
-        <li><span class="news-date">2025/01</span><span>Work <a href="https://dl.acm.org/doi/full/10.1145/3706598.3714236" target="_blank" rel="noopener" class="font-underline"><strong>RemoteChess</strong></a> on constructing VR community for older adults was accepted by CHI 2025.</span></li>
-        <li><span class="news-date">2023/12</span><span>I've joined <a href="https://www.mingmingfan.com/lab/" target="_blank" rel="noopener" class="font-underline">APEX Group</a> under supervision of <a href="https://www.mingmingfan.com/" target="_blank" rel="noopener" class="font-underline">Prof. Mingming FAN</a>.</span></li>
-        <li><span class="news-date">2023/09</span><span>Started MPhil in Computational Media and Arts (CMA) at HKUST(GZ).</span></li>
-        <li><span class="news-date">2023/08</span><span>Our work <a href="https://dl.acm.org/doi/10.1145/3581783.3611716" target="_blank" rel="noopener" class="font-underline"><strong>SD-Net</strong></a> has been accepted as an <strong>Oral presentation</strong> at ACM MM 2023.</span></li>
-        <li><span class="news-date">2022/09</span><span>Research Assistant in Computer Graphics under supervision of <a href="https://liruihui.github.io/" target="_blank" rel="noopener" class="font-underline">Prof. Ruihui LI</a>.</span></li>
+        <li><span class="date">2026/04</span><span class="content">Work <a href="https://arxiv.org/abs/2410.04182" target="_blank" rel="noopener" class="font-underline"><strong>ProtraVec</strong></a> has been accepted to ICME 2026.</span></li>
+        <li><span class="date">2025/09</span><span class="content">Work <a href="https://dl.acm.org/doi/10.1145/3770691" target="_blank" rel="noopener" class="font-underline"><strong>VR-Shuttlecock</strong></a> has been accepted to IMWUT 2025!</span></li>
+        <li><span class="date">2025/04</span><span class="content">Work <a href="https://arxiv.org/abs/2410.04072" target="_blank" rel="noopener" class="font-underline"><strong>MROSS</strong></a> has been accepted to ICME 2025.</span></li>
+        <li><span class="date">2025/01</span><span class="content">Work <a href="https://dl.acm.org/doi/full/10.1145/3706598.3714236" target="_blank" rel="noopener" class="font-underline"><strong>RemoteChess</strong></a> on constructing VR community for older adults was accepted by CHI 2025.</span></li>
+        <li><span class="date">2023/12</span><span class="content">I've joined <a href="https://www.mingmingfan.com/lab/" target="_blank" rel="noopener" class="font-underline">APEX Group</a> under supervision of <a href="https://www.mingmingfan.com/" target="_blank" rel="noopener" class="font-underline">Prof. Mingming FAN</a>.</span></li>
+        <li><span class="date">2023/09</span><span class="content">Started MPhil in Computational Media and Arts (CMA) at HKUST(GZ).</span></li>
+        <li><span class="date">2023/08</span><span class="content">Our work <a href="https://dl.acm.org/doi/10.1145/3581783.3611716" target="_blank" rel="noopener" class="font-underline"><strong>SD-Net</strong></a> has been accepted as an <strong>Oral presentation</strong> at ACM MM 2023.</span></li>
+        <li><span class="date">2022/09</span><span class="content">Research Assistant in Computer Graphics under supervision of <a href="https://liruihui.github.io/" target="_blank" rel="noopener" class="font-underline">Prof. Ruihui LI</a>.</span></li>
       </ul>
-    </section>
-
     </div>
-  </div>
+  </section>
 
-  <div class="clean-content-zone">
-    <div class="container section-shell academic-flow">
-
-    <!-- PUBLICATIONS (notebook) -->
-    <section id="publications" class="single-page-section notebook-module">
-      <div class="section-heading-row">
-        <h2 class="single-page-heading">Publications</h2>
+  <!-- PUBLICATIONS -->
+  <section id="publications">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Publications <span class="highlight"></span></h2>
         <span class="section-index">02 / 04</span>
       </div>
-      <p class="section-intro">Selected research in graphics, vision, and human-computer interaction.</p>
-      <div class="publication-filters" role="group" aria-label="Filter publications">
-        <button class="publication-filter active" type="button" data-filter="all" aria-pressed="true"><span>All</span><span class="filter-count">5</span></button>
-        <button class="publication-filter" type="button" data-filter="point-cloud" aria-pressed="false"><span>Point Cloud</span><span class="filter-count">1</span></button>
-        <button class="publication-filter" type="button" data-filter="sketching" aria-pressed="false"><span>Sketching</span><span class="filter-count">2</span></button>
-        <button class="publication-filter" type="button" data-filter="hci" aria-pressed="false"><span>HCI</span><span class="filter-count">2</span></button>
-      </div>
-      <div class="publication-filter-results" aria-live="polite">
-        <article class="academic-row publication-row" data-category="point-cloud">
-          <div class="academic-row-media"><img src="img/portfolio/sdnet.png" alt="SD-Net"></div>
-          <div class="academic-row-body">
-            <div class="work-topline"><span class="publication-type-label">Point Cloud</span></div>
-            <h3>SD-Net: Spatially-Disentangled Point Cloud Completion Network</h3>
-            <p class="academic-row-authors">Chen J*, Liu Y*, <u>Liang Y</u>, Long D, He X, Li R</p>
-            <p class="academic-row-venue"><strong>ACM MM 2023</strong><span class="oral-badge">Oral Presentation</span></p>
-            <div class="academic-row-links"><a href="documents/SD-Net.pdf" target="_blank" rel="noopener">PDF</a><a href="https://github.com/ChenJunX1an/SDNet" target="_blank" rel="noopener">Code</a></div>
-          </div>
-        </article>
-        <article class="academic-row publication-row" data-category="sketching">
-          <div class="academic-row-media"><img src="img/portfolio/mross.png" alt="MROSS"></div>
-          <div class="academic-row-body">
-            <div class="work-topline"><span class="publication-type-label">Sketching</span></div>
-            <h3>MROSS: Multi-Round Region-based Optimization for Scene Sketching</h3>
-            <p class="academic-row-authors"><u>Liang Y*</u>, Liu Y, Long D, Li R</p>
-            <p class="academic-row-venue"><strong>ICME 2025</strong><span class="oral-badge">Oral Presentation</span></p>
-            <div class="academic-row-links"><a href="documents/MROSS.pdf" target="_blank" rel="noopener">PDF</a><a href="https://github.com/Shayyyki/MROSS" target="_blank" rel="noopener">Code</a></div>
-          </div>
-        </article>
-        <article class="academic-row publication-row" data-category="sketching">
-          <div class="academic-row-media"><img src="img/portfolio/protravec.png" alt="PortraVec"></div>
-          <div class="academic-row-body">
-            <div class="work-topline"><span class="publication-type-label">Sketching</span></div>
-            <h3>PortraVec: Image-Based Portrait Vectorization with Text-Guided Manipulation</h3>
-            <p class="academic-row-authors"><u>Liang Y*</u>, Liu Y, Long D, Li R</p>
-            <p class="academic-row-venue"><strong>ICME 2026</strong></p>
-            <div class="academic-row-links"><a href="documents/Protravec.pdf" target="_blank" rel="noopener">PDF</a></div>
-          </div>
-        </article>
-        <article class="academic-row publication-row" data-category="hci">
-          <div class="academic-row-media"><img src="img/portfolio/remotechess.png" alt="RemoteChess"></div>
-          <div class="academic-row-body">
-            <div class="work-topline"><span class="publication-type-label">HCI</span></div>
-            <h3>RemoteChess: Enhancing Older Adults' Social Connectedness via Designing a Virtual Reality Chinese Chess (Xiangqi) Community</h3>
-            <p class="academic-row-authors">Wei Q*, Wei X, <u>Liang Y</u>, Lin F, Si N, Fan M</p>
-            <p class="academic-row-venue"><strong>CHI 2025</strong></p>
-            <div class="academic-row-links"><a href="documents/RemoteChess.pdf" target="_blank" rel="noopener">PDF</a></div>
-          </div>
-        </article>
-        <article class="academic-row publication-row" data-category="hci">
-          <div class="academic-row-media"><img src="img/portfolio/VR-Shuttlecock.png" alt="VR-Shuttlecock"></div>
-          <div class="academic-row-body">
-            <div class="work-topline"><span class="publication-type-label">HCI</span></div>
-            <h3>VR-Shuttlecock: Exploring the Possibility of Virtual Reality Shuttlecock Kicking with Multi-Sensory Feedback for Empowering Older Adults in Balance Training</h3>
-            <p class="academic-row-authors">Lin F*, <u>Liang Y</u>, Wei Q, Li M, Chu J, Fan M</p>
-            <p class="academic-row-venue"><strong>IMWUT 2025</strong></p>
-            <div class="academic-row-links"><a href="documents/VR-Shuttlecock.pdf" target="_blank" rel="noopener">PDF</a></div>
-          </div>
-        </article>
-      </div>
-    </section>
+      <p class="section-description">Selected research in graphics, vision, and human-computer interaction.</p>
 
-    <!-- PROJECTS (notebook) -->
-    <section id="projects" class="single-page-section notebook-module">
-      <div class="section-heading-row">
-        <h2 class="single-page-heading">Projects</h2>
+      <div class="filter-bar" role="group" aria-label="Filter publications">
+        <button class="publication-filter active" type="button" data-filter="all">All <span class="count">5</span></button>
+        <button class="publication-filter" type="button" data-filter="point-cloud">Point Cloud <span class="count">1</span></button>
+        <button class="publication-filter" type="button" data-filter="sketching">Sketching <span class="count">2</span></button>
+        <button class="publication-filter" type="button" data-filter="hci">HCI <span class="count">2</span></button>
+      </div>
+
+      <div class="publication-filter-results">
+        <article class="work-item publication-row" data-category="point-cloud">
+          <div class="media"><img src="img/portfolio/sdnet.png" alt="SD-Net"></div>
+          <div class="body">
+            <div class="topline"><span class="label">Point Cloud</span></div>
+            <h3>SD-Net: Spatially-Disentangled Point Cloud Completion Network</h3>
+            <p class="authors">Chen J*, Liu Y*, <u>Liang Y</u>, Long D, He X, Li R</p>
+            <div class="venue"><strong>ACM MM 2023</strong><span class="oral">Oral Presentation</span></div>
+            <div class="links"><a href="documents/SD-Net.pdf" target="_blank" rel="noopener">PDF</a><a href="https://github.com/ChenJunX1an/SDNet" target="_blank" rel="noopener">Code</a></div>
+          </div>
+        </article>
+
+        <article class="work-item publication-row" data-category="sketching">
+          <div class="media"><img src="img/portfolio/mross.png" alt="MROSS"></div>
+          <div class="body">
+            <div class="topline"><span class="label">Sketching</span></div>
+            <h3>MROSS: Multi-Round Region-based Optimization for Scene Sketching</h3>
+            <p class="authors"><u>Liang Y*</u>, Liu Y, Long D, Li R</p>
+            <div class="venue"><strong>ICME 2025</strong><span class="oral">Oral Presentation</span></div>
+            <div class="links"><a href="documents/MROSS.pdf" target="_blank" rel="noopener">PDF</a><a href="https://github.com/Shayyyki/MROSS" target="_blank" rel="noopener">Code</a></div>
+          </div>
+        </article>
+
+        <article class="work-item publication-row" data-category="sketching">
+          <div class="media"><img src="img/portfolio/protravec.png" alt="PortraVec"></div>
+          <div class="body">
+            <div class="topline"><span class="label">Sketching</span></div>
+            <h3>PortraVec: Image-Based Portrait Vectorization with Text-Guided Manipulation</h3>
+            <p class="authors"><u>Liang Y*</u>, Liu Y, Long D, Li R</p>
+            <div class="venue"><strong>ICME 2026</strong></div>
+            <div class="links"><a href="documents/Protravec.pdf" target="_blank" rel="noopener">PDF</a></div>
+          </div>
+        </article>
+
+        <article class="work-item publication-row" data-category="hci">
+          <div class="media"><img src="img/portfolio/remotechess.png" alt="RemoteChess"></div>
+          <div class="body">
+            <div class="topline"><span class="label">HCI</span></div>
+            <h3>RemoteChess: Enhancing Older Adults' Social Connectedness via Designing a Virtual Reality Chinese Chess (Xiangqi) Community</h3>
+            <p class="authors">Wei Q*, Wei X, <u>Liang Y</u>, Lin F, Si N, Fan M</p>
+            <div class="venue"><strong>CHI 2025</strong></div>
+            <div class="links"><a href="documents/RemoteChess.pdf" target="_blank" rel="noopener">PDF</a></div>
+          </div>
+        </article>
+
+        <article class="work-item publication-row" data-category="hci">
+          <div class="media"><img src="img/portfolio/VR-Shuttlecock.png" alt="VR-Shuttlecock"></div>
+          <div class="body">
+            <div class="topline"><span class="label">HCI</span></div>
+            <h3>VR-Shuttlecock: Exploring the Possibility of Virtual Reality Shuttlecock Kicking with Multi-Sensory Feedback for Empowering Older Adults in Balance Training</h3>
+            <p class="authors">Lin F*, <u>Liang Y</u>, Wei Q, Li M, Chu J, Fan M</p>
+            <div class="venue"><strong>IMWUT 2025</strong></div>
+            <div class="links"><a href="documents/VR-Shuttlecock.pdf" target="_blank" rel="noopener">PDF</a></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Projects <span class="highlight"></span></h2>
         <span class="section-index">03 / 04</span>
       </div>
-      <p class="section-intro">Selected research prototypes and graphics systems.</p>
-      <h3 class="list-category-title">Research &amp; Development</h3>
-      <article class="academic-row project-row">
-        <button class="academic-row-media project-media-button" type="button" data-toggle="modal" data-target="#medisumwechat"><img src="img/portfolio/medisum.png" alt="MediSUM"></button>
-        <div class="academic-row-body">
-          <div class="work-topline"><span class="project-type-label">MediSUM · WeChat Program</span></div>
-          <h3><button class="row-title-button" type="button" data-toggle="modal" data-target="#medisumwechat">Assisting Medication Information Leaflets Reading for Older Adults: Current Challenges and the Explorations of MediSUM</button></h3>
-          <p class="academic-row-description">WeChat Program · Medication Information Simplification for Older Adults</p>
-          <div class="academic-row-links"><a href="https://github.com/Shayyyki/MediGuide" target="_blank" rel="noopener">Code</a><a href="img/portfolio/video/medisum.mp4" target="_blank" rel="noopener">Video</a></div>
-        </div>
-      </article>
-      <article class="academic-row project-row">
-        <button class="academic-row-media project-media-button" type="button" data-toggle="modal" data-target="#layertouch"><img src="img/portfolio/layertouch.png" alt="LayerTouch"></button>
-        <div class="academic-row-body">
-          <div class="work-topline"><span class="project-type-label">LayerTouch · Android Application</span></div>
-          <h3><button class="row-title-button" type="button" data-toggle="modal" data-target="#layertouch">LayerTouch: Layer-Based Image Exploration for Blind and Low Vision Users</button></h3>
-          <p class="academic-row-description">Android Application · Layer-Based Image Exploration for Blind and Low Vision Users</p>
-          <div class="academic-row-links"><a href="img/portfolio/video/layertouch.mp4" target="_blank" rel="noopener">Video</a><a href="img/portfolio/apk/ImageLayerAPP.apk" target="_blank" rel="noopener">APK</a></div>
-        </div>
-      </article>
-      <article class="academic-row project-row">
-        <button class="academic-row-media project-media-button" type="button" data-toggle="modal" data-target="#styledraw"><img src="img/portfolio/styletransfer.png" alt="VectorStyleDraw"></button>
-        <div class="academic-row-body">
-          <div class="work-topline"><span class="project-type-label">VectorStyleDraw · Algorithm</span></div>
-          <h3><button class="row-title-button" type="button" data-toggle="modal" data-target="#styledraw">Advanced Stylized Vector Graphics Synthesis</button></h3>
-          <p class="academic-row-description">Algorithm · Stylized Vector Graphics Synthesis</p>
-          <div class="academic-row-links"><a href="https://github.com/Shayyyki/VectorStyleDraw" target="_blank" rel="noopener">Code</a><a href="img/portfolio/video/vectorstyledraw.mp4" target="_blank" rel="noopener">Video</a></div>
-        </div>
-      </article>
-      <article class="academic-row project-row">
-        <button class="academic-row-media project-media-button" type="button" data-toggle="modal" data-target="#vectordraw"><img src="img/portfolio/vectordraw.png" alt="VectorDraw"></button>
-        <div class="academic-row-body">
-          <div class="work-topline"><span class="project-type-label">VectorDraw · Algorithm</span></div>
-          <h3><button class="row-title-button" type="button" data-toggle="modal" data-target="#vectordraw">VectorDraw</button></h3>
-          <p class="academic-row-description">Algorithm · Vector Drawings at Different Abstraction Levels</p>
-          <div class="academic-row-links"><a href="https://github.com/Shayyyki/VectorStyleDraw" target="_blank" rel="noopener">Code</a></div>
-        </div>
-      </article>
-    </section>
+      <p class="section-description">Selected research prototypes and graphics systems.</p>
 
-    <!-- INTEREST (notebook) -->
-    <section id="interest" class="single-page-section notebook-module">
-      <div class="section-heading-row compact-heading-row">
-        <h2 class="single-page-heading">Interest</h2>
+      <article class="work-item project-row">
+        <button class="media media-button" type="button" data-toggle="modal" data-target="#medisumwechat"><img src="img/portfolio/medisum.png" alt="MediSUM"></button>
+        <div class="body">
+          <div class="topline"><span class="label">WeChat Program</span></div>
+          <h3><button class="row-title-button" type="button" data-toggle="modal" data-target="#medisumwechat">Assisting Medication Information Leaflets Reading for Older Adults: Current Challenges and the Explorations of MediSUM</button></h3>
+          <p class="authors" style="margin-bottom:4px;">Medication Information Simplification for Older Adults</p>
+          <div class="links"><a href="https://github.com/Shayyyki/MediGuide" target="_blank" rel="noopener">Code</a><a href="img/portfolio/video/medisum.mp4" target="_blank" rel="noopener">Video</a></div>
+        </div>
+      </article>
+
+      <article class="work-item project-row">
+        <button class="media media-button" type="button" data-toggle="modal" data-target="#layertouch"><img src="img/portfolio/layertouch.png" alt="LayerTouch"></button>
+        <div class="body">
+          <div class="topline"><span class="label">Android App</span></div>
+          <h3><button class="row-title-button" type="button" data-toggle="modal" data-target="#layertouch">LayerTouch: Layer-Based Image Exploration for Blind and Low Vision Users</button></h3>
+          <p class="authors" style="margin-bottom:4px;">Layer-Based Image Exploration for Blind and Low Vision Users</p>
+          <div class="links"><a href="img/portfolio/video/layertouch.mp4" target="_blank" rel="noopener">Video</a><a href="img/portfolio/apk/ImageLayerAPP.apk" target="_blank" rel="noopener">APK</a></div>
+        </div>
+      </article>
+
+      <article class="work-item project-row">
+        <button class="media media-button" type="button" data-toggle="modal" data-target="#styledraw"><img src="img/portfolio/styletransfer.png" alt="VectorStyleDraw"></button>
+        <div class="body">
+          <div class="topline"><span class="label">Algorithm</span></div>
+          <h3><button class="row-title-button" type="button" data-toggle="modal" data-target="#styledraw">Advanced Stylized Vector Graphics Synthesis</button></h3>
+          <p class="authors" style="margin-bottom:4px;">Stylized Vector Graphics Synthesis</p>
+          <div class="links"><a href="https://github.com/Shayyyki/VectorStyleDraw" target="_blank" rel="noopener">Code</a><a href="img/portfolio/video/vectorstyledraw.mp4" target="_blank" rel="noopener">Video</a></div>
+        </div>
+      </article>
+
+      <article class="work-item project-row">
+        <button class="media media-button" type="button" data-toggle="modal" data-target="#vectordraw"><img src="img/portfolio/vectordraw.png" alt="VectorDraw"></button>
+        <div class="body">
+          <div class="topline"><span class="label">Algorithm</span></div>
+          <h3><button class="row-title-button" type="button" data-toggle="modal" data-target="#vectordraw">VectorDraw</button></h3>
+          <p class="authors" style="margin-bottom:4px;">Vector Drawings at Different Abstraction Levels</p>
+          <div class="links"><a href="https://github.com/Shayyyki/VectorStyleDraw" target="_blank" rel="noopener">Code</a></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- INTEREST -->
+  <section id="interest">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Interest <span class="highlight"></span></h2>
         <span class="section-index">04 / 04</span>
       </div>
-      <p class="interest-intro" style="margin:-0.2rem 0 1rem;color:var(--yiqi-muted);font-size:0.92rem;">A small personal corner for things I enjoy outside research.</p>
-      <div class="academic-interest-grid">
-        <div class="interest-card"><span class="interest-symbol">♡</span><h3>TV Shows</h3><ul><li>Friends</li><li>Breaking Bad</li><li>Criminal Minds</li><li>Wednesday</li><li>The Knockout</li></ul></div>
-        <div class="interest-card interest-movies"><span class="interest-symbol">○</span><h3>Movies</h3><ul class="interest-movie-lines"><li><b>Love most:</b> About Time, The Notebook, Flipped, Love Letter</li><li><b>Animation:</b> Coco, I Am What I Am, Spies in Disguise, Sing, Rise of the Guardians, Monsters University, Finding Nemo, Ron's Gone Wrong, Soul, Robot Dreams, Alita: Battle Angel, Big Hero 6, The Incredibles, Yao-Chinese Folktales</li><li><b>Mystery:</b> Knives Out, Karma, The Invisible Guest</li><li><b>Drama:</b> Fight Club, The Shawshank Redemption, Shutter Island, The Pianist, A Beautiful Mind, The Silence of the Lambs</li></ul></div>
-        <div class="interest-card"><span class="interest-symbol">✦</span><h3>Handcrafts</h3><p>Pipe cleaners 🧶, Puzzles 🧩</p></div>
-        <div class="interest-card"><span class="interest-symbol">↗</span><h3>Recently Trying</h3><p>Tennis 🎾, Fitness 🏋️</p></div>
-      </div>
-    </section>
+      <p style="color:var(--text-muted);font-size:0.9rem;margin:-4px 0 20px;">A small personal corner for things I enjoy outside research.</p>
 
+      <div class="interest-grid">
+        <div class="card"><h4><span class="sym">♡</span> TV Shows</h4><ul><li>Friends</li><li>Breaking Bad</li><li>Criminal Minds</li><li>Wednesday</li><li>The Knockout</li></ul></div>
+        <div class="card"><h4><span class="sym">○</span> Movies</h4><ul><li><strong>Love most:</strong> About Time, The Notebook, Flipped, Love Letter</li><li><strong>Animation:</strong> Coco, I Am What I Am, Spies in Disguise, Sing, Rise of the Guardians, Monsters University, Finding Nemo, Ron's Gone Wrong, Soul, Robot Dreams, Alita: Battle Angel, Big Hero 6, The Incredibles, Yao-Chinese Folktales</li><li><strong>Mystery:</strong> Knives Out, Karma, The Invisible Guest</li><li><strong>Drama:</strong> Fight Club, The Shawshank Redemption, Shutter Island, The Pianist, A Beautiful Mind, The Silence of the Lambs</li></ul></div>
+        <div class="card"><h4><span class="sym">✦</span> Handcrafts</h4><p>Pipe cleaners 🧶, Puzzles 🧩</p></div>
+        <div class="card"><h4><span class="sym">↗</span> Recently Trying</h4><p>Tennis 🎾, Fitness 🏋️</p></div>
+      </div>
     </div>
-  </div>
+  </section>
+
 </main>
 
+<!-- ================================================================
+     FOOTER
+     ================================================================ -->
 <footer class="site-footer">
-  <div class="container section-shell">
-    <div class="footer-row">
+  <div class="container">
+    <div class="inner">
       <strong>Yiqi Liang</strong>
       <span>Computer Graphics · Computer Vision · HCI · Generative AI</span>
-      <span class="footer-copyright">© 2026 Yiqi Liang</span>
+      <span>© 2026 Yiqi Liang</span>
     </div>
   </div>
 </footer>
 
+<!-- ================================================================
+     SCRIPTS
+     ================================================================ -->
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 <script src="js/freelancer.min.js"></script>
 
-<!-- Navigation & filters script -->
 <script>
   (function() {
+    // Mobile nav toggle
+    const toggler = document.querySelector('#mainNav .navbar-toggler');
+    const collapse = document.querySelector('#mainNav .navbar-collapse');
+    if (toggler && collapse) {
+      toggler.addEventListener('click', function(e) {
+        e.stopPropagation();
+        collapse.classList.toggle('show');
+      });
+      document.addEventListener('click', function(e) {
+        if (!collapse.contains(e.target) && !toggler.contains(e.target)) {
+          collapse.classList.remove('show');
+        }
+      });
+    }
+
+    // Navigation scroll spy
     const navLinks = Array.from(document.querySelectorAll('#mainNav .section-nav'));
     const sections = navLinks.map(link => document.querySelector(link.getAttribute('href'))).filter(Boolean);
 
-    function navHeight() { return document.getElementById('mainNav').getBoundingClientRect().height || 76; }
+    function navHeight() { return document.getElementById('mainNav').getBoundingClientRect().height || 64; }
     function documentTop(el) { return el.getBoundingClientRect().top + window.pageYOffset; }
 
     function setActive(id) {
@@ -1746,9 +990,8 @@
         scrollToSection(target);
         setActive(target.id);
         if (history.replaceState) history.replaceState(null, '', '#' + target.id);
-        if (window.jQuery && jQuery('#navbarResponsive').hasClass('show')) {
-          jQuery('#navbarResponsive').collapse('hide');
-        }
+        const collapse = document.querySelector('#mainNav .navbar-collapse');
+        if (collapse) collapse.classList.remove('show');
       });
     });
 
@@ -1812,7 +1055,9 @@
   })();
 </script>
 
-<!-- Modals (preserved) -->
+<!-- ================================================================
+     MODALS (preserved)
+     ================================================================ -->
 <div aria-hidden="true" aria-labelledby="styledrawLabel" class="portfolio-modal modal fade" id="styledraw" role="dialog" tabindex="-1">
   <div class="modal-dialog modal-xl" role="document"><div class="modal-content"><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true"><i class="fas fa-times fa-xs"></i></span></button>
     <div class="modal-body"><div class="container"><div class="row justify-content-center"><div class="col-lg-10">
