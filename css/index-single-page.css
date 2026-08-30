@@ -621,12 +621,70 @@ highlight {
 }
 
 .academic-row {
-  display: grid;
-  grid-template-columns: 190px minmax(0, 1fr);
-  gap: 1.45rem;
-  align-items: center;
-  padding: 1.15rem 0;
-  border-bottom: 1px dashed rgba(72, 115, 90, 0.20);
+  position: relative;
+  margin: 0.7rem 0;
+  padding: 1.35rem 1.3rem 1.35rem 1.55rem;
+
+  background:
+    linear-gradient(
+      rgba(251, 251, 246, 0.82),
+      rgba(251, 251, 246, 0.82)
+    );
+
+  border: 1px solid rgba(72, 115, 90, 0.11);
+  border-radius: 13px 11px 14px 12px;
+
+  box-shadow:
+    2px 3px 0 rgba(72, 115, 90, 0.035);
+
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease,
+    border-color 0.22s ease,
+    background 0.22s ease;
+}
+
+
+/* hand-drawn marker on the left */
+.academic-row::before {
+  content: "";
+  position: absolute;
+
+  left: 0.38rem;
+  top: 16%;
+  bottom: 16%;
+
+  width: 4px;
+
+  background: rgba(72, 115, 90, 0.65);
+
+  border-radius:
+    4px 3px 5px 2px /
+    3px 5px 2px 4px;
+
+  transform: rotate(-0.8deg);
+}
+
+
+/* Projects use the yellow accent */
+.project-row::before {
+  background: rgba(224, 177, 64, 0.72);
+}
+
+
+/* Hover — lift the paper slightly */
+.academic-row:hover {
+  transform:
+    translateY(-3px)
+    rotate(-0.08deg);
+
+  background: rgba(255, 255, 250, 0.96);
+
+  border-color: rgba(72, 115, 90, 0.20);
+
+  box-shadow:
+    4px 7px 0 rgba(72, 115, 90, 0.055),
+    0 8px 22px rgba(41, 72, 55, 0.045);
 }
 
 .academic-row-media {
