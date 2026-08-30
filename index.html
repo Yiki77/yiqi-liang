@@ -11,7 +11,7 @@
   <meta name="theme-color" content="#F4C95D">
 
   <meta property="og:title" content="Yiqi Liang | Research &amp; Portfolio">
-  <meta property="og:image" content="img/portrait.png">
+  <meta property="og:image" content="img/protrait1.png">
   <meta name="twitter:card" content="summary">
 
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -4146,186 +4146,145 @@
   </style>
 
 
-  <style id="v8-about-embedded-news-patch">
-    /* ================================================================
-       V8 TARGETED PATCH
-       Move News inside About card and make it a fixed-height scroll area.
-       No changes to Publications / Projects / Interest structure.
-       ================================================================ */
 
-    /* About card now contains both the hero and News. */
-    .about-master-card > .container {
-      padding-bottom: 2.15rem !important;
+  <style id="v11-minimal-structural-patch">
+    /* Scale the existing v7 typography without redesigning individual components. */
+    html { font-size: 112%; }
+
+    /* About keeps the v7 card; News is nested only in its LEFT text column. */
+    #about .about-hero { align-items: start !important; }
+    #about .about-hero-copy { min-width: 0; }
+    #about .about-hero-visual {
+      align-items: flex-start !important;
+      text-align: left !important;
     }
 
-    .about-news-embedded {
-      margin-top: 1.35rem;
-      padding-top: 1.2rem;
-      border-top: 1px solid rgba(79, 123, 87, 0.14);
-      position: relative;
-      z-index: 2;
-    }
-
-    /* Remove old standalone-section behavior now that News lives in About. */
-    .about-news-embedded #news.sticky-note {
-      margin: 0 !important;
-      padding: 0 !important;
-      background: transparent !important;
-      background-image: none !important;
+    /* Right column = portrait + research keywords only. */
+    #about .masthead-avatar {
+      width: 100% !important;
+      height: auto !important;
+      max-width: 320px !important;
+      object-fit: contain !important;
       border: 0 !important;
       border-radius: 0 !important;
       box-shadow: none !important;
+      padding: 0 !important;
+      background: transparent !important;
+      transform: none !important;
+    }
+    #about .research-tags {
+      justify-content: flex-start !important;
+      margin-top: 1rem !important;
+    }
+
+    /* Links moved into left column; reuse all original button styles. */
+    #about .about-left-links { margin-top: .9rem; }
+    #about .about-left-links .social-row {
+      justify-content: flex-start !important;
+      margin: 0 0 .55rem !important;
+    }
+    #about .about-left-links .cv-row { margin-top: 0 !important; }
+
+    /* Embedded News: remove only the old standalone section surface. */
+    #about .about-news-wrap {
+      width: 100%;
+      margin-top: 1.55rem;
+    }
+    #about .embedded-news {
+      width: 100%;
+      margin: 0 !important;
+      padding: 0 !important;
+      border: 0 !important;
+      border-radius: 0 !important;
+      background: transparent !important;
+      background-image: none !important;
+      box-shadow: none !important;
       transform: none !important;
       overflow: visible !important;
-      position: relative !important;
+    }
+    #about .embedded-news::before,
+    #about .embedded-news::after { display: none !important; }
+    #about .embedded-news .section-heading-row {
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      margin-bottom: .7rem !important;
     }
 
-    .about-news-embedded #news.sticky-note::before,
-    .about-news-embedded #news.sticky-note::after {
-      display: none !important;
-    }
-
-    .about-news-embedded #news .section-heading-row {
-      margin: 0 0 0.78rem !important;
-      padding: 0 0 0.42rem !important;
-      border-bottom: 0 !important;
-    }
-
-    .about-news-embedded #news .single-page-heading {
-      font-size: 1.45rem !important;
-    }
-
-    /* Fixed-height grid-paper News window. */
-    .about-news-embedded #news .news-list {
-      position: relative !important;
-      width: 100% !important;
-      height: 228px !important;
-      max-height: 228px !important;
-      overflow-y: auto !important;
-      overflow-x: hidden !important;
-      box-sizing: border-box !important;
-      margin: 0 !important;
-      padding: 1.1rem 2.55rem 0.55rem 1.25rem !important;
-      background-color: var(--paper-bg, rgba(252,251,245,.98)) !important;
-      background-image:
-        linear-gradient(var(--paper-grid, rgba(79,123,87,.07)) 1px, transparent 1px),
-        linear-gradient(90deg, var(--paper-grid, rgba(79,123,87,.07)) 1px, transparent 1px) !important;
-      background-size: var(--paper-size, 16px) var(--paper-size, 16px) !important;
-      background-position: 0 0 !important;
-      border: 1px solid rgba(79,123,87,.18) !important;
-      border-radius: 3px !important;
-      box-shadow: inset -1px 0 0 rgba(67,96,72,.14) !important;
+    /* Fixed-height News viewport. The paper scrolls; the right coil stays fixed. */
+    #about .news-scroll-shell {
+      position: relative;
+      height: 235px;
+      max-height: 235px;
+      overflow-y: auto;
+      overflow-x: hidden;
+      overscroll-behavior: contain;
+      padding-right: 20px;
       scrollbar-width: thin;
-      scrollbar-color: rgba(79,123,87,.38) transparent;
+      scrollbar-color: rgba(79,123,87,.36) transparent;
     }
-
-    .about-news-embedded #news .news-list::-webkit-scrollbar {
-      width: 7px;
+    #about .news-scroll-shell::-webkit-scrollbar { width: 7px; }
+    #about .news-scroll-shell::-webkit-scrollbar-track { background: transparent; }
+    #about .news-scroll-shell::-webkit-scrollbar-thumb {
+      background: rgba(79,123,87,.32);
+      border-radius: 8px;
     }
-
-    .about-news-embedded #news .news-list::-webkit-scrollbar-track {
-      background: transparent;
+    #about .embedded-news .news-list {
+      margin: 0 !important;
+      width: 100% !important;
+      overflow: visible !important;
     }
-
-    .about-news-embedded #news .news-list::-webkit-scrollbar-thumb {
-      background: rgba(79,123,87,.28);
-      border-radius: 99px;
-      border: 2px solid transparent;
-      background-clip: padding-box;
-    }
-
-    .about-news-embedded #news .news-list::-webkit-scrollbar-thumb:hover {
-      background: rgba(79,123,87,.42);
-      border: 2px solid transparent;
-      background-clip: padding-box;
-    }
-
-    /* Keep the timeline inside the scrollable paper. */
-    .about-news-embedded #news .news-list::before {
-      left: 104px !important;
-      top: 1.05rem !important;
-      bottom: 0.75rem !important;
-      width: 2px !important;
-      background: rgba(79,123,87,.28) !important;
-      transform: none !important;
-    }
-
-    .about-news-embedded #news .news-list li {
-      grid-template-columns: 76px minmax(0, 1fr) !important;
-      gap: 1.25rem !important;
-      padding: 0.14rem 0 0.95rem 1.68rem !important;
-      border: 0 !important;
-      transform: none !important;
-    }
-
-    .about-news-embedded #news .news-list li::before {
-      left: 104px !important;
-      top: 0.43rem !important;
-      width: 10px !important;
-      height: 10px !important;
-      border-radius: 50% !important;
-      border: 2px solid #4f7b57 !important;
-      background: var(--paper-bg, #fcfbf5) !important;
-      box-shadow: none !important;
-      transform: translateX(-50%) !important;
-    }
-
-    /* Old right-coil pseudo-element was attached to the standalone News list.
-       Hide it here so it does not scroll with content. */
-    .about-news-embedded #news .news-list::after {
-      display: none !important;
-    }
-
-    /* A stationary right-side coil for the embedded News paper. */
-    .about-news-embedded #news::after {
-      content: '' !important;
-      display: block !important;
-      position: absolute !important;
-      z-index: 8 !important;
-      right: -18px !important;
-      top: 3.15rem !important;
-      width: 30px !important;
-      height: 205px !important;
-      pointer-events: none !important;
+    #about .embedded-news .news-list::after { display: none !important; }
+    #about .news-scroll-shell::after {
+      content: '';
+      position: absolute;
+      z-index: 8;
+      right: -5px;
+      top: 10px;
+      bottom: 10px;
+      width: 30px;
+      pointer-events: none;
       background:
         radial-gradient(ellipse 9px 6px at 15px 7px,
           transparent 0 4.8px,
-          rgba(67,96,72,.56) 5px 6.1px,
-          transparent 6.3px) 0 0 / 30px 20px repeat-y !important;
-      transform: rotate(.3deg) !important;
-      opacity: .96 !important;
+          var(--v7-coil) 5px 6.1px,
+          transparent 6.3px) 0 0 / 30px 20px repeat-y;
+      transform: rotate(.35deg);
+    }
+
+    /* Interest: only add the existing v7 white->green master-card shell. */
+    .standalone-interest-stage { padding-top: 1.35rem !important; }
+    .standalone-interest-stage .interest-master-card {
+      width: 100% !important;
+      box-sizing: border-box !important;
+    }
+    .standalone-interest-stage .interest-master-card > .container {
+      max-width: var(--page-inner-width, 1180px) !important;
+      width: 100% !important;
+      margin: 0 auto !important;
+      padding: 2.3rem 2.45rem 2.4rem !important;
+      box-sizing: border-box !important;
+    }
+    .standalone-interest-stage #interest.notebook-module {
+      margin: 0 !important;
+      padding: 0 !important;
+      border: 0 !important;
+      background: transparent !important;
+      background-image: none !important;
+      box-shadow: none !important;
+      transform: none !important;
+      overflow: visible !important;
+    }
+    .standalone-interest-stage #interest.notebook-module::before,
+    .standalone-interest-stage #interest.notebook-module::after {
+      display: none !important;
     }
 
     @media (max-width: 767px) {
-      .about-news-embedded {
-        margin-top: 1rem;
-        padding-top: 1rem;
-      }
-
-      .about-news-embedded #news .news-list {
-        height: 210px !important;
-        max-height: 210px !important;
-        padding-right: 1.7rem !important;
-      }
-
-      .about-news-embedded #news .news-list::before {
-        left: 78px !important;
-      }
-
-      .about-news-embedded #news .news-list li {
-        grid-template-columns: 55px minmax(0,1fr) !important;
-        gap: .85rem !important;
-        padding-left: 1.3rem !important;
-      }
-
-      .about-news-embedded #news .news-list li::before {
-        left: 78px !important;
-      }
-
-      .about-news-embedded #news::after {
-        right: -14px !important;
-        top: 3.1rem !important;
-        height: 188px !important;
+      html { font-size: 106%; }
+      #about .masthead-avatar { max-width: 260px !important; }
+      #about .news-scroll-shell {
+        height: 220px;
+        max-height: 220px;
       }
     }
   </style>
@@ -4366,9 +4325,7 @@
           <p>I am a second-year M. Phil. student at <highlight>The Hong Kong University of Science and Technology (Guangzhou)</highlight> under supervision of <a href="https://www.mingmingfan.com/" target="_blank" rel="noopener" class="font-underline">Prof. Mingming FAN</a> and <a href="https://luoyuyu.vip/" target="_blank" rel="noopener" class="font-underline">Prof. Yuyu LUO</a>. I am a member of <a href="https://www.mingmingfan.com/lab/" target="_blank" rel="noopener" class="font-underline">Accessible &amp; Pervasive User EXperience (APEX) Group</a>.</p>
           <p>I am interested in <highlight>Computer Vision</highlight> and <highlight>Computer Graphics</highlight>. I like to design and use different tools of AI and generative models to tackle different vision tasks. More recently, I am learning and doing research on <highlight>Human-Computer Interaction (HCI)</highlight>. My research currently centers around <highlight>the intersection of Computer Graphics and Human-Computer Interaction (HCI)</highlight>, exploring themes around <highlight>Computer Vision</highlight>, <highlight>Human-AI Collaboration with Generative AI</highlight> and <highlight>Assistive Technology</highlight>.</p>
           <p>Please reach out if you think we can collaborate or share ideas :)</p>
-        </div>
-        <div class="about-hero-visual">
-          <img class="masthead-avatar img-fluid rounded-circle" src="img/portrait.png" alt="Yiqi Liang">
+          <div class="about-left-links">
           <div class="social-row">
             <a class="btn btn-social" href="mailto:yliang339@connect.hkust-gz.edu.cn" aria-label="Email"><i class="fa fa-envelope"></i></a>
             <a class="btn btn-social" href="https://scholar.google.com.hk/citations?user=KTctIuUAAAAJ&hl=zh-CN" target="_blank" rel="noopener" aria-label="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
@@ -4376,22 +4333,13 @@
             <a class="btn btn-social" href="https://orcid.org/0009-0005-2596-5428" target="_blank" rel="noopener" aria-label="ORCID"><i class="fab fa-orcid"></i></a>
           </div>
           <div class="cv-row"><a href="documents/Yiqi Liang_s_CV.pdf" target="_blank" rel="noopener">Curriculum Vitae ↗</a></div>
-          <div class="research-tags">
-            <span>Computer Graphics</span><span>Computer Vision</span><span>Human-Computer Interaction</span>
-            <span>Generative AI</span><span>Human-AI Collaboration</span><span>Assistive Technology</span>
           </div>
-        </div>
-      </div>
-    </section>
-
-
-    <!-- NEWS: embedded inside About card, scrollable -->
-    <div class="about-news-embedded">
-<section id="news" class="single-page-section sticky-note">
+          <div class="about-news-wrap">
+    <section id="news" class="embedded-news">
       <div class="section-heading-row">
         <h2 class="single-page-heading">News</h2>
-        <span class="section-index">01 / 04</span>
       </div>
+      <div class="news-scroll-shell">
       <ul class="news-list">
         <li><span class="news-date">2026/04</span><span>Work <a href="https://arxiv.org/abs/2410.04182" target="_blank" rel="noopener" class="font-underline"><strong>ProtraVec</strong></a> has been accepted to ICME 2026.</span></li>
         <li><span class="news-date">2025/09</span><span>Work <a href="https://dl.acm.org/doi/10.1145/3770691" target="_blank" rel="noopener" class="font-underline"><strong>VR-Shuttlecock</strong></a> has been accepted to IMWUT 2025!</span></li>
@@ -4402,11 +4350,23 @@
         <li><span class="news-date">2023/08</span><span>Our work <a href="https://dl.acm.org/doi/10.1145/3581783.3611716" target="_blank" rel="noopener" class="font-underline"><strong>SD-Net</strong></a> has been accepted as an <strong>Oral presentation</strong> at ACM MM 2023.</span></li>
         <li><span class="news-date">2022/09</span><span>Research Assistant in Computer Graphics under supervision of <a href="https://liruihui.github.io/" target="_blank" rel="noopener" class="font-underline">Prof. Ruihui LI</a>.</span></li>
       </ul>
+      </div>
     </section>
-    </div>
+          </div>
+        </div>
+        <div class="about-hero-visual">
+          <img class="masthead-avatar img-fluid" src="img/protrait1.png" alt="Yiqi Liang" style="width:100%;height:auto;max-width:320px;object-fit:contain;border:0!important;border-radius:0!important;box-shadow:none!important;padding:0!important;background:transparent!important;">
+          <div class="research-tags">
+            <span>Computer Graphics</span><span>Computer Vision</span><span>Human-Computer Interaction</span>
+            <span>Generative AI</span><span>Human-AI Collaboration</span><span>Assistive Technology</span>
+          </div>
+        </div>
+      </div>
+    </section>
       </div>
     </div>
   </div>
+
 
   <!-- PUBLICATIONS: its own white-to-green card, yellow card tucked at top-right -->
   <div class="unified-card-stage research-card-stage publication-card-stage">
@@ -4535,8 +4495,9 @@
     </div>
   </div>
 
-  <!-- INTEREST: standalone, like News; each item uses grid paper -->
+  <!-- INTEREST: standalone stage, now inside its own white-to-green card -->
   <div class="standalone-stage standalone-interest-stage">
+    <div class="master-gradient-card interest-master-card">
     <div class="container section-shell academic-flow">
     <!-- INTEREST (notebook) -->
     <section id="interest" class="single-page-section notebook-module">
@@ -4552,6 +4513,7 @@
         <div class="interest-card"><span class="interest-symbol">↗</span><h3>Recently Trying</h3><p>Tennis 🎾, Fitness 🏋️</p></div>
       </div>
     </section>
+    </div>
     </div>
   </div>
 </main>
