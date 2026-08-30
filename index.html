@@ -3110,124 +3110,118 @@
   </style>
 
 
-  <style id="fused-bottom-grid-overrides">
+
+  <style id="single-card-fused-v2-overrides">
     :root {
-      --shared-grid-line: rgba(79, 123, 87, 0.09);
-      --shared-grid-size: 16px;
-      --page-green-end: #dfeedd;
-      --page-green-mid: #f2f8f1;
+      --shared-paper-bg: rgba(252, 251, 246, 0.98);
+      --shared-paper-grid: rgba(79, 123, 87, 0.09);
+      --shared-paper-size: 16px;
     }
 
     /* ==============================================================
-       MAIN CARD -> PAGE BOTTOM: ONE CONTINUOUS WHITE-GREEN FIELD
+       1. KEEP THE ORIGINAL PAGE; ONLY REMOVE THE MASTER CARD'S
+          VISUAL BOTTOM EDGE AND CONTINUE IT INTO THE FOOTER.
        ============================================================== */
-    body,
-    .academic-home {
-      background: linear-gradient(90deg,
-        #ffffff 0%,
-        #ffffff 24%,
-        #fafcf9 48%,
-        var(--page-green-mid) 72%,
-        var(--page-green-end) 100%) !important;
-    }
-
     .unified-card-stage {
       padding-bottom: 0 !important;
-      margin-bottom: 0 !important;
     }
 
     .master-gradient-card {
       border-bottom: 0 !important;
       border-radius: 4px 4px 0 0 !important;
-      box-shadow:
-        0 -2px 18px rgba(39, 68, 47, 0.035),
-        8px 0 24px rgba(39, 68, 47, 0.025),
-        -8px 0 24px rgba(39, 68, 47, 0.02) !important;
-      overflow: visible !important;
-    }
-
-    /* Extend the same gradient below the content so the card has no visual "ending". */
-    .master-gradient-card::after {
-      content: '';
-      position: absolute;
-      left: -1px;
-      right: -1px;
-      bottom: -90px;
-      height: 92px;
-      z-index: -1;
-      background: linear-gradient(90deg,
-        #ffffff 0%,
-        #ffffff 24%,
-        #fafcf9 48%,
-        var(--page-green-mid) 72%,
-        var(--page-green-end) 100%);
-      border-left: 1px solid var(--master-border);
-      border-right: 1px solid var(--master-border);
-      pointer-events: none;
+      box-shadow: 0 12px 32px rgba(39, 68, 47, 0.055) !important;
     }
 
     .master-gradient-card > .container {
-      padding-bottom: 3.4rem !important;
+      padding-bottom: 3rem !important;
     }
 
+    /* Footer becomes the natural continuation of the same white -> green card.
+       It keeps exactly the same width, gradient and side borders. */
     .site-footer {
-      position: relative;
-      margin-top: 90px !important;
-      padding-top: 2.2rem !important;
+      width: min(1240px, calc(100% - 44px)) !important;
+      margin: 0 auto !important;
+      padding: 1.9rem 0 2.2rem !important;
       background: linear-gradient(90deg,
         #ffffff 0%,
         #ffffff 24%,
         #fafcf9 48%,
-        var(--page-green-mid) 72%,
-        var(--page-green-end) 100%) !important;
+        var(--master-green-mid) 72%,
+        var(--master-green-end) 100%) !important;
       border-top: 0 !important;
+      border-left: 1px solid var(--master-border) !important;
+      border-right: 1px solid var(--master-border) !important;
+      border-bottom: 0 !important;
+      box-shadow: none !important;
     }
 
-    .site-footer::before {
-      display: none !important;
+    .site-footer .section-shell {
+      max-width: 1180px !important;
+      padding-left: 2.45rem !important;
+      padding-right: 2.45rem !important;
+    }
+
+    /* Keep the outside page background from the previous version. */
+    body,
+    .academic-home {
+      background: #f7f8f4 !important;
     }
 
     /* ==============================================================
-       SHARED GRID-PAPER LANGUAGE: NAV / NEWS / INTEREST
+       2. NAV / NEWS / INTEREST USE THE EXACT SAME GRID-PAPER LANGUAGE
        ============================================================== */
     #mainNav,
     #news .news-list,
     .academic-interest-grid .interest-card {
-      background-color: rgba(252, 251, 246, 0.96) !important;
+      background-color: var(--shared-paper-bg) !important;
       background-image:
-        linear-gradient(var(--shared-grid-line) 1px, transparent 1px),
-        linear-gradient(90deg, var(--shared-grid-line) 1px, transparent 1px) !important;
-      background-size: var(--shared-grid-size) var(--shared-grid-size) !important;
+        linear-gradient(var(--shared-paper-grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--shared-paper-grid) 1px, transparent 1px) !important;
+      background-size: var(--shared-paper-size) var(--shared-paper-size) !important;
       background-position: 0 0 !important;
     }
 
-    /* NEWS uses the same paper as nav, while keeping its timeline. */
+    /* Nav remains unchanged except for using the shared paper variables. */
+    #mainNav {
+      border-bottom: 1px solid rgba(79, 123, 87, 0.16) !important;
+    }
+
+    /* ==============================================================
+       3. NEWS: SAME GRID PAPER AS NAV, TIMELINE PRESERVED
+       ============================================================== */
     #news .news-list {
-      border: 1px solid rgba(79, 123, 87, 0.18) !important;
+      margin-top: 0.45rem !important;
+      padding: 1.2rem 1.25rem 0.4rem !important;
+      border: 1px solid rgba(79, 123, 87, 0.17) !important;
+      border-radius: 3px !important;
       box-shadow: none !important;
     }
 
     #news .news-list::before {
-      background: rgba(79, 123, 87, 0.26) !important;
+      background: rgba(79, 123, 87, 0.28) !important;
     }
 
     #news .news-list li::before {
-      background: rgba(252, 251, 246, 0.98) !important;
+      background: var(--shared-paper-bg) !important;
+      border-color: #4f7b57 !important;
     }
 
-    /* Each Interest item is now its own grid-paper note, matching the nav. */
+    /* ==============================================================
+       4. INTEREST: EACH ITEM IS AN INDIVIDUAL GRID-PAPER CARD
+       ============================================================== */
     .academic-interest-grid {
       gap: 1rem !important;
+      background: transparent !important;
+      background-image: none !important;
     }
 
     .academic-interest-grid .interest-card {
-      position: relative;
-      overflow: hidden;
-      border: 1px solid rgba(79, 123, 87, 0.18) !important;
+      padding: 1rem 1rem 1.05rem !important;
+      border: 1px solid rgba(79, 123, 87, 0.17) !important;
       border-radius: 3px !important;
       box-shadow: none !important;
-      padding: 1rem 1.05rem 1.05rem !important;
       transform: none !important;
+      overflow: hidden !important;
     }
 
     .academic-interest-grid .interest-card::before,
@@ -3238,24 +3232,28 @@
     .academic-interest-grid .interest-card h3,
     .academic-interest-grid .interest-card p,
     .academic-interest-grid .interest-card li,
-    .academic-interest-grid .interest-card ul {
+    .academic-interest-grid .interest-symbol {
       position: relative;
       z-index: 1;
     }
 
-    .academic-interest-grid .interest-card:hover {
-      border-color: rgba(79, 123, 87, 0.32) !important;
-      transform: translateY(-1px) !important;
+    @media (max-width: 991px) {
+      .site-footer {
+        width: min(100% - 30px, 1180px) !important;
+      }
+      .site-footer .section-shell {
+        padding-left: 1.7rem !important;
+        padding-right: 1.7rem !important;
+      }
     }
 
     @media (max-width: 767px) {
-      .master-gradient-card::after {
-        bottom: -64px;
-        height: 66px;
-      }
-
       .site-footer {
-        margin-top: 64px !important;
+        width: calc(100% - 22px) !important;
+      }
+      .site-footer .section-shell {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
       }
     }
   </style>
