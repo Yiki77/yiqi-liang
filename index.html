@@ -4430,6 +4430,108 @@
     }
   </style>
 
+
+
+  <style id="v13-three-targeted-refinements">
+    /* ================================================================
+       V13 — only the three requested refinements.
+       ================================================================ */
+
+    /* 1) Portrait outline follows the non-transparent PNG silhouette.
+       Multiple zero-blur drop-shadows create a clean alpha-contour stroke
+       instead of a rectangular CSS border. */
+    #about .masthead-avatar {
+      border: 0 !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      background: transparent !important;
+      padding: 0 !important;
+      filter:
+        drop-shadow( 1.5px  0     0 rgba(47, 83, 58, .72))
+        drop-shadow(-1.5px  0     0 rgba(47, 83, 58, .72))
+        drop-shadow( 0      1.5px 0 rgba(47, 83, 58, .72))
+        drop-shadow( 0     -1.5px 0 rgba(47, 83, 58, .72))
+        drop-shadow( 1.1px  1.1px 0 rgba(47, 83, 58, .62))
+        drop-shadow(-1.1px  1.1px 0 rgba(47, 83, 58, .62))
+        drop-shadow( 1.1px -1.1px 0 rgba(47, 83, 58, .62))
+        drop-shadow(-1.1px -1.1px 0 rgba(47, 83, 58, .62)) !important;
+      -webkit-filter:
+        drop-shadow( 1.5px  0     0 rgba(47, 83, 58, .72))
+        drop-shadow(-1.5px  0     0 rgba(47, 83, 58, .72))
+        drop-shadow( 0      1.5px 0 rgba(47, 83, 58, .72))
+        drop-shadow( 0     -1.5px 0 rgba(47, 83, 58, .72))
+        drop-shadow( 1.1px  1.1px 0 rgba(47, 83, 58, .62))
+        drop-shadow(-1.1px  1.1px 0 rgba(47, 83, 58, .62))
+        drop-shadow( 1.1px -1.1px 0 rgba(47, 83, 58, .62))
+        drop-shadow(-1.1px -1.1px 0 rgba(47, 83, 58, .62)) !important;
+    }
+
+    /* 2) News is a little narrower and more compact in the left column. */
+    #about .about-news-wrap {
+      width: 92% !important;
+      max-width: 92% !important;
+      margin-right: auto !important;
+    }
+
+    #about .news-scroll-shell {
+      height: 210px !important;
+      max-height: 210px !important;
+    }
+
+    /* 3) Interest gets the same physical tape language as the other cards. */
+    .standalone-interest-stage {
+      position: relative !important;
+      overflow: visible !important;
+    }
+
+    .standalone-interest-stage .interest-master-card {
+      position: relative !important;
+      z-index: 2 !important;
+    }
+
+    .standalone-interest-stage .interest-tape-sticker {
+      display: block !important;
+      position: absolute !important;
+      z-index: 8 !important;
+      width: clamp(145px, 15vw, 190px) !important;
+      height: 62px !important;
+      top: 0.72rem !important;
+      right: 3.5rem !important;
+      left: auto !important;
+      border-radius: 3px !important;
+      border: 1px solid rgba(176, 145, 43, 0.16) !important;
+      background: linear-gradient(110deg,
+        rgba(255,255,255,0.94) 0%,
+        var(--v7-tape-yellow-soft) 42%,
+        var(--v7-tape-yellow) 100%) !important;
+      box-shadow:
+        0 4px 10px rgba(103, 82, 22, 0.08),
+        inset 0 0 0 1px rgba(255,255,255,0.28) !important;
+      opacity: 0.9 !important;
+      transform: rotate(2deg) !important;
+      pointer-events: none !important;
+    }
+
+    @media (max-width: 767px) {
+      #about .about-news-wrap {
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+
+      #about .news-scroll-shell {
+        height: 195px !important;
+        max-height: 195px !important;
+      }
+
+      .standalone-interest-stage .interest-tape-sticker {
+        width: 128px !important;
+        height: 52px !important;
+        top: 0.55rem !important;
+        right: 1.2rem !important;
+      }
+    }
+  </style>
+
 </head>
 <body id="page-top">
 
@@ -4487,7 +4589,7 @@
           </div>
         </div>
         <div class="about-hero-visual">
-          <img class="masthead-avatar img-fluid" src="img/protrait1.png" alt="Yiqi Liang" style="width:100%;height:auto;max-width:426px;object-fit:contain;border:2px solid rgba(39,69,48,0.38)!important;border-radius:2px!important;box-shadow:0 7px 20px rgba(39,68,47,0.08)!important;padding:0!important;background:#fff!important;">
+          <img class="masthead-avatar img-fluid" src="img/protrait1.png" alt="Yiqi Liang" style="width:100%;height:auto;max-width:426px;object-fit:contain;border:0!important;border-radius:0!important;box-shadow:none!important;padding:0!important;background:transparent!important;">
           <div class="about-right-links">
             <div class="social-row">
               <a class="btn btn-social" href="mailto:yliang339@connect.hkust-gz.edu.cn" aria-label="Email"><i class="fa fa-envelope"></i></a>
@@ -4638,6 +4740,7 @@
 
   <!-- INTEREST: standalone stage, now inside its own white-to-green card -->
   <div class="standalone-stage standalone-interest-stage">
+    <div class="card-tape-sticker interest-tape-sticker" aria-hidden="true"></div>
     <div class="master-gradient-card interest-master-card">
     <div class="container section-shell academic-flow">
     <!-- INTEREST (notebook) -->
