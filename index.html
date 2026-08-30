@@ -4289,6 +4289,147 @@
     }
   </style>
 
+
+  <style id="v12-targeted-refine">
+    /* Only the four refinements requested after v11. */
+
+    /* Portrait: ~1/3 larger, simple outline; right column widened to actually show it. */
+    #about .about-hero {
+      grid-template-columns: minmax(0, 1fr) 370px !important;
+      gap: 2.55rem !important;
+      align-items: start !important;
+    }
+
+    #about .about-hero-visual {
+      width: 100% !important;
+      max-width: 426px !important;
+      align-items: stretch !important;
+      text-align: left !important;
+    }
+
+    #about .masthead-avatar {
+      width: 100% !important;
+      max-width: 426px !important;
+      height: auto !important;
+      border: 2px solid rgba(39, 69, 48, 0.38) !important;
+      border-radius: 2px !important;
+      box-shadow: 0 7px 20px rgba(39, 68, 47, 0.08) !important;
+      object-fit: contain !important;
+    }
+
+    /* Social circles + CV now sit below portrait and above keyword chips. */
+    .about-right-links {
+      display: flex !important;
+      align-items: center !important;
+      flex-wrap: wrap !important;
+      gap: 0.6rem 0.8rem !important;
+      margin: 0.82rem 0 0.72rem !important;
+    }
+
+    .about-right-links .social-row,
+    .about-right-links .cv-row {
+      margin: 0 !important;
+    }
+
+    .about-right-links .social-row {
+      justify-content: flex-start !important;
+    }
+
+    /* Keywords become clear rounded cards instead of plain text. */
+    #about .research-tags {
+      display: flex !important;
+      flex-wrap: wrap !important;
+      justify-content: flex-start !important;
+      gap: 0.5rem !important;
+      width: 100% !important;
+      max-width: none !important;
+      margin-top: 0 !important;
+    }
+
+    #about .research-tags span {
+      display: inline-flex !important;
+      align-items: center !important;
+      padding: 0.38rem 0.68rem !important;
+      border: 1px solid rgba(63, 116, 82, 0.22) !important;
+      border-radius: 999px !important;
+      background: rgba(255, 255, 255, 0.76) !important;
+      color: var(--yiqi-green-dark) !important;
+      box-shadow: 0 2px 6px rgba(39, 68, 47, 0.035) !important;
+      line-height: 1.25 !important;
+    }
+
+    #about .research-tags span::before,
+    #about .research-tags span::after {
+      display: none !important;
+      content: none !important;
+    }
+
+    /* Publications had inherited an old 76px top padding. Match Projects exactly. */
+    .publication-card-stage {
+      padding-top: 1.35rem !important;
+    }
+
+    #publications {
+      padding-top: 1.25rem !important;
+    }
+
+    /* Stronger but still academic hover emphasis for each publication/project row. */
+    #publications .academic-row,
+    #projects .academic-row {
+      transition: background 0.18s ease, border-color 0.18s ease,
+                  box-shadow 0.18s ease, transform 0.18s ease !important;
+    }
+
+    #publications .academic-row:hover,
+    #projects .academic-row:hover {
+      background: linear-gradient(90deg,
+        rgba(244, 249, 244, 0.98) 0%,
+        rgba(229, 241, 231, 0.96) 100%) !important;
+      border-color: rgba(63, 116, 82, 0.58) !important;
+      box-shadow: 0 9px 22px rgba(39, 68, 47, 0.10) !important;
+      transform: translateY(-2px) !important;
+    }
+
+    #publications .academic-row:hover .academic-row-body h3,
+    #projects .academic-row:hover .academic-row-body h3,
+    #publications .academic-row:hover .row-title-button,
+    #projects .academic-row:hover .row-title-button {
+      color: #28533a !important;
+    }
+
+    #publications .academic-row:hover .publication-type-label,
+    #projects .academic-row:hover .project-type-label {
+      background: rgba(63, 116, 82, 0.14) !important;
+      border-color: rgba(63, 116, 82, 0.34) !important;
+      color: #28533a !important;
+    }
+
+    #publications .academic-row:hover .academic-row-media,
+    #projects .academic-row:hover .academic-row-media {
+      border-color: rgba(63, 116, 82, 0.42) !important;
+    }
+
+    @media (max-width: 991px) {
+      #about .about-hero {
+        grid-template-columns: minmax(0, 1fr) 310px !important;
+      }
+      #about .about-hero-visual,
+      #about .masthead-avatar {
+        max-width: 350px !important;
+      }
+    }
+
+    @media (max-width: 767px) {
+      #about .about-hero {
+        grid-template-columns: 1fr !important;
+      }
+      #about .about-hero-visual,
+      #about .masthead-avatar {
+        max-width: 100% !important;
+      }
+    }
+  </style>
+
 </head>
 <body id="page-top">
 
@@ -4325,15 +4466,6 @@
           <p>I am a second-year M. Phil. student at <highlight>The Hong Kong University of Science and Technology (Guangzhou)</highlight> under supervision of <a href="https://www.mingmingfan.com/" target="_blank" rel="noopener" class="font-underline">Prof. Mingming FAN</a> and <a href="https://luoyuyu.vip/" target="_blank" rel="noopener" class="font-underline">Prof. Yuyu LUO</a>. I am a member of <a href="https://www.mingmingfan.com/lab/" target="_blank" rel="noopener" class="font-underline">Accessible &amp; Pervasive User EXperience (APEX) Group</a>.</p>
           <p>I am interested in <highlight>Computer Vision</highlight> and <highlight>Computer Graphics</highlight>. I like to design and use different tools of AI and generative models to tackle different vision tasks. More recently, I am learning and doing research on <highlight>Human-Computer Interaction (HCI)</highlight>. My research currently centers around <highlight>the intersection of Computer Graphics and Human-Computer Interaction (HCI)</highlight>, exploring themes around <highlight>Computer Vision</highlight>, <highlight>Human-AI Collaboration with Generative AI</highlight> and <highlight>Assistive Technology</highlight>.</p>
           <p>Please reach out if you think we can collaborate or share ideas :)</p>
-          <div class="about-left-links">
-          <div class="social-row">
-            <a class="btn btn-social" href="mailto:yliang339@connect.hkust-gz.edu.cn" aria-label="Email"><i class="fa fa-envelope"></i></a>
-            <a class="btn btn-social" href="https://scholar.google.com.hk/citations?user=KTctIuUAAAAJ&hl=zh-CN" target="_blank" rel="noopener" aria-label="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
-            <a class="btn btn-social" href="https://github.com/Yiki77" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
-            <a class="btn btn-social" href="https://orcid.org/0009-0005-2596-5428" target="_blank" rel="noopener" aria-label="ORCID"><i class="fab fa-orcid"></i></a>
-          </div>
-          <div class="cv-row"><a href="documents/Yiqi Liang_s_CV.pdf" target="_blank" rel="noopener">Curriculum Vitae ↗</a></div>
-          </div>
           <div class="about-news-wrap">
     <section id="news" class="embedded-news">
       <div class="section-heading-row">
@@ -4355,7 +4487,16 @@
           </div>
         </div>
         <div class="about-hero-visual">
-          <img class="masthead-avatar img-fluid" src="img/protrait1.png" alt="Yiqi Liang" style="width:100%;height:auto;max-width:320px;object-fit:contain;border:0!important;border-radius:0!important;box-shadow:none!important;padding:0!important;background:transparent!important;">
+          <img class="masthead-avatar img-fluid" src="img/protrait1.png" alt="Yiqi Liang" style="width:100%;height:auto;max-width:426px;object-fit:contain;border:2px solid rgba(39,69,48,0.38)!important;border-radius:2px!important;box-shadow:0 7px 20px rgba(39,68,47,0.08)!important;padding:0!important;background:#fff!important;">
+          <div class="about-right-links">
+            <div class="social-row">
+              <a class="btn btn-social" href="mailto:yliang339@connect.hkust-gz.edu.cn" aria-label="Email"><i class="fa fa-envelope"></i></a>
+              <a class="btn btn-social" href="https://scholar.google.com.hk/citations?user=KTctIuUAAAAJ&hl=zh-CN" target="_blank" rel="noopener" aria-label="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+              <a class="btn btn-social" href="https://github.com/Yiki77" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+              <a class="btn btn-social" href="https://orcid.org/0009-0005-2596-5428" target="_blank" rel="noopener" aria-label="ORCID"><i class="fab fa-orcid"></i></a>
+            </div>
+            <div class="cv-row"><a href="documents/Yiqi Liang_s_CV.pdf" target="_blank" rel="noopener">Curriculum Vitae ↗</a></div>
+          </div>
           <div class="research-tags">
             <span>Computer Graphics</span><span>Computer Vision</span><span>Human-Computer Interaction</span>
             <span>Generative AI</span><span>Human-AI Collaboration</span><span>Assistive Technology</span>
