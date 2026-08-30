@@ -1463,3 +1463,111 @@ highlight {
     grid-template-columns: 1fr;
   }
 }
+
+
+/* =================================================================
+   v6 — Live-site stability fixes
+   - The current JS does not generate the old mosaic navbar cells.
+   - About and News share the first viewport row, so News is content,
+     not a separate ScrollSpy navigation target.
+   ================================================================= */
+
+/* Stable glass navbar fallback. This intentionally overrides the old
+   v4 transparent-mosaic rule so the live page remains readable even
+   when no .nav-mosaic-cell elements are generated. */
+#mainNav {
+  overflow: visible !important;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(251, 252, 248, 0.95),
+      rgba(253, 251, 242, 0.95)
+    ) !important;
+  border-bottom: 1px solid rgba(72, 115, 90, 0.14) !important;
+  box-shadow: 0 3px 18px rgba(41, 72, 55, 0.045) !important;
+  backdrop-filter: blur(14px) saturate(1.05) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(1.05) !important;
+}
+
+/* If an older HTML copy still contains a mosaic container, hide it.
+   This makes CSS/JS version mismatches harmless on GitHub Pages. */
+#mainNav .nav-mosaic-grid {
+  display: none !important;
+}
+
+#mainNav .nav-link.active {
+  box-shadow:
+    0 5px 13px rgba(41, 72, 55, 0.13),
+    inset 0 -2px 0 rgba(244, 201, 93, 0.92),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.10) !important;
+}
+
+/* Keep both columns aligned at the top. */
+.academic-layout {
+  align-items: start !important;
+}
+
+.academic-content,
+#news.news-section {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+/* About and News occupy the same first row. News therefore should not
+   create a second competing navigation position. */
+#news {
+  scroll-margin-top: calc(var(--yiqi-nav-height) + 24px);
+}
+
+/* Publication teaser graphics should never be cropped. Project images
+   can remain photographic/crop-friendly. */
+.publication-row .academic-row-media img {
+  object-fit: contain !important;
+  padding: 0.35rem;
+}
+
+.project-row .academic-row-media img {
+  object-fit: cover !important;
+  padding: 0;
+}
+
+/* Slightly strengthen row readability on the live page. */
+.academic-row {
+  align-items: center;
+}
+
+.academic-row-body h3 {
+  overflow-wrap: anywhere;
+}
+
+/* Keep buttons from inheriting browser-specific appearance. */
+button.academic-row-media,
+button.row-title-button {
+  font-family: inherit;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* Tablet/mobile: the collapsed menu needs its own opaque-enough panel
+   after the desktop navbar is forced back to glass. */
+@media (max-width: 991px) {
+  #mainNav .navbar-collapse {
+    background: rgba(251, 252, 248, 0.97) !important;
+    border: 1px solid rgba(72, 115, 90, 0.14) !important;
+    box-shadow: 0 10px 25px rgba(41, 72, 55, 0.08);
+  }
+}
+
+@media (max-width: 767px) {
+  .academic-layout {
+    display: block !important;
+  }
+
+  #about.academic-profile {
+    margin-bottom: 3.4rem !important;
+  }
+
+  .academic-content {
+    width: 100%;
+  }
+}
