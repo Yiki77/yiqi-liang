@@ -915,9 +915,25 @@
     }
     .footer-row {
       display: flex;
-      justify-content: flex-start;
-      gap: .6rem;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
       flex-wrap: wrap;
+      width: 100%;
+    }
+    
+    .footer-row > strong {
+      flex: 0 0 auto;
+    }
+    
+    .footer-row > span:not(.footer-copyright) {
+      flex: 1;
+      text-align: center;
+    }
+    
+    .footer-copyright {
+      flex: 0 0 auto;
+      text-align: right;
     }
     .footer-row strong { color: var(--yiqi-green-dark); font-family: "Montserrat", sans-serif; }
 
