@@ -2747,4 +2747,14 @@ highlight {
   .academic-interest-grid .interest-card {
     transform: none !important;
   }
+
+@media (min-width: 768px) {
+  .about-hero {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+    gap: 2.6rem;
+  }
+
+  .about-hero-visual {
+    width: 100% !important;
+  }
 }
