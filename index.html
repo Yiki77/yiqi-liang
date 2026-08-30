@@ -3258,6 +3258,565 @@
     }
   </style>
 
+
+  <style id="sectioned-layout-coil-v3-overrides">
+    :root {
+      --page-stage-width: min(1240px, calc(100% - 44px));
+      --page-inner-width: 1180px;
+      --paper-bg: rgba(252, 251, 246, 0.98);
+      --paper-grid: rgba(79, 123, 87, 0.09);
+      --paper-size: 16px;
+      --coil-ink: rgba(67, 96, 72, 0.54);
+      --coil-soft: rgba(67, 96, 72, 0.16);
+    }
+
+    /* --------------------------------------------------------------
+       PAGE STRUCTURE
+       About / News / Interest are standalone.
+       Only Publications + Projects live on the green master card.
+       -------------------------------------------------------------- */
+    body,
+    .academic-home {
+      background: #f7f8f4 !important;
+    }
+
+    .standalone-stage,
+    .research-card-stage {
+      width: var(--page-stage-width) !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+      position: relative;
+    }
+
+    .standalone-stage > .container,
+    .research-master-card > .container {
+      max-width: var(--page-inner-width) !important;
+      width: 100% !important;
+      margin: 0 auto !important;
+      padding-left: 2.45rem !important;
+      padding-right: 2.45rem !important;
+    }
+
+    .standalone-about-stage {
+      padding: 3.15rem 0 1.1rem !important;
+    }
+
+    .standalone-news-stage {
+      padding: 0.35rem 0 2.3rem !important;
+    }
+
+    .research-card-stage {
+      padding: 2.2rem 0 2.7rem !important;
+    }
+
+    .standalone-interest-stage {
+      padding: 0.25rem 0 2.8rem !important;
+    }
+
+    /* Remove legacy sticky/notebook shells from standalone sections. */
+    .standalone-stage .sticky-note,
+    .standalone-stage .notebook-module {
+      margin: 0 !important;
+      padding: 1.4rem 0 !important;
+      background: transparent !important;
+      background-image: none !important;
+      border: 0 !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      transform: none !important;
+      overflow: visible !important;
+    }
+
+    .standalone-stage .sticky-note::before,
+    .standalone-stage .sticky-note::after,
+    .standalone-stage .notebook-module::before,
+    .standalone-stage .notebook-module::after {
+      display: none !important;
+    }
+
+    .standalone-stage section + section,
+    .research-master-card section + section {
+      border-top: 0 !important;
+    }
+
+    /* About remains clean and grid-free. */
+    #about,
+    #about .about-hero,
+    #about .about-hero-copy,
+    #about .about-hero-visual {
+      background: transparent !important;
+      background-image: none !important;
+    }
+
+    #about {
+      padding-top: 0 !important;
+      padding-bottom: 0.7rem !important;
+    }
+
+    #about .about-hero {
+      grid-template-columns: minmax(0, 1.5fr) 280px !important;
+      gap: 2.35rem !important;
+      align-items: center !important;
+    }
+
+    /* --------------------------------------------------------------
+       NEWS — same total width as About; standalone, not on green card.
+       The content itself uses the exact nav grid-paper language.
+       -------------------------------------------------------------- */
+    #news {
+      padding: 0 !important;
+      background: transparent !important;
+      background-image: none !important;
+    }
+
+    #news .section-heading-row {
+      margin-bottom: 0.9rem !important;
+    }
+
+    #news .news-list {
+      width: 100% !important;
+      margin: 0 !important;
+      padding: 1.25rem 1.35rem 0.45rem !important;
+      box-sizing: border-box !important;
+      background-color: var(--paper-bg) !important;
+      background-image:
+        linear-gradient(var(--paper-grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--paper-grid) 1px, transparent 1px) !important;
+      background-size: var(--paper-size) var(--paper-size) !important;
+      background-position: 0 0 !important;
+      border: 1px solid rgba(79,123,87,0.17) !important;
+      border-radius: 3px !important;
+      box-shadow: none !important;
+    }
+
+    #news .news-list::before {
+      left: 105px !important;
+      top: 1.12rem !important;
+      bottom: 0.9rem !important;
+      width: 2px !important;
+      background: rgba(79,123,87,0.28) !important;
+      transform: none !important;
+    }
+
+    #news .news-list li {
+      grid-template-columns: 78px minmax(0, 1fr) !important;
+      gap: 1.28rem !important;
+      padding: 0.18rem 0 1rem 1.72rem !important;
+      border: 0 !important;
+      transform: none !important;
+    }
+
+    #news .news-list li::before {
+      left: 105px !important;
+      top: 0.47rem !important;
+      width: 10px !important;
+      height: 10px !important;
+      border-radius: 50% !important;
+      border: 2px solid #4f7b57 !important;
+      background: var(--paper-bg) !important;
+      box-shadow: none !important;
+      transform: translateX(-50%) !important;
+    }
+
+    #news .news-list li::after { display: none !important; }
+
+    /* --------------------------------------------------------------
+       RESEARCH MASTER CARD — Publications + Projects only.
+       Restore a complete green card and its yellow card behind it.
+       -------------------------------------------------------------- */
+    .research-card-stage .yellow-back-card {
+      display: block !important;
+      z-index: 0 !important;
+    }
+
+    .research-master-card {
+      position: relative !important;
+      z-index: 1 !important;
+      border: 1px solid var(--master-border) !important;
+      border-radius: 4px !important;
+      box-shadow: 0 16px 42px rgba(39, 68, 47, 0.07) !important;
+      overflow: hidden !important;
+      background: linear-gradient(90deg,
+        #ffffff 0%,
+        #ffffff 24%,
+        #fafcf9 48%,
+        var(--master-green-mid) 72%,
+        var(--master-green-end) 100%) !important;
+    }
+
+    .research-master-card > .container {
+      padding-top: 2.35rem !important;
+      padding-bottom: 2.45rem !important;
+    }
+
+    .research-master-card .notebook-module {
+      margin: 0 !important;
+      padding: 1.25rem 0 2.05rem !important;
+      background: transparent !important;
+      background-image: none !important;
+      border: 0 !important;
+      box-shadow: none !important;
+      transform: none !important;
+      overflow: visible !important;
+    }
+
+    .research-master-card .notebook-module::before,
+    .research-master-card .notebook-module::after {
+      display: none !important;
+    }
+
+    #projects {
+      border-top: 1px solid rgba(49,82,57,0.14) !important;
+      padding-top: 2rem !important;
+    }
+
+    /* --------------------------------------------------------------
+       COIL BINDING — every Publication / Project entry gets rings at left.
+       -------------------------------------------------------------- */
+    .research-master-card .academic-row {
+      position: relative !important;
+      overflow: visible !important;
+      margin: 0 0 1rem 0.8rem !important;
+      padding: 0.96rem 0.98rem 0.96rem 1.08rem !important;
+      border: 1px solid rgba(49,82,57,0.14) !important;
+      border-radius: 4px !important;
+      background: rgba(255,255,255,0.82) !important;
+      box-shadow: none !important;
+      transform: none !important;
+    }
+
+    .research-master-card .academic-row::before {
+      content: '' !important;
+      display: block !important;
+      position: absolute !important;
+      z-index: 5 !important;
+      left: -19px !important;
+      top: 12px !important;
+      bottom: 12px !important;
+      width: 30px !important;
+      height: auto !important;
+      inset: auto auto auto -19px !important;
+      border: 0 !important;
+      border-radius: 0 !important;
+      pointer-events: none !important;
+      background:
+        radial-gradient(ellipse 9px 6px at 15px 7px,
+          transparent 0 4.8px,
+          var(--coil-ink) 5px 6.1px,
+          transparent 6.3px) 0 0 / 30px 20px repeat-y !important;
+      box-shadow: none !important;
+      transform: rotate(-0.4deg) !important;
+      opacity: 0.95 !important;
+    }
+
+    .research-master-card .academic-row::after {
+      content: '' !important;
+      display: block !important;
+      position: absolute !important;
+      z-index: 2 !important;
+      left: -4px !important;
+      top: 10px !important;
+      bottom: 10px !important;
+      width: 1px !important;
+      height: auto !important;
+      border: 0 !important;
+      background: var(--coil-soft) !important;
+      pointer-events: none !important;
+    }
+
+    .research-master-card .academic-row:hover {
+      transform: translateY(-1px) !important;
+      background: rgba(255,255,255,0.96) !important;
+      border-color: rgba(79,123,87,0.27) !important;
+    }
+
+    /* --------------------------------------------------------------
+       INTEREST — standalone like News; every item is grid paper.
+       -------------------------------------------------------------- */
+    #interest {
+      padding: 0 !important;
+      background: transparent !important;
+      background-image: none !important;
+    }
+
+    #interest .academic-interest-grid {
+      background: transparent !important;
+      background-image: none !important;
+      border: 0 !important;
+      gap: 1rem !important;
+    }
+
+    #interest .interest-card {
+      padding: 1.05rem 1.05rem 1.1rem !important;
+      background-color: var(--paper-bg) !important;
+      background-image:
+        linear-gradient(var(--paper-grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--paper-grid) 1px, transparent 1px) !important;
+      background-size: var(--paper-size) var(--paper-size) !important;
+      background-position: 0 0 !important;
+      border: 1px solid rgba(79,123,87,0.17) !important;
+      border-radius: 3px !important;
+      box-shadow: none !important;
+      transform: none !important;
+      overflow: hidden !important;
+    }
+
+    #interest .interest-card::before,
+    #interest .interest-card::after {
+      display: none !important;
+    }
+
+    /* Footer is no longer a continuation of the green card. */
+    .site-footer {
+      width: 100% !important;
+      margin: 0 !important;
+      padding: 1.9rem 0 2.2rem !important;
+      background: #f7f8f4 !important;
+      border: 0 !important;
+      border-top: 1px solid rgba(49,82,57,0.10) !important;
+      box-shadow: none !important;
+    }
+
+    .site-footer .section-shell {
+      max-width: 1180px !important;
+      padding-left: 1.2rem !important;
+      padding-right: 1.2rem !important;
+    }
+
+    @media (max-width: 991px) {
+      :root { --page-stage-width: min(100% - 30px, 1180px); }
+
+      .standalone-stage > .container,
+      .research-master-card > .container {
+        padding-left: 1.7rem !important;
+        padding-right: 1.7rem !important;
+      }
+
+      #about .about-hero {
+        grid-template-columns: minmax(0, 1fr) 230px !important;
+      }
+    }
+
+    @media (max-width: 767px) {
+      :root { --page-stage-width: calc(100% - 22px); }
+
+      .standalone-stage > .container,
+      .research-master-card > .container {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+      }
+
+      #about .about-hero {
+        grid-template-columns: 1fr !important;
+      }
+
+      #news .news-list {
+        padding: 1rem 0.75rem 0.28rem !important;
+      }
+
+      #news .news-list::before,
+      #news .news-list li::before {
+        left: 77px !important;
+      }
+
+      #news .news-list li {
+        grid-template-columns: 55px minmax(0, 1fr) !important;
+        gap: 0.85rem !important;
+        padding-left: 1.15rem !important;
+      }
+
+      .research-master-card .academic-row {
+        margin-left: 0.55rem !important;
+      }
+
+      .research-master-card .academic-row::before {
+        left: -15px !important;
+        inset: auto auto auto -15px !important;
+        width: 24px !important;
+        background-size: 24px 18px !important;
+        background-position: -2px 0 !important;
+      }
+    }
+  </style>
+
+
+  <style id="projects-yellow-corner-v4">
+    /* Projects: large white-to-yellow card tucked under the upper-left corner */
+    #projects {
+      position: relative !important;
+      isolation: isolate !important;
+      z-index: 1 !important;
+    }
+
+    #projects::before {
+      content: '' !important;
+      display: block !important;
+      position: absolute !important;
+      left: -34px !important;
+      top: -24px !important;
+      width: clamp(190px, 24vw, 285px) !important;
+      height: clamp(120px, 15vw, 170px) !important;
+      border: 1px solid rgba(207, 173, 62, 0.20) !important;
+      border-radius: 3px !important;
+      background: linear-gradient(135deg,
+        rgba(255,255,255,0.98) 0%,
+        rgba(255,252,235,0.98) 38%,
+        rgba(250,232,157,0.92) 72%,
+        rgba(239,203,93,0.88) 100%) !important;
+      box-shadow: 0 10px 26px rgba(157, 126, 32, 0.08) !important;
+      transform: rotate(-0.7deg) !important;
+      pointer-events: none !important;
+      z-index: -1 !important;
+    }
+
+    #projects > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    @media (max-width: 767px) {
+      #projects::before {
+        left: -12px !important;
+        top: -16px !important;
+        width: 170px !important;
+        height: 105px !important;
+      }
+    }
+  </style>
+
+
+  <style id="split-research-cards-v5">
+    /* Publications and Projects are two independent white-to-green cards. */
+    .publication-card-stage,
+    .project-card-stage {
+      position: relative !important;
+      isolation: isolate !important;
+      overflow: visible !important;
+    }
+
+    .publication-card-stage {
+      padding-top: 2.2rem !important;
+      padding-bottom: 1.25rem !important;
+    }
+
+    .project-card-stage {
+      padding-top: 1.35rem !important;
+      padding-bottom: 2.7rem !important;
+    }
+
+    /* Same large yellow backing card, mirrored left/right. */
+    .publication-card-stage .yellow-back-card,
+    .project-card-stage .yellow-back-card {
+      display: block !important;
+      position: absolute !important;
+      z-index: 0 !important;
+      width: clamp(260px, 29vw, 390px) !important;
+      aspect-ratio: 1 / 1 !important;
+      top: 0.95rem !important;
+      border: 1px solid rgba(167, 130, 34, 0.16) !important;
+      border-radius: 3px !important;
+      background: linear-gradient(135deg,
+        #ffffff 0%,
+        #fffbed 28%,
+        #f9e8ad 62%,
+        var(--master-yellow-end) 100%) !important;
+      box-shadow: 0 14px 36px rgba(137, 107, 28, 0.08) !important;
+      pointer-events: none !important;
+      transform: none !important;
+    }
+
+    .publication-card-stage .yellow-right-card {
+      right: -1.65rem !important;
+      left: auto !important;
+    }
+
+    .project-card-stage .yellow-left-card {
+      left: -1.65rem !important;
+      right: auto !important;
+    }
+
+    /* Each green card is complete and independent. */
+    .publication-master-card,
+    .project-master-card {
+      position: relative !important;
+      z-index: 1 !important;
+      overflow: hidden !important;
+      background: linear-gradient(90deg,
+        #ffffff 0%,
+        #ffffff 24%,
+        #fafcf9 48%,
+        var(--master-green-mid) 72%,
+        var(--master-green-end) 100%) !important;
+      border: 1px solid var(--master-border) !important;
+      border-radius: 4px !important;
+      box-shadow: 0 16px 42px rgba(39, 68, 47, 0.07) !important;
+    }
+
+    .publication-master-card > .container,
+    .project-master-card > .container {
+      padding-top: 2.35rem !important;
+      padding-bottom: 2.35rem !important;
+    }
+
+    /* Projects is no longer the second section inside a shared card. */
+    #projects {
+      border-top: 0 !important;
+      padding-top: 1.25rem !important;
+    }
+
+    /* Remove the v4 yellow pseudo-card that lived inside Projects itself. */
+    #projects::before {
+      content: none !important;
+      display: none !important;
+    }
+
+    #projects > * {
+      position: relative;
+      z-index: auto;
+    }
+
+    @media (max-width: 991px) {
+      .publication-card-stage .yellow-back-card,
+      .project-card-stage .yellow-back-card {
+        width: clamp(220px, 33vw, 310px) !important;
+      }
+
+      .publication-card-stage .yellow-right-card {
+        right: -0.75rem !important;
+      }
+
+      .project-card-stage .yellow-left-card {
+        left: -0.75rem !important;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .publication-card-stage {
+        padding-top: 1.65rem !important;
+        padding-bottom: 0.9rem !important;
+      }
+
+      .project-card-stage {
+        padding-top: 1rem !important;
+        padding-bottom: 2rem !important;
+      }
+
+      .publication-card-stage .yellow-back-card,
+      .project-card-stage .yellow-back-card {
+        width: 190px !important;
+        top: 0.45rem !important;
+      }
+
+      .publication-card-stage .yellow-right-card {
+        right: -0.25rem !important;
+      }
+
+      .project-card-stage .yellow-left-card {
+        left: -0.25rem !important;
+      }
+    }
+  </style>
+
 </head>
 <body id="page-top">
 
@@ -3280,11 +3839,9 @@
 </nav>
 
 <main class="academic-home">
-  <div class="unified-card-stage">
-    <div class="yellow-back-card" aria-hidden="true"></div>
-    <div class="master-gradient-card">
-      <div class="container section-shell academic-flow">
-
+  <!-- ABOUT: standalone, same page width as News -->
+  <div class="standalone-stage standalone-about-stage">
+    <div class="container section-shell academic-flow">
     <!-- ABOUT (sticky note) -->
     <section id="about" class="single-page-section sticky-note">
       <div class="about-hero">
@@ -3311,7 +3868,12 @@
         </div>
       </div>
     </section>
+    </div>
+  </div>
 
+  <!-- NEWS: standalone grid-paper block aligned to About width -->
+  <div class="standalone-stage standalone-news-stage">
+    <div class="container section-shell academic-flow">
     <!-- NEWS (sticky note) -->
     <section id="news" class="single-page-section sticky-note">
       <div class="section-heading-row">
@@ -3329,10 +3891,14 @@
         <li><span class="news-date">2022/09</span><span>Research Assistant in Computer Graphics under supervision of <a href="https://liruihui.github.io/" target="_blank" rel="noopener" class="font-underline">Prof. Ruihui LI</a>.</span></li>
       </ul>
     </section>
+    </div>
+  </div>
 
-
-
-    <!-- PUBLICATIONS (notebook) -->
+  <!-- PUBLICATIONS: its own white-to-green card, yellow card tucked at top-right -->
+  <div class="unified-card-stage research-card-stage publication-card-stage">
+    <div class="yellow-back-card yellow-right-card" aria-hidden="true"></div>
+    <div class="master-gradient-card research-master-card publication-master-card">
+      <div class="container section-shell academic-flow">
     <section id="publications" class="single-page-section notebook-module">
       <div class="section-heading-row">
         <h2 class="single-page-heading">Publications</h2>
@@ -3398,8 +3964,15 @@
         </article>
       </div>
     </section>
+      </div>
+    </div>
+  </div>
 
-    <!-- PROJECTS (notebook) -->
+  <!-- PROJECTS: separate white-to-green card, yellow card tucked at top-left -->
+  <div class="unified-card-stage research-card-stage project-card-stage">
+    <div class="yellow-back-card yellow-left-card" aria-hidden="true"></div>
+    <div class="master-gradient-card research-master-card project-master-card">
+      <div class="container section-shell academic-flow">
     <section id="projects" class="single-page-section notebook-module">
       <div class="section-heading-row">
         <h2 class="single-page-heading">Projects</h2>
@@ -3444,7 +4017,13 @@
         </div>
       </article>
     </section>
+      </div>
+    </div>
+  </div>
 
+  <!-- INTEREST: standalone, like News; each item uses grid paper -->
+  <div class="standalone-stage standalone-interest-stage">
+    <div class="container section-shell academic-flow">
     <!-- INTEREST (notebook) -->
     <section id="interest" class="single-page-section notebook-module">
       <div class="section-heading-row compact-heading-row">
@@ -3459,8 +4038,6 @@
         <div class="interest-card"><span class="interest-symbol">↗</span><h3>Recently Trying</h3><p>Tennis 🎾, Fitness 🏋️</p></div>
       </div>
     </section>
-
-      </div>
     </div>
   </div>
 </main>
