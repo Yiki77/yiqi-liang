@@ -3818,87 +3818,71 @@
   </style>
 
 
-  <style id="unified-stickers-coils-v6">
+  <style id="v7-targeted-sticker-coil-patch">
+    /* ================================================================
+       V7 TARGETED PATCH
+       Based directly on the user-approved V5 structure.
+       Only: About card + tape stickers + right-side coils + width alignment.
+       ================================================================ */
+
     :root {
-      --panel-width: min(1240px, calc(100% - 44px));
-      --panel-green-mid: #eef5ee;
-      --panel-green-end: #dcebdd;
-      --panel-border: rgba(60, 103, 70, 0.18);
-      --tape-yellow: rgba(239, 207, 103, 0.82);
-      --tape-white: rgba(255,255,255,0.90);
-      --coil-dark: rgba(62, 91, 67, 0.58);
-      --coil-light: rgba(62, 91, 67, 0.16);
-      --grid-paper-bg: rgba(252, 251, 246, 0.98);
-      --grid-paper-line: rgba(79, 123, 87, 0.09);
-      --grid-paper-size: 16px;
+      --v7-panel-width: var(--page-stage-width, min(1240px, calc(100% - 44px)));
+      --v7-card-border: rgba(49, 82, 57, 0.16);
+      --v7-tape-yellow: rgba(239, 210, 112, 0.82);
+      --v7-tape-yellow-soft: rgba(255, 248, 219, 0.92);
+      --v7-coil: rgba(67, 96, 72, 0.56);
+      --v7-coil-line: rgba(67, 96, 72, 0.17);
     }
 
-    /* ==============================================================
-       ONE WIDTH SYSTEM FOR ALL FIVE MAJOR BLOCKS
-       ============================================================== */
-    .standalone-stage,
-    .research-card-stage,
-    .card-surface-stage {
-      width: var(--panel-width) !important;
-      max-width: var(--panel-width) !important;
+    /* --------------------------------------------------------------
+       1. EXACT SAME OUTER WIDTH FOR ALL FIVE MAJOR BLOCKS
+       -------------------------------------------------------------- */
+    .about-card-stage,
+    .standalone-news-stage,
+    .publication-card-stage,
+    .project-card-stage,
+    .standalone-interest-stage {
+      width: var(--v7-panel-width) !important;
+      max-width: none !important;
       margin-left: auto !important;
       margin-right: auto !important;
       box-sizing: border-box !important;
     }
 
-    /* News + Interest use the whole panel width; their headings and paper
-       now align with the left/right edges of About/Publications/Projects. */
-    .standalone-news-stage > .container,
-    .standalone-interest-stage > .container {
-      width: 100% !important;
-      max-width: none !important;
-      padding-left: 0 !important;
-      padding-right: 0 !important;
-      margin: 0 !important;
-    }
-
-    /* ==============================================================
-       ABOUT / PUBLICATIONS / PROJECTS: SAME WHITE -> GREEN CARD
-       ============================================================== */
-    .about-card-stage,
-    .publication-card-stage,
-    .project-card-stage {
+    /* About now has the exact same full-width card shell as research cards. */
+    .about-card-stage {
       position: relative !important;
-      isolation: isolate !important;
+      padding: 2.2rem 0 1.25rem !important;
       overflow: visible !important;
-      padding-top: 2.15rem !important;
-      padding-bottom: 1.55rem !important;
     }
 
-    .about-master-card,
-    .publication-master-card,
-    .project-master-card {
+    .about-master-card {
       position: relative !important;
       z-index: 2 !important;
       width: 100% !important;
+      box-sizing: border-box !important;
       overflow: hidden !important;
-      border: 1px solid var(--panel-border) !important;
-      border-radius: 5px !important;
+      border: 1px solid var(--v7-card-border) !important;
+      border-radius: 4px !important;
+      box-shadow: 0 16px 42px rgba(39, 68, 47, 0.065) !important;
       background: linear-gradient(90deg,
         #ffffff 0%,
         #ffffff 24%,
         #fafcf9 48%,
-        var(--panel-green-mid) 74%,
-        var(--panel-green-end) 100%) !important;
-      box-shadow: 0 15px 36px rgba(39, 68, 47, 0.055) !important;
+        var(--master-green-mid) 72%,
+        var(--master-green-end) 100%) !important;
     }
 
-    .about-master-card > .container,
-    .publication-master-card > .container,
-    .project-master-card > .container {
-      max-width: 1180px !important;
+    .about-master-card > .container {
+      max-width: var(--page-inner-width, 1180px) !important;
       width: 100% !important;
       margin: 0 auto !important;
-      padding: 2.25rem 2.45rem 2.35rem !important;
+      padding: 2.3rem 2.45rem 2.35rem !important;
+      box-sizing: border-box !important;
     }
 
-    /* About is now a true card, so remove the old standalone shell reset. */
-    .about-master-card #about {
+    /* Keep the original About section content visually clean inside its card. */
+    .about-card-stage #about.sticky-note {
       margin: 0 !important;
       padding: 0 !important;
       background: transparent !important;
@@ -3906,253 +3890,257 @@
       border: 0 !important;
       border-radius: 0 !important;
       box-shadow: none !important;
-      overflow: visible !important;
       transform: none !important;
+      overflow: visible !important;
     }
 
-    .about-master-card #about::before,
-    .about-master-card #about::after {
+    .about-card-stage #about.sticky-note::before,
+    .about-card-stage #about.sticky-note::after {
       display: none !important;
     }
 
-    /* ==============================================================
-       STICKERS / TAPE: ABOVE THE CARD, visibly holding it down
-       ============================================================== */
-    .card-sticker {
+    /* --------------------------------------------------------------
+       2. TAPE / STICKER ACTUALLY SITS ON TOP OF THE CARD EDGE
+       About: upper-right, Publications: upper-right, Projects: upper-left.
+       -------------------------------------------------------------- */
+    .about-card-stage,
+    .publication-card-stage,
+    .project-card-stage {
+      overflow: visible !important;
+    }
+
+    .card-tape-sticker,
+    .publication-card-stage .yellow-back-card,
+    .project-card-stage .yellow-back-card {
       display: block !important;
       position: absolute !important;
-      z-index: 5 !important;
+      z-index: 8 !important;
+      width: clamp(145px, 15vw, 190px) !important;
+      height: 62px !important;
+      aspect-ratio: auto !important;
       top: 0.72rem !important;
-      width: clamp(112px, 11vw, 154px) !important;
-      height: clamp(34px, 3.2vw, 44px) !important;
-      border: 1px solid rgba(184, 146, 37, 0.18) !important;
-      border-radius: 2px !important;
-      background: linear-gradient(90deg,
-        var(--tape-white) 0%,
-        rgba(255,250,228,0.88) 35%,
-        var(--tape-yellow) 100%) !important;
-      box-shadow: 0 4px 9px rgba(111, 87, 23, 0.09), inset 0 0 10px rgba(255,255,255,0.30) !important;
-      backdrop-filter: blur(1px) !important;
+      border-radius: 3px !important;
+      border: 1px solid rgba(176, 145, 43, 0.16) !important;
+      background: linear-gradient(110deg,
+        rgba(255,255,255,0.94) 0%,
+        var(--v7-tape-yellow-soft) 42%,
+        var(--v7-tape-yellow) 100%) !important;
+      box-shadow:
+        0 4px 10px rgba(103, 82, 22, 0.08),
+        inset 0 0 0 1px rgba(255,255,255,0.28) !important;
+      opacity: 0.9 !important;
       pointer-events: none !important;
-      opacity: 0.94 !important;
+      backdrop-filter: blur(0.6px) !important;
     }
 
-    /* About: tape on upper-left. */
-    .about-sticker {
-      left: clamp(34px, 5vw, 72px) !important;
-      transform: rotate(-3.2deg) !important;
+    .about-tape-sticker {
+      right: 3.5rem !important;
+      left: auto !important;
+      transform: rotate(-2.2deg) !important;
     }
 
-    /* Publications: tape on upper-right. */
-    .publication-sticker {
-      right: clamp(34px, 5vw, 72px) !important;
-      transform: rotate(2.8deg) !important;
+    .publication-card-stage .yellow-right-card {
+      right: 3.5rem !important;
+      left: auto !important;
+      transform: rotate(2.1deg) !important;
     }
 
-    /* Projects: tape on upper-left. */
-    .project-sticker {
-      left: clamp(34px, 5vw, 72px) !important;
-      transform: rotate(-2.4deg) !important;
+    .project-card-stage .yellow-left-card {
+      left: 3.5rem !important;
+      right: auto !important;
+      transform: rotate(-2.1deg) !important;
     }
 
-    /* subtle tape crease */
-    .card-sticker::after {
-      content: '';
-      position: absolute;
-      left: 10%;
-      right: 10%;
-      bottom: 7px;
-      height: 1px;
-      background: rgba(177, 139, 35, 0.13);
-      transform: rotate(-0.7deg);
+    /* The green cards must remain below the tape but above the page. */
+    .publication-card-stage .research-master-card,
+    .project-card-stage .research-master-card {
+      z-index: 2 !important;
     }
 
-    /* ==============================================================
-       NEWS: GRID PAPER + COIL ON THE RIGHT
-       ============================================================== */
-    .standalone-news-stage {
-      padding-top: 0.55rem !important;
-      padding-bottom: 1.75rem !important;
-    }
-
-    #news {
+    /* --------------------------------------------------------------
+       3. NEWS — grid paper stays unchanged; add coil binding on RIGHT.
+       -------------------------------------------------------------- */
+    .standalone-news-stage > .container {
+      max-width: none !important;
       width: 100% !important;
-      margin: 0 !important;
-      padding: 1.25rem 0 0 !important;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
     }
 
     #news .section-heading-row {
-      width: 100% !important;
-      margin-left: 0 !important;
-      margin-right: 0 !important;
+      margin-left: 2.45rem !important;
+      margin-right: 2.45rem !important;
     }
 
     #news .news-list {
       position: relative !important;
-      width: calc(100% - 20px) !important;
-      margin: 0 20px 0 0 !important;
       overflow: visible !important;
-      box-sizing: border-box !important;
-      background-color: var(--grid-paper-bg) !important;
-      background-image:
-        linear-gradient(var(--grid-paper-line) 1px, transparent 1px),
-        linear-gradient(90deg, var(--grid-paper-line) 1px, transparent 1px) !important;
-      background-size: var(--grid-paper-size) var(--grid-paper-size) !important;
-      background-position: 0 0 !important;
-      border: 1px solid rgba(79,123,87,0.18) !important;
-      border-radius: 3px !important;
+      width: 100% !important;
+      padding-right: 2.35rem !important;
     }
 
-    /* coil rings outside the right edge */
     #news .news-list::after {
       content: '' !important;
       display: block !important;
       position: absolute !important;
       z-index: 6 !important;
-      top: 13px !important;
-      bottom: 13px !important;
-      right: -22px !important;
-      width: 34px !important;
+      right: -19px !important;
+      top: 12px !important;
+      bottom: 12px !important;
+      width: 30px !important;
+      height: auto !important;
       pointer-events: none !important;
+      border: 0 !important;
       background:
-        radial-gradient(ellipse 10px 6px at 16px 7px,
-          transparent 0 5px,
-          var(--coil-dark) 5.2px 6.2px,
-          transparent 6.4px) 0 0 / 34px 21px repeat-y !important;
+        radial-gradient(ellipse 9px 6px at 15px 7px,
+          transparent 0 4.8px,
+          var(--v7-coil) 5px 6.1px,
+          transparent 6.3px) 0 0 / 30px 20px repeat-y !important;
+      transform: rotate(0.35deg) !important;
       opacity: 0.96 !important;
     }
 
-    /* ==============================================================
-       INTEREST: EVERY GRID-PAPER ITEM GETS A RIGHT-SIDE COIL
-       ============================================================== */
-    .standalone-interest-stage {
-      padding-top: 0.4rem !important;
-      padding-bottom: 2.7rem !important;
+    /* A subtle binding line just inside the right edge, without using another pseudo-element. */
+    #news .news-list {
+      box-shadow: inset -1px 0 0 var(--v7-coil-line) !important;
     }
 
-    #interest {
+    /* --------------------------------------------------------------
+       4. INTEREST — every grid-paper item gets its own RIGHT-SIDE coil.
+       -------------------------------------------------------------- */
+    .standalone-interest-stage > .container {
+      max-width: none !important;
       width: 100% !important;
-      margin: 0 !important;
-      padding: 1.25rem 0 0 !important;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+
+    #interest .section-heading-row,
+    #interest .interest-intro {
+      margin-left: 2.45rem !important;
+      margin-right: 2.45rem !important;
     }
 
     #interest .academic-interest-grid {
       width: 100% !important;
-      gap: 1.2rem 1.45rem !important;
       box-sizing: border-box !important;
+      padding: 0 !important;
+      gap: 1.2rem !important;
     }
 
     #interest .interest-card {
       position: relative !important;
       overflow: visible !important;
-      margin-right: 18px !important;
-      padding: 1.08rem 1.15rem 1.12rem !important;
-      background-color: var(--grid-paper-bg) !important;
-      background-image:
-        linear-gradient(var(--grid-paper-line) 1px, transparent 1px),
-        linear-gradient(90deg, var(--grid-paper-line) 1px, transparent 1px) !important;
-      background-size: var(--grid-paper-size) var(--grid-paper-size) !important;
-      background-position: 0 0 !important;
-      border: 1px solid rgba(79,123,87,0.18) !important;
-      border-radius: 3px !important;
-    }
-
-    #interest .interest-card::after {
-      content: '' !important;
-      display: block !important;
-      position: absolute !important;
-      z-index: 5 !important;
-      top: 10px !important;
-      bottom: 10px !important;
-      right: -22px !important;
-      width: 34px !important;
-      pointer-events: none !important;
-      background:
-        radial-gradient(ellipse 10px 6px at 16px 7px,
-          transparent 0 5px,
-          var(--coil-dark) 5.2px 6.2px,
-          transparent 6.4px) 0 0 / 34px 21px repeat-y !important;
-      opacity: 0.96 !important;
+      padding-right: 2rem !important;
+      box-shadow: inset -1px 0 0 var(--v7-coil-line) !important;
     }
 
     #interest .interest-card::before {
       content: '' !important;
       display: block !important;
       position: absolute !important;
-      z-index: 2 !important;
-      top: 9px !important;
-      bottom: 9px !important;
-      right: -1px !important;
-      width: 1px !important;
-      background: var(--coil-light) !important;
+      z-index: 6 !important;
+      right: -19px !important;
+      left: auto !important;
+      top: 10px !important;
+      bottom: 10px !important;
+      width: 30px !important;
+      height: auto !important;
+      inset: 10px -19px 10px auto !important;
+      border: 0 !important;
+      border-radius: 0 !important;
       pointer-events: none !important;
+      background:
+        radial-gradient(ellipse 9px 6px at 15px 7px,
+          transparent 0 4.8px,
+          var(--v7-coil) 5px 6.1px,
+          transparent 6.3px) 0 0 / 30px 20px repeat-y !important;
+      box-shadow: none !important;
+      transform: rotate(0.35deg) !important;
+      opacity: 0.96 !important;
     }
 
-    /* ==============================================================
-       PRESERVE THE EXISTING LEFT-SIDE COILS FOR PUBLICATIONS/PROJECTS
-       ============================================================== */
-    .research-master-card .academic-row {
-      overflow: visible !important;
+    #interest .interest-card::after {
+      display: none !important;
     }
 
-    /* ==============================================================
-       RESPONSIVE
-       ============================================================== */
+    /* Keep all Interest text above the decorative rings. */
+    #interest .interest-card > * {
+      position: relative !important;
+      z-index: 2 !important;
+    }
+
+    /* --------------------------------------------------------------
+       RESPONSIVE: same hierarchy; only reduce tape/coil breathing room.
+       -------------------------------------------------------------- */
     @media (max-width: 991px) {
-      :root { --panel-width: min(100% - 30px, 1180px); }
-
-      .about-master-card > .container,
-      .publication-master-card > .container,
-      .project-master-card > .container {
+      .about-master-card > .container {
         padding-left: 1.7rem !important;
         padding-right: 1.7rem !important;
+      }
+
+      #news .section-heading-row,
+      #interest .section-heading-row,
+      #interest .interest-intro {
+        margin-left: 1.7rem !important;
+        margin-right: 1.7rem !important;
+      }
+
+      .about-tape-sticker,
+      .publication-card-stage .yellow-right-card {
+        right: 2rem !important;
+      }
+
+      .project-card-stage .yellow-left-card {
+        left: 2rem !important;
       }
     }
 
     @media (max-width: 767px) {
-      :root { --panel-width: calc(100% - 22px); }
-
       .about-card-stage,
       .publication-card-stage,
       .project-card-stage {
-        padding-top: 1.65rem !important;
+        padding-top: 1.7rem !important;
       }
 
-      .about-master-card > .container,
-      .publication-master-card > .container,
-      .project-master-card > .container {
-        padding: 1.45rem 1rem 1.55rem !important;
+      .about-master-card > .container {
+        padding: 1.8rem 1rem 1.7rem !important;
       }
 
-      .card-sticker {
-        top: 0.5rem !important;
-        width: 102px !important;
-        height: 32px !important;
+      #news .section-heading-row,
+      #interest .section-heading-row,
+      #interest .interest-intro {
+        margin-left: 1rem !important;
+        margin-right: 1rem !important;
       }
 
-      .about-sticker,
-      .project-sticker { left: 24px !important; }
-      .publication-sticker { right: 24px !important; }
+      .card-tape-sticker,
+      .publication-card-stage .yellow-back-card,
+      .project-card-stage .yellow-back-card {
+        width: 128px !important;
+        height: 52px !important;
+        top: 0.55rem !important;
+      }
 
-      #news .news-list {
-        width: calc(100% - 16px) !important;
-        margin-right: 16px !important;
+      .about-tape-sticker,
+      .publication-card-stage .yellow-right-card {
+        right: 1.2rem !important;
+      }
+
+      .project-card-stage .yellow-left-card {
+        left: 1.2rem !important;
       }
 
       #news .news-list::after,
-      #interest .interest-card::after {
-        right: -17px !important;
-        width: 27px !important;
-        background-size: 27px 19px !important;
-        background-position: -2px 0 !important;
+      #interest .interest-card::before {
+        right: -14px !important;
+        width: 24px !important;
+        background-size: 24px 19px !important;
+        background-position: -3px 0 !important;
       }
 
       #interest .academic-interest-grid {
-        grid-template-columns: 1fr !important;
-      }
-
-      #interest .interest-card {
-        margin-right: 14px !important;
+        padding-right: 0.15rem !important;
       }
     }
   </style>
@@ -4179,9 +4167,9 @@
 </nav>
 
 <main class="academic-home">
-  <!-- ABOUT: standalone, same page width as News -->
-  <div class="standalone-stage standalone-about-stage card-surface-stage about-card-stage">
-    <div class="card-sticker about-sticker" aria-hidden="true"></div>
+  <!-- ABOUT: its own white-to-green card with a tape sticker -->
+  <div class="standalone-stage standalone-about-stage about-card-stage">
+    <div class="card-tape-sticker about-tape-sticker" aria-hidden="true"></div>
     <div class="master-gradient-card about-master-card">
       <div class="container section-shell academic-flow">
     <!-- ABOUT (sticky note) -->
@@ -4239,7 +4227,7 @@
 
   <!-- PUBLICATIONS: its own white-to-green card, yellow card tucked at top-right -->
   <div class="unified-card-stage research-card-stage publication-card-stage">
-    <div class="card-sticker publication-sticker" aria-hidden="true"></div>
+    <div class="yellow-back-card yellow-right-card card-tape-sticker publication-tape-sticker" aria-hidden="true"></div>
     <div class="master-gradient-card research-master-card publication-master-card">
       <div class="container section-shell academic-flow">
     <section id="publications" class="single-page-section notebook-module">
@@ -4313,7 +4301,7 @@
 
   <!-- PROJECTS: separate white-to-green card, yellow card tucked at top-left -->
   <div class="unified-card-stage research-card-stage project-card-stage">
-    <div class="card-sticker project-sticker" aria-hidden="true"></div>
+    <div class="yellow-back-card yellow-left-card card-tape-sticker project-tape-sticker" aria-hidden="true"></div>
     <div class="master-gradient-card research-master-card project-master-card">
       <div class="container section-shell academic-flow">
     <section id="projects" class="single-page-section notebook-module">
