@@ -12,7 +12,7 @@
 
   <meta
     name="description"
-    content="Yiqi Liang's personal academic website, featuring research, publications, projects, and interests in Computer Graphics, Computer Vision, Human-Computer Interaction, Generative AI, and Human-AI Collaboration."
+    content="Yiqi Liang's personal academic website, featuring research, publications, and projects in Computer Graphics, Computer Vision, Human-Computer Interaction, Generative AI, and Human-AI Collaboration."
   >
   <meta
     name="keywords"
@@ -28,7 +28,7 @@
   <meta itemprop="name" content="Yiqi Liang | Research &amp; Portfolio">
   <meta
     itemprop="description"
-    content="Personal academic website of Yiqi Liang, featuring research, publications, projects, and interests in Computer Graphics, Computer Vision, HCI, and Generative AI."
+    content="Personal academic website of Yiqi Liang, featuring research, publications, and projects in Computer Graphics, Computer Vision, HCI, and Generative AI."
   >
   <meta itemprop="image" content="img/portrait.png">
 
@@ -77,7 +77,7 @@
        Stylesheets
        ================================================================ -->
   <link href="css/freelancer.css" rel="stylesheet">
-  <link href="css/index-single-page.css?v=20260830-3" rel="stylesheet">
+  <link href="css/index-single-page.css?v=20260830-4" rel="stylesheet">
 
   <!-- ================================================================
        Structured data
@@ -136,9 +136,6 @@
         <li class="nav-item">
           <a class="nav-link section-nav" href="#projects">Projects</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link section-nav" href="#interest">Interest</a>
-        </li>
       </ul>
     </div>
   </div>
@@ -149,9 +146,9 @@
   <div class="container section-shell academic-layout">
 
     <!-- ============================================================
-         LEFT COLUMN — PROFILE / ABOUT
+         LEFT COLUMN — PROFILE / LINKS / RESEARCH KEYWORDS
          ============================================================ -->
-    <aside id="about" class="single-page-section academic-profile">
+    <aside class="academic-profile">
       <div class="profile-inner">
         <img class="masthead-avatar img-fluid rounded-circle" src="img/portrait.png" alt="Yiqi Liang">
 
@@ -180,7 +177,26 @@
           </a>
         </div>
 
-        <div class="profile-copy">
+        <!-- Keep the research keywords in the left profile column. -->
+        <div class="research-tags profile-tags">
+          <span>Computer Graphics</span>
+          <span>Computer Vision</span>
+          <span>Human-Computer Interaction</span>
+          <span>Generative AI</span>
+          <span>Human-AI Collaboration</span>
+          <span>Assistive Technology</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ============================================================
+         RIGHT COLUMN — ABOUT / NEWS / PUBLICATIONS / PROJECTS
+         ============================================================ -->
+    <div class="academic-content">
+
+      <!-- ABOUT INTRO — moved above News -->
+      <section id="about" class="single-page-section content-section about-intro-section">
+        <div class="profile-copy right-about-copy">
           <div class="about-kicker">M.Phil. Student · HKUST(GZ)</div>
           <h1 class="masthead-heading">Hello, I'm Yiqi</h1>
 
@@ -208,29 +224,14 @@
           </p>
 
           <p>Please reach out if you think we can collaborate or share ideas :)</p>
-
-          <div class="research-tags profile-tags">
-            <span>Computer Graphics</span>
-            <span>Computer Vision</span>
-            <span>Human-Computer Interaction</span>
-            <span>Generative AI</span>
-            <span>Human-AI Collaboration</span>
-            <span>Assistive Technology</span>
-          </div>
         </div>
-      </div>
-    </aside>
-
-    <!-- ============================================================
-         RIGHT COLUMN — NEWS / PUBLICATIONS / PROJECTS / INTEREST
-         ============================================================ -->
-    <div class="academic-content">
+      </section>
 
       <!-- NEWS -->
       <section id="news" class="single-page-section content-section news-section">
         <div class="section-heading-row list-heading-row">
           <h2 class="single-page-heading">News</h2>
-          <span class="section-index">01 / 04</span>
+          <span class="section-index">01 / 03</span>
         </div>
 
         <ul class="news-list">
@@ -271,93 +272,112 @@
 
       <!-- PUBLICATIONS -->
       <section id="publications" class="single-page-section content-section publication-list-section">
-        <div class="section-heading-row list-heading-row">
+        <div class="section-heading-row list-heading-row publication-heading-row">
           <h2 class="single-page-heading">Publications</h2>
-          <span class="section-index">02 / 04</span>
+          <span class="section-index">02 / 03</span>
         </div>
 
-        <h3 class="list-category-title">Computer Vision</h3>
+        <!-- Pill filters inspired by the reference image. -->
+        <div class="publication-filters" role="group" aria-label="Filter publications by research area">
+          <button class="publication-filter active" type="button" data-filter="all" aria-pressed="true">
+            <span>All</span><span class="filter-count">5</span>
+          </button>
+          <button class="publication-filter" type="button" data-filter="point-cloud" aria-pressed="false">
+            <span>Point Cloud</span><span class="filter-count">1</span>
+          </button>
+          <button class="publication-filter" type="button" data-filter="sketching" aria-pressed="false">
+            <span>Sketching</span><span class="filter-count">2</span>
+          </button>
+          <button class="publication-filter" type="button" data-filter="hci" aria-pressed="false">
+            <span>HCI</span><span class="filter-count">2</span>
+          </button>
+        </div>
 
-        <article class="academic-row publication-row">
-          <div class="academic-row-media">
-            <img src="img/portfolio/sdnet.png" alt="SD-Net">
-          </div>
-          <div class="academic-row-body">
-            <h3>SD-Net: Spatially-Disentangled Point Cloud Completion Network</h3>
-            <p class="academic-row-authors">Chen J*, Liu Y*, <u>Liang Y</u>, Long D, He X, Li R</p>
-            <p class="academic-row-venue"><strong>ACM MM 2023 (Oral)</strong></p>
-            <div class="academic-row-links">
-              <a href="documents/SD-Net.pdf" target="_blank" rel="noopener">PDF</a>
-              <a href="https://github.com/ChenJunX1an/SDNet" target="_blank" rel="noopener">Code</a>
+        <div class="publication-filter-results" aria-live="polite">
+          <article class="academic-row publication-row" data-category="point-cloud">
+            <div class="academic-row-media">
+              <img src="img/portfolio/sdnet.png" alt="SD-Net">
             </div>
-          </div>
-        </article>
-
-        <article class="academic-row publication-row">
-          <div class="academic-row-media">
-            <img src="img/portfolio/mross.png" alt="MROSS">
-          </div>
-          <div class="academic-row-body">
-            <h3>MROSS: Multi-Round Region-based Optimization for Scene Sketching</h3>
-            <p class="academic-row-authors"><u>Liang Y*</u>, Liu Y, Long D, Li R</p>
-            <p class="academic-row-venue"><strong>ICME 2025 (Oral)</strong></p>
-            <div class="academic-row-links">
-              <a href="documents/MROSS.pdf" target="_blank" rel="noopener">PDF</a>
-              <a href="https://github.com/Shayyyki/MROSS" target="_blank" rel="noopener">Code</a>
+            <div class="academic-row-body">
+              <div class="publication-type-label">Point Cloud</div>
+              <h3>SD-Net: Spatially-Disentangled Point Cloud Completion Network</h3>
+              <p class="academic-row-authors">Chen J*, Liu Y*, <u>Liang Y</u>, Long D, He X, Li R</p>
+              <p class="academic-row-venue"><strong>ACM MM 2023 (Oral)</strong></p>
+              <div class="academic-row-links">
+                <a href="documents/SD-Net.pdf" target="_blank" rel="noopener">PDF</a>
+                <a href="https://github.com/ChenJunX1an/SDNet" target="_blank" rel="noopener">Code</a>
+              </div>
             </div>
-          </div>
-        </article>
+          </article>
 
-        <article class="academic-row publication-row">
-          <div class="academic-row-media">
-            <img src="img/portfolio/protravec.png" alt="PortraVec">
-          </div>
-          <div class="academic-row-body">
-            <h3>PortraVec: Image-Based Portrait Vectorization with Text-Guided Manipulation</h3>
-            <p class="academic-row-authors"><u>Liang Y*</u>, Liu Y, Long D, Li R</p>
-            <p class="academic-row-venue"><strong>ICME 2026</strong></p>
-            <div class="academic-row-links">
-              <a href="documents/Protravec.pdf" target="_blank" rel="noopener">PDF</a>
+          <article class="academic-row publication-row" data-category="sketching">
+            <div class="academic-row-media">
+              <img src="img/portfolio/mross.png" alt="MROSS">
             </div>
-          </div>
-        </article>
-
-        <h3 class="list-category-title category-spaced">Human-Computer Interaction</h3>
-
-        <article class="academic-row publication-row">
-          <div class="academic-row-media">
-            <img src="img/portfolio/remotechess.png" alt="RemoteChess">
-          </div>
-          <div class="academic-row-body">
-            <h3>RemoteChess: Enhancing Older Adults' Social Connectedness via Designing a Virtual Reality Chinese Chess (Xiangqi) Community</h3>
-            <p class="academic-row-authors">Wei Q*, Wei X, <u>Liang Y</u>, Lin F, Si N, Fan M</p>
-            <p class="academic-row-venue"><strong>CHI 2025</strong></p>
-            <div class="academic-row-links">
-              <a href="documents/RemoteChess.pdf" target="_blank" rel="noopener">PDF</a>
+            <div class="academic-row-body">
+              <div class="publication-type-label">Sketching</div>
+              <h3>MROSS: Multi-Round Region-based Optimization for Scene Sketching</h3>
+              <p class="academic-row-authors"><u>Liang Y*</u>, Liu Y, Long D, Li R</p>
+              <p class="academic-row-venue"><strong>ICME 2025 (Oral)</strong></p>
+              <div class="academic-row-links">
+                <a href="documents/MROSS.pdf" target="_blank" rel="noopener">PDF</a>
+                <a href="https://github.com/Shayyyki/MROSS" target="_blank" rel="noopener">Code</a>
+              </div>
             </div>
-          </div>
-        </article>
+          </article>
 
-        <article class="academic-row publication-row">
-          <div class="academic-row-media">
-            <img src="img/portfolio/VR-Shuttlecock.png" alt="VR-Shuttlecock">
-          </div>
-          <div class="academic-row-body">
-            <h3>VR-Shuttlecock: Exploring the Possibility of Virtual Reality Shuttlecock Kicking with Multi-Sensory Feedback for Empowering Older Adults in Balance Training</h3>
-            <p class="academic-row-authors">Lin F*, <u>Liang Y</u>, Wei Q, Li M, Chu J, Fan M</p>
-            <p class="academic-row-venue"><strong>IMWUT 2025</strong></p>
-            <div class="academic-row-links">
-              <a href="documents/VR-Shuttlecock.pdf" target="_blank" rel="noopener">PDF</a>
+          <article class="academic-row publication-row" data-category="sketching">
+            <div class="academic-row-media">
+              <img src="img/portfolio/protravec.png" alt="PortraVec">
             </div>
-          </div>
-        </article>
+            <div class="academic-row-body">
+              <div class="publication-type-label">Sketching</div>
+              <h3>PortraVec: Image-Based Portrait Vectorization with Text-Guided Manipulation</h3>
+              <p class="academic-row-authors"><u>Liang Y*</u>, Liu Y, Long D, Li R</p>
+              <p class="academic-row-venue"><strong>ICME 2026</strong></p>
+              <div class="academic-row-links">
+                <a href="documents/Protravec.pdf" target="_blank" rel="noopener">PDF</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="academic-row publication-row" data-category="hci">
+            <div class="academic-row-media">
+              <img src="img/portfolio/remotechess.png" alt="RemoteChess">
+            </div>
+            <div class="academic-row-body">
+              <div class="publication-type-label">HCI</div>
+              <h3>RemoteChess: Enhancing Older Adults' Social Connectedness via Designing a Virtual Reality Chinese Chess (Xiangqi) Community</h3>
+              <p class="academic-row-authors">Wei Q*, Wei X, <u>Liang Y</u>, Lin F, Si N, Fan M</p>
+              <p class="academic-row-venue"><strong>CHI 2025</strong></p>
+              <div class="academic-row-links">
+                <a href="documents/RemoteChess.pdf" target="_blank" rel="noopener">PDF</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="academic-row publication-row" data-category="hci">
+            <div class="academic-row-media">
+              <img src="img/portfolio/VR-Shuttlecock.png" alt="VR-Shuttlecock">
+            </div>
+            <div class="academic-row-body">
+              <div class="publication-type-label">HCI</div>
+              <h3>VR-Shuttlecock: Exploring the Possibility of Virtual Reality Shuttlecock Kicking with Multi-Sensory Feedback for Empowering Older Adults in Balance Training</h3>
+              <p class="academic-row-authors">Lin F*, <u>Liang Y</u>, Wei Q, Li M, Chu J, Fan M</p>
+              <p class="academic-row-venue"><strong>IMWUT 2025</strong></p>
+              <div class="academic-row-links">
+                <a href="documents/VR-Shuttlecock.pdf" target="_blank" rel="noopener">PDF</a>
+              </div>
+            </div>
+          </article>
+        </div>
       </section>
 
-      <!-- PROJECTS -->
+      <!-- PROJECTS — Computational & Learning removed -->
       <section id="projects" class="single-page-section content-section project-list-section">
         <div class="section-heading-row list-heading-row">
           <h2 class="single-page-heading">Projects</h2>
-          <span class="section-index">03 / 04</span>
+          <span class="section-index">03 / 03</span>
         </div>
 
         <h3 class="list-category-title">Research &amp; Development</h3>
@@ -416,94 +436,6 @@
             </div>
           </div>
         </article>
-
-        <h3 class="list-category-title category-spaced">Computational &amp; Learning</h3>
-
-        <article class="academic-row project-row">
-          <button class="academic-row-media project-media-button" type="button" data-toggle="modal" data-target="#games" aria-label="Open GAMES101 details">
-            <img src="img/portfolio/games101.png" alt="GAMES101">
-          </button>
-          <div class="academic-row-body">
-            <h3><button class="row-title-button" type="button" data-toggle="modal" data-target="#games">GAMES101</button></h3>
-            <p class="academic-row-description">Course · Computer Graphics</p>
-            <div class="academic-row-links">
-              <a href="https://games-cn.org/intro-graphics/" target="_blank" rel="noopener">Website</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="academic-row project-row">
-          <button class="academic-row-media project-media-button" type="button" data-toggle="modal" data-target="#limupytorch" aria-label="Open Dive into Deep Learning details">
-            <img src="img/portfolio/limu-pytorch.png" alt="Dive into Deep Learning">
-          </button>
-          <div class="academic-row-body">
-            <h3><button class="row-title-button" type="button" data-toggle="modal" data-target="#limupytorch">动手学深度学习 PyTorch版</button></h3>
-            <p class="academic-row-description">Deep Learning · PyTorch</p>
-            <div class="academic-row-links">
-              <a href="https://space.bilibili.com/1567748478/channel/seriesdetail?sid=358497" target="_blank" rel="noopener">Website</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="academic-row project-row">
-          <button class="academic-row-media project-media-button" type="button" data-toggle="modal" data-target="#machinelearn" aria-label="Open Machine Learning details">
-            <img src="img/portfolio/machinelearning.png" alt="Machine Learning">
-          </button>
-          <div class="academic-row-body">
-            <h3><button class="row-title-button" type="button" data-toggle="modal" data-target="#machinelearn">Machine Learning</button></h3>
-            <p class="academic-row-description">Machine Learning · Andrew Ng</p>
-            <div class="academic-row-links">
-              <a href="https://www.youtube.com/watch?v=WIjXwOlXDYs&amp;list=PLOXON7BTL9IW7Ggbc09jLqGmzkwPI4-3V" target="_blank" rel="noopener">Website</a>
-            </div>
-          </div>
-        </article>
-      </section>
-
-      <!-- INTEREST -->
-      <section id="interest" class="single-page-section content-section interest-list-section">
-        <div class="section-heading-row list-heading-row">
-          <h2 class="single-page-heading">Interest</h2>
-          <span class="section-index">04 / 04</span>
-        </div>
-
-        <p class="interest-intro">A small personal corner for things I enjoy outside research.</p>
-
-        <div class="interest-grid academic-interest-grid">
-          <div class="interest-card">
-            <span class="interest-symbol">♡</span>
-            <h3>TV Shows</h3>
-            <ul>
-              <li>Friends</li>
-              <li>Breaking Bad</li>
-              <li>Criminal Minds</li>
-              <li>Wednesday</li>
-              <li>The Knockout</li>
-            </ul>
-          </div>
-
-          <div class="interest-card interest-card-wide">
-            <span class="interest-symbol">○</span>
-            <h3>Movies</h3>
-            <ul>
-              <li><b>Love most:</b> About Time, The Notebook, Flipped, Love Letter</li>
-              <li><b>Animation:</b> Coco, I Am What I Am, Spies in Disguise, Sing, Rise of the Guardians, Monsters University, Finding Nemo, Ron's Gone Wrong, Soul, Robot Dreams, Alita: Battle Angel, Big Hero 6, The Incredibles, Yao-Chinese Folktales</li>
-              <li><b>Mystery:</b> Knives Out, Karma, The Invisible Guest</li>
-              <li><b>Drama:</b> Fight Club, The Shawshank Redemption, Shutter Island, The Pianist, A Beautiful Mind, The Silence of the Lambs</li>
-            </ul>
-          </div>
-
-          <div class="interest-card">
-            <span class="interest-symbol">✦</span>
-            <h3>Handcrafts</h3>
-            <p>Pipe cleaners 🧶, Puzzles 🧩</p>
-          </div>
-
-          <div class="interest-card">
-            <span class="interest-symbol">↗</span>
-            <h3>Recently Trying</h3>
-            <p>Tennis 🎾, Fitness 🏋️</p>
-          </div>
-        </div>
       </section>
 
     </div>
@@ -529,210 +461,12 @@
 <script src="js/freelancer.min.js"></script>
 
 <!-- New single-page ScrollSpy / smooth navigation -->
-<script src="js/index-single-page.js?v=20260830-3"></script>
+<script src="js/index-single-page.js?v=20260830-4"></script>
 
 <!-- Your existing Portfolio modals are preserved below -->
-<div aria-hidden="true" aria-labelledby="gamesLabel" class="portfolio-modal modal fade" id="games" role="dialog" tabindex="-1">
-<div class="modal-dialog modal-xl" role="document">
-<div class="modal-content">
-<button aria-label="Close" class="close" data-dismiss="modal" type="button">
-<span aria-hidden="true">
-<i class="fas fa-times fa-xs"></i>
-</span>
-</button>
-<div class="modal-body">
-<div class="container">
-<div class="row justify-content-center">
-<div class="col-lg-10">
-<h1 class="portfolio-modal-title mb-4 text-center">
 
-                                Lingqi Yan - GAMES101
 
-                            </h1>
-<h6 class="large font-weight-bold">
-<highlight>
-                                    Introduction of Lingqi Yan:
-                                </highlight>
-</h6>
-<p>
 
-                                Assistant Professor @ UCSB.
-
-                            </p>
-<h6 class="large font-weight-bold">
-<highlight>
-                                    Course Introduction:
-                                </highlight>
-</h6>
-<p>
-
-                                This course comprehensively and systematically introduces the four major components of modern computer graphics:
-
-                                (1) rasterization imaging,
-
-                                (2) geometric representation,
-
-                                (3) the theory of light propagation,
-
-                                and (4) animation and simulation.
-
-                                Each aspect is explained from basic principles to practical applications, along with the introduction of cutting-edge theoretical research.
-
-                                Through this course, you can learn the mathematics and physics behind computer graphics and enhance your practical programming skills.
-
-                                As an introduction, this course aims to cover as many aspects of graphics as possible, clearly explaining the basic concepts of each part to provide a complete, top-down understanding of computer graphics.
-
-                            </p>
-<p>
-
-                                More details can be found in
-
-                                <b>
-<a href="https://games-cn.org/intro-graphics/" target="_blank">
-
-                                        Seminar Home Page
-
-                                    </a>
-</b>.
-
-                            </p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div aria-hidden="true" aria-labelledby="limupytorchLabel" class="portfolio-modal modal fade" id="limupytorch" role="dialog" tabindex="-1">
-<div class="modal-dialog modal-xl" role="document">
-<div class="modal-content">
-<button aria-label="Close" class="close" data-dismiss="modal" type="button">
-<span aria-hidden="true">
-<i class="fas fa-times fa-xs"></i>
-</span>
-</button>
-<div class="modal-body">
-<div class="container">
-<div class="row justify-content-center">
-<div class="col-lg-10">
-<h1 class="portfolio-modal-title mb-4 text-center">
-
-                                Mu Li - 动手学深度学习 PyTorch版
-
-                            </h1>
-<h6 class="large font-weight-bold">
-<highlight>
-
-                                    Introduction of Mu Li:
-
-                                </highlight>
-</h6>
-<p>
-
-                                AWS Senior Chief Scientist, PhD in Computer Science, Carnegie Mellon University.
-
-                            </p>
-<h6 class="large font-weight-bold">
-<highlight>
-
-                                    Introduction of Course:
-
-                                </highlight>
-</h6>
-<p>
-
-                                Deep learning is a research field that has received much attention in recent years and plays an important role in machine learning.
-
-                                Deep learning can interpret external data by building and simulating the hierarchical structure of the human brain to extract features from low-level to high-level input data.
-
-                                The course introduces the foundations of deep learning, including linear regression, multilayer perceptrons, convolutional neural networks, recurrent neural networks, optimization algorithms, object detection, semantic segmentation, and style transfer.
-
-                            </p>
-<p>
-
-                                More details can be found in
-
-                                <b>
-<a href="https://space.bilibili.com/1567748478/channel/seriesdetail?sid=358497" target="_blank">
-
-                                        Seminar Home Page
-
-                                    </a>
-</b>.
-
-                            </p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div aria-hidden="true" aria-labelledby="machinelearnLabel" class="portfolio-modal modal fade" id="machinelearn" role="dialog" tabindex="-1">
-<div class="modal-dialog modal-xl" role="document">
-<div class="modal-content">
-<button aria-label="Close" class="close" data-dismiss="modal" type="button">
-<span aria-hidden="true">
-<i class="fas fa-times fa-xs"></i>
-</span>
-</button>
-<div class="modal-body">
-<div class="container">
-<div class="row justify-content-center">
-<div class="col-lg-10">
-<h1 class="portfolio-modal-title mb-4 text-center">
-
-                                Andrew Ng - Machine Learning
-
-                            </h1>
-<h6 class="large font-weight-bold">
-<highlight>
-
-                                    Introduction of Andrew Ng:
-
-                                </highlight>
-</h6>
-<p>
-
-                                Founder of DeepLearning.AI, Founder &amp; CEO of Landing AI, General Partner at AI Fund, Chairman and Co-Founder of Coursera and an Adjunct Professor at Stanford University's Computer Science Department.
-
-                            </p>
-<h6 class="large font-weight-bold">
-<highlight>
-
-                                    Introduction of Course:
-
-                                </highlight>
-</h6>
-<p>
-
-                                This course provides a broad introduction to machine learning and statistical pattern recognition.
-
-                                It covers supervised and unsupervised learning, learning theory, reinforcement learning, and control.
-
-                                It also explores recent applications of machine learning and the design and development of machine-learning algorithms.
-
-                            </p>
-<p>
-
-                                More details can be found in
-
-                                <b>
-<a href="https://www.youtube.com/watch?v=WIjXwOlXDYs&amp;list=PLOXON7BTL9IW7Ggbc09jLqGmzkwPI4-3V" target="_blank">
-
-                                        Seminar Home Page
-
-                                    </a>
-</b>.
-
-                            </p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
 <div aria-hidden="true" aria-labelledby="styledrawLabel" class="portfolio-modal modal fade" id="styledraw" role="dialog" tabindex="-1">
 <div class="modal-dialog modal-xl" role="document">
 <div class="modal-content">
