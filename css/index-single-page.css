@@ -2066,3 +2066,355 @@ highlight {
     margin-bottom: 0.85rem !important;
   }
 }
+
+/* =================================================================
+   v11 — Draft-paper navigation + balanced compact hero
+   ================================================================= */
+
+/* -----------------------------------------------------------------
+   NAVBAR: graph/draft paper, not mosaic
+   ----------------------------------------------------------------- */
+#mainNav {
+  position: fixed;
+  isolation: isolate;
+  overflow: visible;
+
+  background-color: rgba(251, 250, 244, 0.965) !important;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      rgba(72, 115, 90, 0.045) 0,
+      rgba(72, 115, 90, 0.045) 1px,
+      transparent 1px,
+      transparent 20px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(72, 115, 90, 0.040) 0,
+      rgba(72, 115, 90, 0.040) 1px,
+      transparent 1px,
+      transparent 20px
+    ),
+    radial-gradient(circle at 14% 10%, rgba(244, 201, 93, 0.06), transparent 18rem) !important;
+
+  border-bottom: 0 !important;
+  box-shadow: 0 5px 16px rgba(41, 72, 55, 0.035) !important;
+
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Hand-drawn double bottom edge */
+#mainNav::before,
+#mainNav::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+#mainNav::before {
+  bottom: 0;
+  height: 1px;
+  background: rgba(72, 115, 90, 0.30);
+  transform: rotate(-0.03deg);
+  transform-origin: left center;
+}
+
+#mainNav::after {
+  bottom: -2px;
+  height: 3px;
+  opacity: 0.58;
+  background-image:
+    repeating-linear-gradient(
+      176deg,
+      transparent 0 18px,
+      rgba(72, 115, 90, 0.34) 19px 20px,
+      transparent 21px 39px
+    );
+}
+
+#mainNav .container {
+  position: relative;
+  z-index: 3;
+}
+
+#mainNav .navbar-brand {
+  position: relative;
+  z-index: 4;
+  letter-spacing: 0.035em;
+}
+
+/* Nav links look like small hand-drawn labels on paper */
+#mainNav .nav-link {
+  position: relative;
+  z-index: 4;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 35px;
+  margin-left: 0.58rem;
+  padding: 0.46rem 0.78rem !important;
+
+  color: #536158 !important;
+  background: rgba(255, 255, 252, 0.42) !important;
+
+  border: 1px solid rgba(72, 115, 90, 0.18) !important;
+  border-radius: 8px 10px 7px 11px / 9px 7px 11px 8px !important;
+
+  box-shadow:
+    1.5px 1.5px 0 rgba(244, 201, 93, 0.13),
+    inset 0 0 0 0.5px rgba(255, 255, 255, 0.55);
+
+  transition:
+    color 0.18s ease,
+    background 0.18s ease,
+    border-color 0.18s ease,
+    transform 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+#mainNav .nav-link::after {
+  display: none !important;
+}
+
+#mainNav .nav-link:hover {
+  color: var(--yiqi-green-dark) !important;
+  background: rgba(244, 248, 242, 0.86) !important;
+  border-color: rgba(72, 115, 90, 0.34) !important;
+  transform: translateY(-1px) rotate(-0.2deg);
+}
+
+#mainNav .nav-link.active {
+  color: var(--yiqi-green-dark) !important;
+  background: rgba(236, 244, 234, 0.93) !important;
+  border-color: rgba(72, 115, 90, 0.72) !important;
+
+  border-radius: 9px 7px 11px 8px / 8px 11px 7px 10px !important;
+
+  box-shadow:
+    2px 2px 0 rgba(72, 115, 90, 0.16),
+    -1px -1px 0 rgba(72, 115, 90, 0.07),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.42);
+
+  transform: rotate(-0.3deg);
+}
+
+#mainNav .navbar-toggler {
+  position: relative;
+  z-index: 4;
+  background: rgba(255, 255, 252, 0.65) !important;
+  border: 1px solid rgba(72, 115, 90, 0.26) !important;
+  border-radius: 8px 10px 7px 9px !important;
+}
+
+/* -----------------------------------------------------------------
+   ABOUT HERO: text and right profile block visually share one height
+   ----------------------------------------------------------------- */
+.academic-home-single {
+  padding-top: 3.15rem !important;
+}
+
+.about-single-section {
+  padding: 0 0 0.55rem !important;
+}
+
+.about-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 292px;
+  gap: clamp(1.75rem, 3vw, 2.6rem);
+  align-items: stretch;
+}
+
+.about-hero-copy {
+  min-width: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0.35rem 0 0.2rem;
+}
+
+.about-single-section .profile-copy {
+  border-top: 0;
+}
+
+.about-single-section .profile-copy .about-kicker {
+  margin-bottom: 0.48rem;
+  font-size: 0.76rem;
+  letter-spacing: 0.085em;
+}
+
+.about-single-section .profile-copy .masthead-heading {
+  margin-bottom: 0.92rem !important;
+  font-size: clamp(3.05rem, 4.7vw, 4.15rem) !important;
+  line-height: 0.98 !important;
+}
+
+/* Make the copy feel fuller, not thin, while keeping the whole hero compact. */
+.about-single-section .profile-copy p {
+  max-width: none;
+  margin-bottom: 0.78rem;
+  color: #526057;
+  font-size: 1.01rem;
+  line-height: 1.72;
+}
+
+.about-single-section .profile-copy p:last-of-type {
+  margin-bottom: 0;
+}
+
+.about-hero-visual {
+  width: 292px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.52rem;
+}
+
+.about-hero-visual .masthead-avatar {
+  width: 246px;
+  height: 246px;
+  margin: 0 !important;
+  object-fit: cover;
+}
+
+.about-hero-meta {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.about-hero-meta .social-row {
+  justify-content: center;
+  gap: 0.34rem;
+  margin: 0 0 0.48rem;
+}
+
+.about-hero-meta .social-row .btn-social {
+  width: 34px;
+  height: 34px;
+  font-size: 0.88rem;
+}
+
+.about-hero-meta .cv-row {
+  margin: 0 0 0.55rem;
+  text-align: center;
+  font-size: 0.74rem;
+}
+
+.about-hero-meta .profile-tags {
+  justify-content: center;
+  gap: 0.34rem !important;
+  margin: 0 !important;
+}
+
+.about-hero-meta .profile-tags span {
+  padding: 0.27rem 0.50rem !important;
+  font-size: 0.60rem !important;
+  line-height: 1.25;
+}
+
+/* -----------------------------------------------------------------
+   NEWS: start almost immediately after the hero
+   ----------------------------------------------------------------- */
+.news-section {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+.news-section .list-heading-row {
+  margin-top: 0 !important;
+  margin-bottom: 0.82rem !important;
+  padding-top: 0 !important;
+}
+
+.news-list {
+  margin-top: 0 !important;
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+  #mainNav .navbar-collapse {
+    position: relative;
+    z-index: 5;
+    margin-top: 2px;
+    padding: 0.45rem 0.55rem 0.65rem !important;
+
+    background-color: rgba(251, 250, 244, 0.96);
+    background-image:
+      repeating-linear-gradient(0deg, rgba(72,115,90,0.04) 0 1px, transparent 1px 18px),
+      repeating-linear-gradient(90deg, rgba(72,115,90,0.035) 0 1px, transparent 1px 18px);
+
+    border: 1px solid rgba(72, 115, 90, 0.16);
+    border-radius: 0 0 10px 12px;
+  }
+
+  #mainNav .nav-link {
+    width: fit-content;
+    margin: 0.18rem 0 !important;
+  }
+
+  .about-hero {
+    grid-template-columns: minmax(0, 1fr) 250px;
+    gap: 1.55rem;
+  }
+
+  .about-hero-visual {
+    width: 250px;
+  }
+
+  .about-hero-visual .masthead-avatar {
+    width: 218px;
+    height: 218px;
+  }
+
+  .about-single-section .profile-copy p {
+    font-size: 0.96rem;
+    line-height: 1.68;
+  }
+}
+
+@media (max-width: 767px) {
+  .academic-home-single {
+    padding-top: 2.15rem !important;
+  }
+
+  .about-single-section {
+    padding-bottom: 0.9rem !important;
+  }
+
+  .about-hero {
+    grid-template-columns: 1fr;
+    gap: 0.9rem;
+  }
+
+  .about-hero-copy {
+    justify-content: flex-start;
+  }
+
+  .about-hero-visual {
+    width: 100%;
+    align-items: flex-start;
+  }
+
+  .about-hero-meta .social-row,
+  .about-hero-meta .profile-tags {
+    justify-content: flex-start;
+  }
+
+  .about-hero-meta .cv-row {
+    text-align: left;
+  }
+
+  .about-hero-visual .masthead-avatar {
+    width: min(225px, 67vw);
+    height: min(225px, 67vw);
+  }
+}
